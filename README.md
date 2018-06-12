@@ -2,7 +2,8 @@
 
 Proyecto final de Herramientas para **Videojuegos**.
 
-Categoria: First Person, Puzzle.
+Categoria: First Person, Puzzle
+
 Subcategoria: Escape the Room
 
 Integrantes:
