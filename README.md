@@ -18,3 +18,4 @@ El jugador debe buscar otros enchufes y pistas para lograr escapar. Además, har
 
 ### Screenshots:
 ![](https://github.com/xShuugo/HerramientrasFinal/blob/master/Screenshots/Dise%C3%B1o_v01.png)
+![](https://github.com/xShuugo/HerramientrasFinal/blob/master/Screenshots/Juego_v01.jpg)
