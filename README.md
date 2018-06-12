@@ -17,4 +17,4 @@ El jugador debe buscar otros enchufes y pistas para lograr escapar. Además, har
 - [Martin Arana](https://twitter.com/Trino____)
 
 ### Screenshots:
-![]()
+![](https://github.com/xShuugo/HerramientrasFinal/blob/master/Screenshots/Dise%C3%B1o_v01.png)
