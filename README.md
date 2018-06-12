@@ -1,15 +1,20 @@
 # Herramientras Final
 
-## Proyecto final de Herramientas para **Videojuegos**.
+## Proyecto final de Herramientas para Videojuegos
 
-Categoria: First Person, Puzzle
+**Categoria**: First Person, Puzzle
 
-Subcategoria: Escape the Room
+**Subcategoria**: Escape the Room
 
-Concepto de juego:
+**Concepto de juego**:<br>
+Jugador comienza en un cuarto oscuro, iluminado únicamente con una lámpara de mesa, la cual, obviamente, debe estar conectada a un enchufe para funcionar. <br>
+El jugador debe buscar otros enchufes y pistas para lograr escapar. Además, hará uso de fósforos como último recurso para iluminar su camino, tomando el riesgo de quemarse antes de lograr salir.
 
-Jugador comienza en un cuarto oscuro, iluminado únicamente con una lámpara de mesa, la cual, obviamente, debe estar conectada a un enchufe para funcionar. <br/> El jugador debe buscar otros enchufes y pistas para lograr escapar. Además, hará uso de fósforos como último recurso para iluminar su camino, tomando el riesgo de quemarse antes de lograr salir.
+<hr>
 
-Integrantes:
-- Fernando Unyen
-- Martin Arana
+### Integrantes:
+- [Fernando Unyen](https://twitter.com/fernandounyen)
+- [Martin Arana](https://twitter.com/Trino____)
+
+### Screenshots:
+![]()
