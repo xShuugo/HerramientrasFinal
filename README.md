@@ -2,18 +2,9 @@
 
 Proyecto final de Herramientas para **Videojuegos**.
 
-- lista 1
-- lista 2
-- lista 3
+Categoria: First Person, Puzzle
+Subcategoria: Escape the Room
 
-```
-Esto debe estar en una capsula
-``` 
-
-llklk
-
-lk
-
-`
-Probando
-`
+Integrantes:
+- Fernando Unyen
+- Martin Arana
