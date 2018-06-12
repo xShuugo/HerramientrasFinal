@@ -18,4 +18,18 @@
 - Propiedad 2
 - Propiedad ...
 
-*Cada tipo de objeto tiene una diferente cantidad de propiedades, el código en Unity que lee el archivo texto sabrá cuántas propiedades esperar dependiendo del tipo de objeto.*
+<hr>
+
+Cada tipo de objeto tiene una diferente cantidad de propiedades, el código en Unity que lee el archivo texto sabrá cuántas propiedades esperar dependiendo del tipo de objeto.
+
+**Tipos de Objetos**:
+
+- **Paredes**
+- **Mesa**
+- **Lámpara**: *Longitud de cable, rango de luz, boolean para instanciarlo sobre una mesa*
+- **Caja fuerte (password)**: *Password Correcto, contenido de la caja, boolean para instanciarlo sobre una mesa*
+- **Llave de puerta final**
+- **Notas (pistas)**: *Contenido de la nota*
+- **Enchufes**
+- **Caja de fósforos**: *Cantidad de fósforos*
+- **Puerta (final)**: *Código de Llave asignada*
