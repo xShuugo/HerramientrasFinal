@@ -14,7 +14,7 @@
     },
     "args": [
         "--force",
-        "--sketch=${workspaceFolder}\\ProyectoProcessing",
+        "--sketch=${workspaceFolder}",
         "--run"
     ]
 }
