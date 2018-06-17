@@ -1,12 +1,12 @@
 {
     "version": "0.1.0",
-    "command": "c:\\program files\\processing-3.3.7\\processing-java.exe",
+    "command": "processing-java",
     "isShellCommand": true,
     "showOutput": "never",
-    "args": [
-        "--force",
-        "--sketch=${workspaceRoot}",
-        "--output=${workspaceRoot}\\out",
-        "--run"
-    ]
+    // "args": [
+    //     "--force",
+    //     "--sketch=${workspaceRoot}",
+    //     "--output=${workspaceRoot}\\out",
+    //     "--run"
+    // ]
 }
