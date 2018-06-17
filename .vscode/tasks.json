@@ -1,8 +1,8 @@
 {
     "version": "0.1.0",
-    "command": "D:\\00\\00AS\\MARTIN\\00_ISIL\\4to Ciclo\\DesHerram\\processing-3.3.7-windows64\\processing-3.3.7\\processing-java",
+    "command": "c:\\program files\\processing-3.3.7\\processing-java.exe",
     "isShellCommand": true,
-    //"showOutput": "never",
+    "showOutput": "never",
     "args": [
         "--force",
         "--sketch=${workspaceRoot}",
