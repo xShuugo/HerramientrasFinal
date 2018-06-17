@@ -2,8 +2,7 @@ int pad=15;
 MapCanvas map;
 SelectionCanvas sel;
 PropertiesCanvas pro;
-
-int pad2 = 30;
+ToolsCanvas tool;
 
 void setup(){
   size(1000,600);
@@ -12,6 +11,7 @@ void setup(){
   map = new MapCanvas();
   sel = new SelectionCanvas();
   pro = new PropertiesCanvas();
+    tool = new ToolsCanvas();
 }
 
 void draw(){
@@ -19,4 +19,5 @@ void draw(){
   map.display();
   sel.display();
   pro.display();
+  tool.display();
 }
