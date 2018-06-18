@@ -8,7 +8,7 @@ class PropertiesCanvas{
   }
   
   void display(){
-    csize = new PVector(width*1/3-pad*1.5,height*2/3-pad*1.5);
+    csize = new PVector(width*1/3-pad*1.5,height*2/3-pad*4);
     cpos = new PVector(width-csize.x-pad,height-csize.y-pad);
     canvas = createGraphics((int)csize.x,(int)csize.y);
     canvas.beginDraw();
@@ -24,7 +24,6 @@ class PropertiesCanvas{
     canvas.background(255);
     canvas.stroke(0,255,0);
     canvas.ellipse(cmouseX,cmouseY,40,40);
-  }
-  
-  
+  } 
 }
+

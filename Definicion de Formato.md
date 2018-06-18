@@ -9,11 +9,11 @@
 ### Listado de Objetos
 
 **Formato por cada Objeto**:
+- Tipo de Objeto
 - Código de Objeto
 - Posición X 
 - Posición Y
 - Rotación Z
-- Tipo de Objeto
 - Propiedad 1
 - Propiedad 2
 - Propiedad ...

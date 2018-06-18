@@ -1,15 +1,15 @@
-class MapCanvas{
+class ToolsCanvas{
   PGraphics canvas;
   PVector csize;
   PVector cpos;
   
-  public MapCanvas(){
+  public ToolsCanvas(){
     
   }
   
   void display(){
-    csize = new PVector(width*2/3-pad*1.5,height-pad*5);
-    cpos = new PVector(pad,pad*4);    
+    csize = new PVector(width-pad*2,pad*2);
+    cpos = new PVector(pad,pad);
     canvas = createGraphics((int)csize.x,(int)csize.y);
     canvas.beginDraw();
     this.draw();
@@ -22,8 +22,7 @@ class MapCanvas{
     float cmouseY = mouseY-cpos.y;
     
     canvas.background(255);
-    canvas.stroke(0,0,255);
+    canvas.stroke(255,255,0);
     canvas.ellipse(cmouseX,cmouseY,40,40);
   } 
 }
-
