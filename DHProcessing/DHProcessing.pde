@@ -9,7 +9,7 @@ SelectionCanvas sel;
 PropertiesCanvas pro;
 ToolsCanvas tool;
 
-void setup(){
+void setup(){  
   size(1000,600);
   surface.setResizable(true);
   map = new MapCanvas();
@@ -19,15 +19,18 @@ void setup(){
   
   ui = new ControlP5(this);
   ui.addButton("generateTable").setPosition(pad, pad).setSize(50,pad*2).setLabel("Generar");
-  ui.addButton("exportFile").setPosition(pad+50, pad).setSize(50, pad*2).setLabel("Exportar");
+  ui.addButton("exportFile").setPosition(pad+55, pad).setSize(50, pad*2).setLabel("Exportar");
+  ui.addTextfield("levelName").setLabel("").setPosition(pad + 191, pad).setSize(130, pad*2).setAutoClear(false).setFont(createFont("Arial Black",12));
+  ui.addTextlabel("label").setText("Level Name :").setPosition(pad+125,pad+7.5).setColorValue(0x00000000).setFont(createFont("Arial",10));
 }
+  
 
 void draw(){
   background(50);
   map.display();
   sel.display();
   pro.display();
-  tool.display();
+  tool.display();  
 }
 
 void generateTable(){
@@ -42,12 +45,13 @@ void generateTable(){
 
 void exportFile(){
   String dataString;
-  String aux = "";      
+  String aux = "";
+  String levelName = ui.get(Textfield.class, "levelName").getText();
   
   for(Mesa m:data.mesa){    
     aux += m.mesaString();    
   }  
-  dataString = "TestLevel1/"+"0.1|10|0.5/" + aux; 
+  dataString = levelName + "/"+"0.1|10|0.5/" + aux; 
   data.superString = dataString;
   data.selectSave();
 }
@@ -55,4 +59,4 @@ void exportFile(){
 void onOutputSelected(File path){
   data.filePath = path.getAbsolutePath(); 
   data.saveData();
-  }
+}

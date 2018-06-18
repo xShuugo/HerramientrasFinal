@@ -28,8 +28,6 @@ class Data{
     }
   }
   
-  
-   
   void saveData()
   {      
     file = createWriter(filePath);
