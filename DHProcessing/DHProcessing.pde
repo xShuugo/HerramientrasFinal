@@ -1,7 +1,7 @@
 import controlP5.*;
 ControlP5 ui;
 Data data = new Data();
-int TableCount;
+int qMesa = 0;
 
 int pad=15;
 MapCanvas map;
@@ -29,11 +29,10 @@ void draw(){
   tool.display();
 }
 
-/*void generateTable(){
-  int randomX = int((random(pad, width*2/3-pad*1.5 - 30)));
-  int randomY = int((random(pad*4, height-pad-80)));
-  int Mesa = 0;
-  data.updateData("Mesa" + Mesa,Integer.toString(randomX), Integer.toString(randomY)); <---- Falta agregar valores
-  Mesa++;
+void generateTable(){
+  int X = int((random(pad, width*2/3-pad*1.5 - 30)));
+  int Y = int((random(pad*4, height-pad-80)));
+  int qMesa = 0;
+  data.mesa.add(new Mesa("Mesa"+qMesa,X,Y));
+  qMesa++;
 }
-*/

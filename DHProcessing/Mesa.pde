@@ -2,18 +2,17 @@ class Mesa{
   String name;
   float posX;
   float posY;
-  float widthMesa;
-  float heightMesa;
+  float sizeMesa = 10;
   
-  public Mesa(String name, float posX, float posY, float widthMesa, float heightMesa){
+  public Mesa(String name, float posX, float posY){
     this.name = name;
     this.posX = posX;
     this.posY = posY;
-    this.widthMesa = widthMesa;
-    this.heightMesa = heightMesa;
   } 
   
   void draw(){
-    rect(posX, posY, widthMesa, heightMesa);
+    map.canvas.stroke(0,0,0);
+    map.canvas.fill(255);
+    map.canvas.rect(posX, posY, sizeMesa,sizeMesa);
   }
 }
