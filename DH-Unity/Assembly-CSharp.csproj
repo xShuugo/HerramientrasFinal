@@ -52,6 +52,10 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\MapSpawner.cs" />
+     <Compile Include="Assets\Scripts\Player\CameraMovement.cs" />
+     <Compile Include="Assets\Scripts\Player\MouseLocker.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
+     <None Include="Assets\TextFiles\TestLevel.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/C/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
