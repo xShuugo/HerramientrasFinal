@@ -1,6 +1,6 @@
 class Data{
   // data
-  ArrayList<String> data = new ArrayList<String>();
+  //ArrayList<String> data = new ArrayList<String>();
   ArrayList<Mesa> mesa = new ArrayList<Mesa>();
   
   String superString;
@@ -28,11 +28,7 @@ class Data{
     }
   }
   
-  void onOutputSelected(File path)
-  {
-    filePath = path.getAbsolutePath();    
-    saveData();
-  }
+  
    
   void saveData()
   {      

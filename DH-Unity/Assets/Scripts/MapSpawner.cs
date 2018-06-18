@@ -49,7 +49,7 @@ public class MapSpawner : MonoBehaviour
     void SpawnMesa(string[] p)
     {
         GameObject m = Instantiate(Mesa,
-		 new Vector3(float.Parse(p[2]), 0, float.Parse(p[3])),
+		 new Vector3(float.Parse(p[2])/10, 0, float.Parse(p[3])/10),
 		 Quaternion.Euler(0, float.Parse(p[4]), 0));
 		m.name = p[1];
     }
