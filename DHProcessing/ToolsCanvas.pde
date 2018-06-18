@@ -2,11 +2,14 @@ class ToolsCanvas{
   PGraphics canvas;
   PVector csize;
   PVector cpos;
+  boolean test = false;
   
   public ToolsCanvas(){
     
   }
-  
+
+  void setup(){       
+  }  
   void display(){
     csize = new PVector(width-pad*2,pad*2);
     cpos = new PVector(pad,pad);
@@ -24,5 +27,5 @@ class ToolsCanvas{
     canvas.background(255);
     canvas.stroke(255,255,0);
     canvas.ellipse(cmouseX,cmouseY,40,40);
-  } 
-}
+  }
+}   

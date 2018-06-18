@@ -26,4 +26,3 @@ class MapCanvas{
     canvas.ellipse(cmouseX,cmouseY,40,40);
   } 
 }
-
