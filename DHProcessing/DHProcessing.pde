@@ -15,10 +15,11 @@ void setup(){
   map = new MapCanvas();
   sel = new SelectionCanvas();
   pro = new PropertiesCanvas();
-  tool = new ToolsCanvas();   
+  tool = new ToolsCanvas();
   
   ui = new ControlP5(this);
   ui.addButton("generateTable").setPosition(pad, pad).setSize(50,pad*2).setLabel("Generar");
+  ui.addButton("exportFile").setPosition(pad+50, pad).setSize(50, pad*2).setLabel("Exportar");
 }
 
 void draw(){
@@ -31,8 +32,20 @@ void draw(){
 
 void generateTable(){
   int X = int((random(pad, width*2/3-pad*1.5 - 30)));
-  int Y = int((random(pad*4, height-pad-80)));
-  int qMesa = 0;
-  data.mesa.add(new Mesa("Mesa"+qMesa,X,Y));
+  int Y = int((random(pad*4, height-pad-80))); 
+  float angle = 0; 
+  data.mesa.add(new Mesa("Mesa"+qMesa,X,Y, angle));  
   qMesa++;
+}
+
+void exportFile(){
+  String dataString;
+  String aux = "";      
+  
+  for(Mesa m:data.mesa){    
+    aux += m.mesaString();    
+  }  
+  dataString = "TestLevel1/"+"0.1|10|0.5/" + aux; 
+  data.superString = dataString;
+  data.selectSave();
 }

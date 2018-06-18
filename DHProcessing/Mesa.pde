@@ -3,11 +3,13 @@ class Mesa{
   float posX;
   float posY;
   float sizeMesa = 10;
+  float angle;
   
-  public Mesa(String name, float posX, float posY){
+  public Mesa(String name, float posX, float posY, float angle){
     this.name = name;
     this.posX = posX;
-    this.posY = posY;
+    this.posY = posY;   
+    this.angle = angle; 
   } 
   
   void draw(){
@@ -15,4 +17,8 @@ class Mesa{
     map.canvas.fill(255);
     map.canvas.rect(posX, posY, sizeMesa,sizeMesa);
   }
+
+  String mesaString(){
+    return "Mesa" + "|" + name + "|" + posX + "|" + posY + "|" + angle + "/";     
+  }   
 }
