@@ -4,6 +4,9 @@ Data data = new Data();
 int qMesa = 0;
 boolean isOnBool = false;
 String levelName;
+float playerX;
+float playerY;
+float playerZ;
 
 int pad=15;
 MapCanvas map;
@@ -27,7 +30,6 @@ void setup(){
   ui.addTextlabel("label").setText("Level Name :").setPosition(pad+125,pad+7.5).setColorValue(0x00000000).setFont(createFont("Arial",10));
 }
   
-
 void draw(){
   background(50);
   map.display();
@@ -81,7 +83,25 @@ void onOutputSelected(File path){
 }
 
 void openFile(File path){
-    data.filePath = path.getAbsolutePath();    
-    data.openString = split(loadStrings(path)[0], "/");
-    levelName = data.openString[0];
+  data.filePath = path.getAbsolutePath();    
+  data.openString = split(loadStrings(path)[0], "/");
+  levelName = data.openString[0];
+  
+  String[] pos = split(data.openString[1], "|");
+  playerX = Float.valueOf(pos[0]);
+  playerY = Float.valueOf(pos[1]);
+  playerZ = Float.valueOf(pos[2]);
+  
+  for(int i = 2; i < data.openString.length; i++){
+    String[] objs = split(data.openString[i], "|");    
+    switch(objs[0]){
+      case "Mesa": data.objeto.add(new Mesa(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]))); break;
+      case "Lampara": data.objeto.add(new Lampara(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), Float.valueOf(objs[5]), Float.valueOf(objs[6]), Boolean.valueOf(objs[7]), objs[8])) ; break;
+      case "Pared": data.objeto.add(new Pared(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]))); break;
+      case "Fosforos": data.objeto.add(new Fosforos(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), Float.valueOf(objs[5]))); break;
+      case "Cajafuerte": data.objeto.add(new Cajafuerte(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), objs[5], objs[6], Boolean.valueOf(objs[7]))); break;
+      case "Nota": data.objeto.add(new Nota(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), objs[5])); break;
+      case "Enchufe": data.objeto.add(new Enchufe(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]))); break;
+    }
+  }   
 }
