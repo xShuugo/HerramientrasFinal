@@ -14,8 +14,8 @@ class objCajafuerte extends Objeto{
   } 
   
   void draw(){
-    map.canvas.stroke(0,0,0);
-    map.canvas.fill(255);
+    map.canvas.noStroke();
+    map.canvas.fill(255,0,0);
     
     if(isOnTable) map.canvas.rect(posX*mult-(mult/2), posY*mult-(mult/2), mult, mult);   
 
