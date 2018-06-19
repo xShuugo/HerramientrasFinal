@@ -1,9 +1,9 @@
-class Nota extends Objeto{  
+class objNota extends Objeto{  
    
   float sizeMesa = 0.3;
-  String contenido = "";
+  String contenido = "[Sin Contenido]";
     
-  public Nota(String name, float posX, float posY, float angle, String contenido){
+  public objNota(String name, float posX, float posY, float angle, String contenido){
     super(name, posX, posY, angle); 
     this.contenido = contenido;
   } 
@@ -11,7 +11,7 @@ class Nota extends Objeto{
   void draw(){
     map.canvas.stroke(0,0,0);
     map.canvas.fill(255);
-    map.canvas.rect(posX-(sizeMesa*50/2), posY-(sizeMesa*50/2), 0.4*50, 0.6*50);
+    map.canvas.rect(posX*mult-(sizeMesa*mult/2), posY*mult-(sizeMesa*mult/2), 0.4*mult, 0.6*mult);
   }
 
   public String imprimir(){

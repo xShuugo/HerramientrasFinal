@@ -1,4 +1,4 @@
-class Cajafuerte extends Objeto{  
+class objCajafuerte extends Objeto{  
    
   float sizeMesa = 0.5;
   String password = "";
@@ -6,7 +6,7 @@ class Cajafuerte extends Objeto{
   String contenido;
   
     
-  public Cajafuerte(String name, float posX, float posY, float angle, String password, String contenido, boolean isOnTable){
+  public objCajafuerte(String name, float posX, float posY, float angle, String password, String contenido, boolean isOnTable){
     super(name, posX, posY, angle);    
     this.password = password;
     this.contenido = contenido;
@@ -17,12 +17,9 @@ class Cajafuerte extends Objeto{
     map.canvas.stroke(0,0,0);
     map.canvas.fill(255);
     
-    if(isOnTable == false){      
-      map.canvas.rect(posX-(sizeMesa*50/2), posY-(sizeMesa*50/2), sizeMesa*50,sizeMesa*50);
-    } else if(isOnTable){      
-      map.canvas.rect(posX-25, posY-25, 50, 50);
-      map.canvas.rect(posX-(sizeMesa*50/2), posY-(sizeMesa*50/2), sizeMesa*50,sizeMesa*50);
-    }
+    if(isOnTable) map.canvas.rect(posX*mult-(mult/2), posY*mult-(mult/2), mult, mult);   
+
+    map.canvas.rect(posX*mult-(sizeMesa*mult/2), posY*mult-(sizeMesa*mult/2), sizeMesa*mult,sizeMesa*mult);    
   }
 
   public String imprimir(){

@@ -1,0 +1,1 @@
+/0.1|10|0.5/Lampara|Lampara0|172.0|48.0|0.0|3.0|10.0|false|prueba/Nota|Nota1|40.0|-233.0|0.0|[Sin Contenido]/Nota|Nota2|190.0|-11.0|0.0|/Lampara|Lampara3|-60.0|13.0|0.0|3.0|10.0|false|prueba/Pared|Pared4|271.0|169.0|0.0/Mesa|Mesa5|71.0|96.0|0.0/Pared|Pared6|259.0|102.0|0.0/

@@ -43,7 +43,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -421,7 +421,7 @@ MonoBehaviour:
   Mesa: {fileID: 1995303105902716, guid: a11adbebf9acc69408a4926e64aae9f5, type: 2}
   Pared: {fileID: 1242359975203528, guid: 3a22dd5ff36121348ae0c8e4027361ed, type: 2}
   CajaF: {fileID: 1374345733387074, guid: 4c89e5bd1429c7243aed81641db63da8, type: 2}
-  Nota: {fileID: 0}
+  Nota: {fileID: 1449729540606138, guid: afe5b14aa5f7bee4c8ecbf26fa7e4685, type: 2}
   Enchufe: {fileID: 1490287122356708, guid: 5e43be76c3573934ca640724f1d3bc98, type: 2}
   Fosforos: {fileID: 1407917452996612, guid: c9b9edb07b3ca9f4c98f9d8221985ad1, type: 2}
   Puerta: {fileID: 0}
@@ -441,7 +441,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967287
   m_IsActive: 1
 --- !u!23 &1507674190
 MeshRenderer:

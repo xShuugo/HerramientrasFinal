@@ -53,7 +53,7 @@ public class MapSpawner : MonoBehaviour
     void SpawnMesa(string[] p)
     {
         GameObject m = Instantiate(Mesa,
-		 new Vector3(float.Parse(p[2])/10, 0, float.Parse(p[3])/10),
+		 new Vector3(float.Parse(p[2]), 0, float.Parse(p[3])),
 		 Quaternion.Euler(0, float.Parse(p[4]), 0));
 		m.name = p[1];
     }
@@ -61,7 +61,7 @@ public class MapSpawner : MonoBehaviour
     void SpawnLampara(string[] p)
     {
         GameObject l = Instantiate(Lampara,
-		    new Vector3(float.Parse(p[2])/10, 0, float.Parse(p[3])/10),
+		    new Vector3(float.Parse(p[2]), 0, float.Parse(p[3])),
 		    Quaternion.Euler(0, float.Parse(p[4]), 0));
 		l.name = p[1];
 
@@ -71,7 +71,7 @@ public class MapSpawner : MonoBehaviour
 
         if(p[7].Trim() == "true"){
             GameObject m = Instantiate(Mesa,
-		        new Vector3(float.Parse(p[2])/10, 0, float.Parse(p[3])/10),
+		        new Vector3(float.Parse(p[2]), 0, float.Parse(p[3])),
                 Quaternion.Euler(0, float.Parse(p[4]), 0));
             m.name = p[1]+"-mesa";
 
@@ -85,7 +85,7 @@ public class MapSpawner : MonoBehaviour
     void SpawnPared(string[] p)
     {
         GameObject pr = Instantiate(Pared,
-		 new Vector3(float.Parse(p[2])/10, 0, float.Parse(p[3])/10),
+		 new Vector3(float.Parse(p[2]), 0, float.Parse(p[3])),
 		 Quaternion.Euler(0, float.Parse(p[4]), 0));
 		pr.name = p[1];
     }
@@ -93,7 +93,7 @@ public class MapSpawner : MonoBehaviour
     void SpawnFosforos(string[] p)
     {
         GameObject f = Instantiate(Fosforos,
-		 new Vector3(float.Parse(p[2])/10, 1, float.Parse(p[3])/10),
+		 new Vector3(float.Parse(p[2]), 1, float.Parse(p[3])),
 		 Quaternion.Euler(0, float.Parse(p[4]), 0));
 		f.name = p[1];
         f.GetComponent<FosforoScript>().Cantidad = int.Parse(p[5]);
@@ -101,15 +101,15 @@ public class MapSpawner : MonoBehaviour
 
     void SpawnCajaF(string[] p)
     {
-        GameObject cf = Instantiate(Mesa,
-		 new Vector3(float.Parse(p[2])/10, 1, float.Parse(p[3])/10),
+        GameObject cf = Instantiate(CajaF,
+		 new Vector3(float.Parse(p[2]), 1, float.Parse(p[3])),
 		 Quaternion.Euler(0, float.Parse(p[4]), 0));
 		cf.name = p[1];
         cf.GetComponent<CajaFScript>().Password=p[5].Trim();
 
         if(p[6].Trim() == "true"){
             GameObject m = Instantiate(CajaF,
-		        new Vector3(float.Parse(p[2])/10, 0, float.Parse(p[3])/10),
+		        new Vector3(float.Parse(p[2]), 0, float.Parse(p[3])),
                 Quaternion.Euler(0, float.Parse(p[4]), 0));
             m.name = p[1]+"-mesa";
 
@@ -121,8 +121,8 @@ public class MapSpawner : MonoBehaviour
     }
 
     void SpawnNota(string[] p){
-        GameObject n = Instantiate(Mesa,
-		 new Vector3(float.Parse(p[2])/10, 0, float.Parse(p[3])/10),
+        GameObject n = Instantiate(Nota,
+		 new Vector3(float.Parse(p[2]), 0, float.Parse(p[3])),
 		 Quaternion.Euler(0, float.Parse(p[4]), 0));
 		n.name = p[1];
         n.GetComponent<NotaScript>().Contenido = p[5];

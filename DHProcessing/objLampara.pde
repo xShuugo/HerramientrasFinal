@@ -1,4 +1,4 @@
-class Lampara extends Objeto{  
+class objLampara extends Objeto{  
    
   float sizeLampara = .1;
   float cableLongitud;
@@ -6,7 +6,7 @@ class Lampara extends Objeto{
   boolean isOnTable;
   String enchufeInicial;
     
-  public Lampara(String name, float posX, float posY, float angle, float cableLongitud, float rangoLuz, boolean isOnTable, String enchufeInicial){
+  public objLampara(String name, float posX, float posY, float angle, float cableLongitud, float rangoLuz, boolean isOnTable, String enchufeInicial){
     super(name, posX, posY, angle);    
     this.cableLongitud = cableLongitud;
     this.rangoLuz = rangoLuz;
@@ -17,12 +17,10 @@ class Lampara extends Objeto{
   void draw(){    
     map.canvas.stroke(0,0,0);
     map.canvas.fill(255);
-    if(isOnTable == false){      
-      map.canvas.ellipse(posX, posY, sizeLampara*50, sizeLampara*50);
-    } else if(isOnTable){      
-      map.canvas.rect(posX-25, posY-25, 50, 50);
-      map.canvas.ellipse(posX, posY, sizeLampara*50, sizeLampara*50);
-    }
+
+    if(isOnTable) map.canvas.rect(posX*mult-(mult/2), posY*mult-(mult/2), mult, mult);
+    
+    map.canvas.ellipse(posX*mult, posY*mult, sizeLampara*mult, sizeLampara*mult);
   }
 
   public String imprimir(){

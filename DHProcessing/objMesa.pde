@@ -1,15 +1,15 @@
-class Mesa extends Objeto{  
+class objMesa extends Objeto{  
    
   float sizeMesa = 1;
     
-  public Mesa(String name, float posX, float posY, float angle){
+  public objMesa(String name, float posX, float posY, float angle){
     super(name, posX, posY, angle);    
   } 
   
   void draw(){
     map.canvas.stroke(0,0,0);
     map.canvas.fill(255);
-    map.canvas.rect(posX-(sizeMesa*50/2), posY-(sizeMesa*50/2), sizeMesa*50,sizeMesa*50);
+    map.canvas.rect(posX*mult-(sizeMesa*mult/2), posY*mult-(sizeMesa*mult/2), sizeMesa*mult,sizeMesa*mult);
   }
 
   public String imprimir(){

@@ -1,7 +1,8 @@
 import controlP5.*;
 ControlP5 ui;
 Data data = new Data();
-int qMesa = 0;
+int qObj = 0;
+int mult = 10;
 boolean isOnBool = false;
 String levelName;
 float playerX;
@@ -49,15 +50,15 @@ void generateObject(){
   if(isOn == 1) isOnBool = true;
   else isOnBool = false;
   switch(randomObject){
-    case 0:  data.objeto.add(new Mesa("Mesa"+qMesa,X,Y, angle));  break;
-    case 1:  data.objeto.add(new Lampara("Lampara"+qMesa, X,Y, angle, 3, 10, isOnBool, "prueba"));  break;
-    case 2:  data.objeto.add(new Pared("Pared"+qMesa, X, Y, angle));  break;
-    case 3:  data.objeto.add(new Fosforos("Fosforos"+qMesa, X, Y, angle, 3));  break;
-    case 4:  data.objeto.add(new Enchufe("Pared"+qMesa, X, Y, angle));  break;
-    case 5:  data.objeto.add(new Cajafuerte("Cajafuerte"+qMesa, X, Y, angle, "", "", isOnBool));  break;
-    case 6:  data.objeto.add(new Nota("Nota"+qMesa, X, Y, angle, "")); break;
+    case 0:  data.objeto.add(new objMesa("Mesa"+qObj,X,Y, angle));  break;
+    case 1:  data.objeto.add(new objLampara("Lampara"+qObj, X,Y, angle, 3, 10, isOnBool, "prueba"));  break;
+    case 2:  data.objeto.add(new objPared("Pared"+qObj, X, Y, angle));  break;
+    case 3:  data.objeto.add(new objFosforos("Fosforos"+qObj, X, Y, angle, 3));  break;
+    case 4:  data.objeto.add(new objEnchufe("Pared"+qObj, X, Y, angle));  break;
+    case 5:  data.objeto.add(new objCajafuerte("Cajafuerte"+qObj, X, Y, angle, "", "", isOnBool));  break;
+    case 6:  data.objeto.add(new objNota("Nota"+qObj, X, Y, angle, "")); break;
   }
-  qMesa++;
+  qObj++;
 }
 
 void exportFile(){
@@ -95,13 +96,13 @@ void openFile(File path){
   for(int i = 2; i < data.openString.length; i++){
     String[] objs = split(data.openString[i], "|");    
     switch(objs[0]){
-      case "Mesa": data.objeto.add(new Mesa(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]))); break;
-      case "Lampara": data.objeto.add(new Lampara(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), Float.valueOf(objs[5]), Float.valueOf(objs[6]), Boolean.valueOf(objs[7]), objs[8])) ; break;
-      case "Pared": data.objeto.add(new Pared(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]))); break;
-      case "Fosforos": data.objeto.add(new Fosforos(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), Float.valueOf(objs[5]))); break;
-      case "Cajafuerte": data.objeto.add(new Cajafuerte(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), objs[5], objs[6], Boolean.valueOf(objs[7]))); break;
-      case "Nota": data.objeto.add(new Nota(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), objs[5])); break;
-      case "Enchufe": data.objeto.add(new Enchufe(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]))); break;
+      case "Mesa": data.objeto.add(new objMesa(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]))); break;
+      case "Lampara": data.objeto.add(new objLampara(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), Float.valueOf(objs[5]), Float.valueOf(objs[6]), Boolean.valueOf(objs[7]), objs[8])) ; break;
+      case "Pared": data.objeto.add(new objPared(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]))); break;
+      case "Fosforos": data.objeto.add(new objFosforos(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), Float.valueOf(objs[5]))); break;
+      case "Cajafuerte": data.objeto.add(new objCajafuerte(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), objs[5], objs[6], Boolean.valueOf(objs[7]))); break;
+      case "Nota": data.objeto.add(new objNota(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), objs[5])); break;
+      case "Enchufe": data.objeto.add(new objEnchufe(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]))); break;
     }
   }   
 }

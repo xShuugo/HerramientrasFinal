@@ -1,17 +1,16 @@
-class Pared extends Objeto{  
+class objPared extends Objeto{  
    
-  float paredHeight = 3;
   float paredWidth = 4;
   float paredDepth = 0.5;
     
-  public Pared(String name, float posX, float posY, float angle){
+  public objPared(String name, float posX, float posY, float angle){
     super(name, posX, posY, angle);     
   } 
   
   void draw(){
     map.canvas.stroke(0,0,0);
     map.canvas.fill(255);
-    map.canvas.rect(posX - (paredWidth*50/2), posY-(paredWidth*50/2), paredWidth*50, paredDepth*50);
+    map.canvas.rect(posX*mult - (paredWidth*mult/2), posY*mult-(paredDepth*mult/2), paredWidth*mult, paredDepth*mult);
   }
 
   public String imprimir(){
