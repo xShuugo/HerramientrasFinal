@@ -9,8 +9,8 @@ class objNota extends Objeto{
   } 
   
   void draw(){
-    map.canvas.stroke(0,0,0);
-    map.canvas.fill(255);
+    map.canvas.noStroke();
+    map.canvas.fill(255,225,91);
     map.canvas.rect(posX*mult-(sizeMesa*mult/2), posY*mult-(sizeMesa*mult/2), 0.4*mult, 0.6*mult);
   }
 

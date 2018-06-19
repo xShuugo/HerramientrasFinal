@@ -8,7 +8,7 @@ class objPared extends Objeto{
   } 
   
   void draw(){
-    map.canvas.stroke(0,0,0);
+    map.canvas.noStroke();
     map.canvas.fill(255);
     map.canvas.rect(posX*mult - (paredWidth*mult/2), posY*mult-(paredDepth*mult/2), paredWidth*mult, paredDepth*mult);
   }

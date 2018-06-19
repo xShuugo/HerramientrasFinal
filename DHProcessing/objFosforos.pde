@@ -9,8 +9,8 @@ class objFosforos extends Objeto{
   } 
   
   void draw(){
-    map.canvas.stroke(0,0,0);
-    map.canvas.fill(255);
+    map.canvas.noStroke();
+    map.canvas.fill(230,130,0);
     map.canvas.rect(posX*mult-(sizeMesa*mult/2), posY*mult-(sizeMesa*mult/2), sizeMesa*mult,sizeMesa*mult);
   }
 

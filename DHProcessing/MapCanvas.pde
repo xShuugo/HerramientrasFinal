@@ -24,13 +24,14 @@ class MapCanvas{
     float cmouseX = mouseX-cpos.x-ctrans.x;
     float cmouseY = mouseY-cpos.y-ctrans.y;
     
-    canvas.background(255);
+    canvas.background(100);
     
     for(Objeto m : data.objeto){
       m.draw();
     }
     
     canvas.stroke(0,0,255);
+    canvas.noFill();
     canvas.ellipse(cmouseX,cmouseY,40,40);
     
   } 

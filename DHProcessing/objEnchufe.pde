@@ -9,8 +9,8 @@ class objEnchufe extends Objeto{
   } 
   
   void draw(){
-    map.canvas.stroke(0,0,0);
-    map.canvas.fill(255);
+    map.canvas.noStroke();
+    map.canvas.fill(66,192,255);
     map.canvas.rect(posX*mult, posY*mult, sizeMesa*mult,sizeMesa*mult/2);
   }
   
