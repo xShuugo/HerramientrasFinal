@@ -1,1 +1,1 @@
-TestLevel/0.1|10|0.5/Mesa|abc|6.5|0.5|0/Lampara|def|20|10|45|10|20|true|ench/
+TestLevel/0.1|10|0.5/Lampara|lampara1|0|0|45|10|20|true|ench/Mesa|mesa1|10|0|0/Cajafuerte|cajaf1|0|10|0|123|nada|false/Enchufe|ench|-10|0|0/

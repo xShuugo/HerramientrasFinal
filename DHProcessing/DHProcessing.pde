@@ -40,8 +40,6 @@ void draw(){
 }
 
 void generateObject(){
-  //int X = int((random(pad, width*2/3-pad*1.5 - 30)));
-  //int Y = int((random(pad*4, height-pad-80))); 
   int X = int(random(-map.canvas.width/2,map.canvas.width/2));
   int Y = int(random(-map.canvas.height/2,map.canvas.height/2));
   float angle = 0;
