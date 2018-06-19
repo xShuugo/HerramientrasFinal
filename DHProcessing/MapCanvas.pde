@@ -26,7 +26,7 @@ class MapCanvas{
     
     canvas.background(255);
     
-    for(Mesa m : data.mesa){
+    for(Objeto m : data.objeto){
       m.draw();
     }
     

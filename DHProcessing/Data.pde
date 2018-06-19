@@ -1,9 +1,10 @@
 class Data{
   // data
-  //ArrayList<String> data = new ArrayList<String>();
-  ArrayList<Mesa> mesa = new ArrayList<Mesa>();
+  //ArrayList<String> data = new ArrayList<String>();  
+  ArrayList<Objeto> objeto = new ArrayList<Objeto>();
   
   String superString;
+  String[] openString;
   
   // archivo
   PrintWriter file = null;
@@ -35,4 +36,8 @@ class Data{
     file.flush();
     file.close();
   }
+  
+  void selectFile(){
+    selectInput("Seleccione un archivo", "openFile");
+  } 
 }
