@@ -13,7 +13,6 @@ public class MapSpawner : MonoBehaviour
     public GameObject Mesa;
     public GameObject Pared;
     public GameObject CajaF;
-    public GameObject Llave;
     public GameObject Nota;
     public GameObject Enchufe;
     public GameObject Fosforos;
@@ -35,12 +34,17 @@ public class MapSpawner : MonoBehaviour
 
         for (int a = 2; a < arg.Length - 1; a++)
         {
-            Debug.Log(arg[a]);
+            //Debug.Log(arg[a]);
             string[] prop = arg[a].Split('|');
             //Debug.Log(prop[0]);
             switch (prop[0].Trim())
             {
                 case "Mesa": SpawnMesa(prop); break;
+                case "Lampara": SpawnLampara(prop);break;
+                case "Pared": SpawnPared(prop); break;
+                case "Fosforos": SpawnFosforos(prop); break;
+                case "Cajafuerte": SpawnCajaF(prop); break;
+                case "Nota": SpawnNota(prop); break;
                 default: Debug.Log("Tipo no declarado"); break;
             }
         }
@@ -52,5 +56,75 @@ public class MapSpawner : MonoBehaviour
 		 new Vector3(float.Parse(p[2])/10, 0, float.Parse(p[3])/10),
 		 Quaternion.Euler(0, float.Parse(p[4]), 0));
 		m.name = p[1];
+    }
+
+    void SpawnLampara(string[] p)
+    {
+        GameObject l = Instantiate(Lampara,
+		    new Vector3(float.Parse(p[2])/10, 0, float.Parse(p[3])/10),
+		    Quaternion.Euler(0, float.Parse(p[4]), 0));
+		l.name = p[1];
+
+        l.GetComponent<LamparaScript>().LongitudCable = float.Parse(p[5]);
+        l.GetComponent<LamparaScript>().RangoLuz = float.Parse(p[6]);
+        l.GetComponent<LamparaScript>().EnchufeActual = p[8].Trim();
+
+        if(p[7].Trim() == "true"){
+            GameObject m = Instantiate(Mesa,
+		        new Vector3(float.Parse(p[2])/10, 0, float.Parse(p[3])/10),
+                Quaternion.Euler(0, float.Parse(p[4]), 0));
+            m.name = p[1]+"-mesa";
+
+            l.transform.position = new Vector3(
+                l.transform.position.x,
+                l.transform.position.y+.8f,
+                l.transform.position.z);
+        }
+    }
+
+    void SpawnPared(string[] p)
+    {
+        GameObject pr = Instantiate(Pared,
+		 new Vector3(float.Parse(p[2])/10, 0, float.Parse(p[3])/10),
+		 Quaternion.Euler(0, float.Parse(p[4]), 0));
+		pr.name = p[1];
+    }
+
+    void SpawnFosforos(string[] p)
+    {
+        GameObject f = Instantiate(Fosforos,
+		 new Vector3(float.Parse(p[2])/10, 1, float.Parse(p[3])/10),
+		 Quaternion.Euler(0, float.Parse(p[4]), 0));
+		f.name = p[1];
+        f.GetComponent<FosforoScript>().Cantidad = int.Parse(p[5]);
+    }
+
+    void SpawnCajaF(string[] p)
+    {
+        GameObject cf = Instantiate(Mesa,
+		 new Vector3(float.Parse(p[2])/10, 1, float.Parse(p[3])/10),
+		 Quaternion.Euler(0, float.Parse(p[4]), 0));
+		cf.name = p[1];
+        cf.GetComponent<CajaFScript>().Password=p[5].Trim();
+
+        if(p[6].Trim() == "true"){
+            GameObject m = Instantiate(CajaF,
+		        new Vector3(float.Parse(p[2])/10, 0, float.Parse(p[3])/10),
+                Quaternion.Euler(0, float.Parse(p[4]), 0));
+            m.name = p[1]+"-mesa";
+
+            cf.transform.position = new Vector3(
+                cf.transform.position.x,
+                cf.transform.position.y+.8f,
+                cf.transform.position.z);
+        }
+    }
+
+    void SpawnNota(string[] p){
+        GameObject n = Instantiate(Mesa,
+		 new Vector3(float.Parse(p[2])/10, 0, float.Parse(p[3])/10),
+		 Quaternion.Euler(0, float.Parse(p[4]), 0));
+		n.name = p[1];
+        n.GetComponent<NotaScript>().Contenido = p[5];
     }
 }
