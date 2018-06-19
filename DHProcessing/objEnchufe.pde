@@ -1,6 +1,6 @@
 class objEnchufe extends Objeto{  
    
-  float sizeMesa = 0.2;
+  float size = 0.2;
   float enchufeWidth = 2;
   float enchufeHeight = 2;
     
@@ -9,9 +9,13 @@ class objEnchufe extends Objeto{
   } 
   
   void draw(){
+    map.canvas.pushMatrix();
+    map.canvas.translate(posX*mult-(size*mult/2), posY*mult-(size*mult/4));
+    map.canvas.rotate(radians(angle));
     map.canvas.noStroke();
     map.canvas.fill(66,192,255);
-    map.canvas.rect(posX*mult, posY*mult, sizeMesa*mult,sizeMesa*mult/2);
+    map.canvas.rect(0,0, size*mult,size*mult/2);
+    map.canvas.popMatrix();
   }
   
   public String imprimir(){

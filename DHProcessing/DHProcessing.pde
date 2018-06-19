@@ -2,7 +2,7 @@ import controlP5.*;
 ControlP5 ui;
 Data data = new Data();
 int qObj = 0;
-float mult = 30;
+float mult = 20;
 boolean isOnBool = false;
 String levelName;
 float playerX;
@@ -73,6 +73,7 @@ void exportFile(){
 }
 
 void openFileLocation(){
+  data.objeto = new ArrayList<Objeto>();
   data.selectFile();
 }
 

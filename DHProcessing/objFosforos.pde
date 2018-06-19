@@ -1,6 +1,6 @@
 class objFosforos extends Objeto{  
    
-  float sizeMesa = 0.2;
+  float size = 0.2;
   float cantidadFos = 0;
     
   public objFosforos(String name, float posX, float posY, float angle, float cantidadFos){
@@ -9,9 +9,13 @@ class objFosforos extends Objeto{
   } 
   
   void draw(){
+    map.canvas.pushMatrix();
+    map.canvas.translate(posX*mult-(size*mult/2), posY*mult-(size*mult/2));
+    map.canvas.rotate(radians(angle));
     map.canvas.noStroke();
     map.canvas.fill(230,130,0);
-    map.canvas.rect(posX*mult-(sizeMesa*mult/2), posY*mult-(sizeMesa*mult/2), sizeMesa*mult,sizeMesa*mult);
+    map.canvas.rect(0,0, size*mult,size*mult);
+    map.canvas.popMatrix();
   }
 
   public String imprimir(){

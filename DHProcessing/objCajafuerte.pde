@@ -1,6 +1,6 @@
 class objCajafuerte extends Objeto{  
    
-  float sizeMesa = 0.5;
+  float size = 0.5;
   String password = "";
   boolean isOnTable;
   String contenido;
@@ -14,15 +14,19 @@ class objCajafuerte extends Objeto{
   } 
   
   void draw(){
+    map.canvas.pushMatrix();
+    map.canvas.translate(posX*mult-(size*mult/2), posY*mult-(size*mult/2));
+    map.canvas.rotate(radians(angle));
     map.canvas.noStroke();
     
     if(isOnTable){
       map.canvas.fill(99,83,52);
-      map.canvas.rect(posX*mult-(mult/2), posY*mult-(mult/2), mult, mult); 
+      map.canvas.rect((size*mult/2)-(mult/2), (size*mult/2)-(mult/2), mult, mult); 
        }  
 
     map.canvas.fill(255,0,0);
-    map.canvas.rect(posX*mult-(sizeMesa*mult/2), posY*mult-(sizeMesa*mult/2), sizeMesa*mult,sizeMesa*mult);    
+    map.canvas.rect(0,0, size*mult,size*mult);    
+    map.canvas.popMatrix();
   }
 
   public String imprimir(){

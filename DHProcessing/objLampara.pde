@@ -1,6 +1,6 @@
 class objLampara extends Objeto{  
    
-  float sizeLampara = .1;
+  float diameter = .1;
   float cableLongitud;
   float rangoLuz;
   boolean isOnTable;
@@ -15,15 +15,19 @@ class objLampara extends Objeto{
   } 
   
   void draw(){    
+    map.canvas.pushMatrix();
+    map.canvas.translate(posX*mult, posY*mult);
+    map.canvas.rotate(radians(angle));
     map.canvas.noStroke();
 
     if(isOnTable){ 
       map.canvas.fill(99,83,52);
-      map.canvas.rect(posX*mult-(mult/2), posY*mult-(mult/2), mult, mult);
+      map.canvas.rect(-(mult/2), -(mult/2), mult, mult);
       }
-      
+
     map.canvas.fill(230,230,0);
-    map.canvas.ellipse(posX*mult, posY*mult, sizeLampara*mult, sizeLampara*mult);
+    map.canvas.ellipse(0,0, diameter*mult, diameter*mult);
+    map.canvas.popMatrix();
   }
 
   public String imprimir(){
