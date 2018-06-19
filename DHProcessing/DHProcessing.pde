@@ -2,7 +2,7 @@ import controlP5.*;
 ControlP5 ui;
 Data data = new Data();
 int qObj = 0;
-int mult = 10;
+float mult = 30;
 boolean isOnBool = false;
 String levelName;
 float playerX;
@@ -40,8 +40,8 @@ void draw(){
 }
 
 void generateObject(){
-  int X = int(random(-map.canvas.width/2,map.canvas.width/2));
-  int Y = int(random(-map.canvas.height/2,map.canvas.height/2));
+  float X = random(-map.canvas.width/(2*mult),map.canvas.width/(2*mult));
+  float Y = random(-map.canvas.height/(2*mult),map.canvas.height/(2*mult));
   float angle = 0;
   int randomObject = round(random(0, 6));
   int isOn = round(random(0,1));

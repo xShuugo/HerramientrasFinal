@@ -16,10 +16,13 @@ class objLampara extends Objeto{
   
   void draw(){    
     map.canvas.noStroke();
-    map.canvas.fill(230,230,0);
 
-    if(isOnTable) map.canvas.rect(posX*mult-(mult/2), posY*mult-(mult/2), mult, mult);
-    
+    if(isOnTable){ 
+      map.canvas.fill(99,83,52);
+      map.canvas.rect(posX*mult-(mult/2), posY*mult-(mult/2), mult, mult);
+      }
+      
+    map.canvas.fill(230,230,0);
     map.canvas.ellipse(posX*mult, posY*mult, sizeLampara*mult, sizeLampara*mult);
   }
 
