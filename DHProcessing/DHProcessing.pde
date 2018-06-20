@@ -8,6 +8,8 @@ String levelName;
 float playerX;
 float playerY;
 float playerZ;
+DropdownList objectList;
+String currentItem = "";
 
 int pad=15;
 MapCanvas map;
@@ -29,6 +31,8 @@ void setup(){
   ui.addButton("openFileLocation").setPosition(width-pad-50, pad).setSize(50, pad*2).setLabel("Abrir");
   ui.addTextfield("levelName").setLabel("").setPosition(pad + 191, pad).setSize(130, pad*2).setAutoClear(false).setFont(createFont("Arial Black",12));
   ui.addTextlabel("label").setText("Level Name :").setPosition(pad+125,pad+7.5).setColorValue(0x00000000).setFont(createFont("Arial",10));
+  objectList = ui.addDropdownList("objectList").setPosition(width-(width*1/3-pad*1.5)-pad+4, pad*4+5).setLabel("Select an object").setSize(130, 500).setBarHeight(20).setFont(createFont("Arial Black",10))
+    .setItemHeight(20).addItem("Mesa",1).addItem("Lampara",2).addItem("Pared",3).addItem("Fosforos",4).addItem("Enchufe",5).addItem("Cajafuerte",6).addItem("Nota",7);    
 }
   
 void draw(){
@@ -37,6 +41,15 @@ void draw(){
   sel.display();
   pro.display();
   tool.display();  
+}
+
+void controlEvent(ControlEvent theControlEvent) 
+{  
+  if (theControlEvent.getName().equals("objectList"))
+  {
+    String selectedItem = objectList.getItem((int)theControlEvent.value()).get("name").toString();
+    currentItem = selectedItem;
+  } 
 }
 
 void generateObject(){
@@ -52,7 +65,7 @@ void generateObject(){
     case 1:  data.objeto.add(new objLampara("Lampara"+qObj, X,Y, angle, 3, 10, isOnBool, "prueba"));  break;
     case 2:  data.objeto.add(new objPared("Pared"+qObj, X, Y, angle));  break;
     case 3:  data.objeto.add(new objFosforos("Fosforos"+qObj, X, Y, angle, 3));  break;
-    case 4:  data.objeto.add(new objEnchufe("Pared"+qObj, X, Y, angle));  break;
+    case 4:  data.objeto.add(new objEnchufe("Enchufe"+qObj, X, Y, angle));  break;
     case 5:  data.objeto.add(new objCajafuerte("Cajafuerte"+qObj, X, Y, angle, "", "", isOnBool));  break;
     case 6:  data.objeto.add(new objNota("Nota"+qObj, X, Y, angle, "")); break;
   }
