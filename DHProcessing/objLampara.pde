@@ -22,7 +22,7 @@ class objLampara extends Objeto{
 
     if(isOnTable){ 
       map.canvas.fill(99,83,52);
-      map.canvas.rect(-(mult/2), -(mult/2), mult, mult);
+      map.canvas.rect(0,0, mult, mult);
     }
 
     map.canvas.fill(230,230,0);

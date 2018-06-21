@@ -8,7 +8,7 @@ class objMesa extends Objeto{
   
   void draw(){
     map.canvas.pushMatrix();
-    map.canvas.translate(posX*mult-(size*mult/2), posY*mult-(size*mult/2));
+    map.canvas.translate(posX*mult, posY*mult);
     map.canvas.rotate(radians(angle));
     map.canvas.noStroke();
     map.canvas.fill(99,83,52);

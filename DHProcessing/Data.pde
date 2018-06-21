@@ -1,6 +1,5 @@
 class Data{
   // data
-  //ArrayList<String> data = new ArrayList<String>();  
   ArrayList<Objeto> objeto = new ArrayList<Objeto>();
   
   String superString;
@@ -9,12 +8,6 @@ class Data{
   // archivo
   PrintWriter file = null;
   String filePath = "";
-  
-  
-  void callback(File file)
-  {
-    println(file);
-  }  
   
   void selectSave(){
     {
@@ -38,6 +31,34 @@ class Data{
   }
   
   void selectFile(){
-    selectInput("Seleccione un archivo", "openFile");
+    selectInput("Seleccione un archivo", "onInputSelected");
   } 
 }
+
+void onOutputSelected(File path){
+  data.filePath = path.getAbsolutePath(); 
+  data.saveData();
+}
+
+void onInputSelected(File path){
+  data.filePath = path.getAbsolutePath();    
+  data.openString = split(loadStrings(path)[0], "/");
+  levelName = data.openString[0];
+  
+  String[] pos = split(data.openString[1], "|");
+  playerPos = new PVector(Float.valueOf(pos[0]),Float.valueOf(pos[1]),Float.valueOf(pos[2]));
+  
+  for(int i = 2; i < data.openString.length; i++){
+    String[] objs = split(data.openString[i], "|");    
+    switch(objs[0]){
+      case "Mesa": data.objeto.add(new objMesa(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]))); break;
+      case "Lampara": data.objeto.add(new objLampara(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), Float.valueOf(objs[5]), Float.valueOf(objs[6]), Boolean.valueOf(objs[7]), objs[8])) ; break;
+      case "Pared": data.objeto.add(new objPared(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]))); break;
+      case "Fosforos": data.objeto.add(new objFosforos(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), Float.valueOf(objs[5]))); break;
+      case "Cajafuerte": data.objeto.add(new objCajafuerte(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), objs[5], objs[6], Boolean.valueOf(objs[7]))); break;
+      case "Nota": data.objeto.add(new objNota(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), objs[5])); break;
+      case "Enchufe": data.objeto.add(new objEnchufe(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]))); break;
+    }
+  }   
+}
+

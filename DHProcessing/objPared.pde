@@ -9,7 +9,7 @@ class objPared extends Objeto{
   
   void draw(){
     map.canvas.pushMatrix();
-    map.canvas.translate(posX*mult - (paredWidth*mult/2), posY*mult-(paredDepth*mult/2));
+    map.canvas.translate(posX*mult, posY*mult);
     map.canvas.rotate(radians(angle));
     map.canvas.noStroke();
     map.canvas.fill(255);

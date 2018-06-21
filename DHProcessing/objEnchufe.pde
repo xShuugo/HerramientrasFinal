@@ -10,7 +10,7 @@ class objEnchufe extends Objeto{
   
   void draw(){
     map.canvas.pushMatrix();
-    map.canvas.translate(posX*mult-(size*mult/2), posY*mult-(size*mult/4));
+    map.canvas.translate(posX*mult, posY*mult);
     map.canvas.rotate(radians(angle));
     map.canvas.noStroke();
     map.canvas.fill(66,192,255);

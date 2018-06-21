@@ -1,30 +1,48 @@
 import controlP5.*;
+
+//UI
 ControlP5 ui;
+DropdownList objectList;
+MapCanvas map;
+int pad=15;
+float mult = 20;
+
+//DATA
 Data data = new Data();
 int qObj = 0;
-float mult = 20;
-boolean isOnBool = false;
 String levelName;
-float playerX;
-float playerY;
-float playerZ;
-DropdownList objectList;
-String currentItem = "";
-
-int pad=15;
-MapCanvas map;
-SelectionCanvas sel;
-PropertiesCanvas pro;
-ToolsCanvas tool;
+PVector playerPos;
 
 void setup(){  
   size(1000,600);
   surface.setResizable(true);
   map = new MapCanvas();
-  sel = new SelectionCanvas();
-  pro = new PropertiesCanvas();
-  tool = new ToolsCanvas();
+  createButtons();
+}
   
+void draw(){
+  background(50);
+  map.display();
+}
+
+void controlEvent(ControlEvent e) 
+{  
+  if (e.getName().equals("objectList"))
+  {
+    String currentItem = objectList.getItem((int)e.value()).get("name").toString();
+    switch(currentItem){
+      case "Mesa":        map.tempObj = new objMesa("temp",0,0,0); break;
+      case "Lampara" :    map.tempObj = new objLampara("temp",0,0,0,0,0,true,"null");break;
+      case "Pared" :      map.tempObj = new objPared("temp",0,0,0);break;
+      case "Fosforos" :   map.tempObj = new objFosforos("temp",0,0,0,0); break;
+      case "Enchufe" :    map.tempObj = new objEnchufe("temp",0,0,0);  break;
+      case "Cajafuerte" : map.tempObj = new objCajafuerte("temp",0,0,0,"null","null",true); break;
+      case "Nota" :       map.tempObj = new objNota("temp",0,0,0,"null");  break;
+    }
+  } 
+}
+
+void createButtons(){
   ui = new ControlP5(this);
   ui.addButton("generateObject").setPosition(pad, pad).setSize(50,pad*2).setLabel("Generar");
   ui.addButton("exportFile").setPosition(pad+55, pad).setSize(50, pad*2).setLabel("Exportar");
@@ -34,32 +52,13 @@ void setup(){
   objectList = ui.addDropdownList("objectList").setPosition(width-(width*1/3-pad*1.5)-pad+4, pad*4+5).setLabel("Select an object").setSize(130, 500).setBarHeight(20).setFont(createFont("Arial Black",10))
     .setItemHeight(20).addItem("Mesa",1).addItem("Lampara",2).addItem("Pared",3).addItem("Fosforos",4).addItem("Enchufe",5).addItem("Cajafuerte",6).addItem("Nota",7);    
 }
-  
-void draw(){
-  background(50);
-  map.display();
-  sel.display();
-  pro.display();
-  tool.display();  
-}
-
-void controlEvent(ControlEvent theControlEvent) 
-{  
-  if (theControlEvent.getName().equals("objectList"))
-  {
-    String selectedItem = objectList.getItem((int)theControlEvent.value()).get("name").toString();
-    currentItem = selectedItem;
-  } 
-}
 
 void generateObject(){
   float X = random(-map.canvas.width/(2*mult),map.canvas.width/(2*mult));
   float Y = random(-map.canvas.height/(2*mult),map.canvas.height/(2*mult));
   float angle = 0;
+  boolean isOnBool = random(1) > .5;
   int randomObject = round(random(0, 6));
-  int isOn = round(random(0,1));
-  if(isOn == 1) isOnBool = true;
-  else isOnBool = false;
   switch(randomObject){
     case 0:  data.objeto.add(new objMesa("Mesa"+qObj,X,Y, angle));  break;
     case 1:  data.objeto.add(new objLampara("Lampara"+qObj, X,Y, angle, 3, 10, isOnBool, "prueba"));  break;
@@ -90,31 +89,3 @@ void openFileLocation(){
   data.selectFile();
 }
 
-void onOutputSelected(File path){
-  data.filePath = path.getAbsolutePath(); 
-  data.saveData();
-}
-
-void openFile(File path){
-  data.filePath = path.getAbsolutePath();    
-  data.openString = split(loadStrings(path)[0], "/");
-  levelName = data.openString[0];
-  
-  String[] pos = split(data.openString[1], "|");
-  playerX = Float.valueOf(pos[0]);
-  playerY = Float.valueOf(pos[1]);
-  playerZ = Float.valueOf(pos[2]);
-  
-  for(int i = 2; i < data.openString.length; i++){
-    String[] objs = split(data.openString[i], "|");    
-    switch(objs[0]){
-      case "Mesa": data.objeto.add(new objMesa(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]))); break;
-      case "Lampara": data.objeto.add(new objLampara(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), Float.valueOf(objs[5]), Float.valueOf(objs[6]), Boolean.valueOf(objs[7]), objs[8])) ; break;
-      case "Pared": data.objeto.add(new objPared(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]))); break;
-      case "Fosforos": data.objeto.add(new objFosforos(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), Float.valueOf(objs[5]))); break;
-      case "Cajafuerte": data.objeto.add(new objCajafuerte(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), objs[5], objs[6], Boolean.valueOf(objs[7]))); break;
-      case "Nota": data.objeto.add(new objNota(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]), objs[5])); break;
-      case "Enchufe": data.objeto.add(new objEnchufe(objs[1], Float.valueOf(objs[2]), Float.valueOf(objs[3]), Float.valueOf(objs[4]))); break;
-    }
-  }   
-}
