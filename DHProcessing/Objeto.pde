@@ -11,13 +11,6 @@ public class Objeto{
     this.posY = posY;   
     this.angle = angle; 
   } 
-
-  // public Objeto(){
-  //   this.name = "newObj";
-  //   this.posX = 0;
-  //   this.posY = 0;   
-  //   this.angle = 0; 
-  // }
   
   void draw(){
   }
@@ -30,5 +23,38 @@ public class Objeto{
   boolean MouseOver(){
     if(PVector.dist(new PVector(posX*mult,posY*mult),new PVector(map.cmouse.x,map.cmouse.y))<check/2) return true;
     else return false;
+  }
+
+  void createProperties(){
+    prop.addTextlabel("name").
+      setText("Nombre:"). 
+      setPosition(propBar.x,propBar.y+7).
+      setColorValue(color(255,255,255));
+    prop.addTextfield("txtLevelName").
+      setLabel("").
+      setPosition(propBar.x+130, propBar.y).
+      setSize(130, pad*2).
+      setAutoClear(false).
+      setText(name);
+    
+    propBar = new PVector(propBar.x,propBar.y+pad*3);
+
+    prop.addTextlabel("pos").
+      setText("Posicion:"). 
+      setPosition(propBar.x,propBar.y+7).
+      setColorValue(color(255,255,255));
+
+    prop.addTextfield("txtposX").
+      setLabel("").
+      setPosition(propBar.x+130, propBar.y).
+      setSize(60, pad*2).
+      setText(str(posX)).
+      setAutoClear(false);  
+    prop.addTextfield("txtposY").
+      setLabel("").
+      setPosition(propBar.x+130+10+60, propBar.y).
+      setSize(60, pad*2).
+      setText(str(posY)).
+      setAutoClear(false);
   }
 }

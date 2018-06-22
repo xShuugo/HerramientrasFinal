@@ -29,11 +29,7 @@ class MapCanvas{
     
     for(Objeto m : data.objeto){
       m.draw();
-      if(m.MouseOver()){
-      map.canvas.noFill();
-      map.canvas.stroke(255,255,255);
-      map.canvas.ellipse(m.posX*mult,m.posY*mult,m.check,m.check);
-      }
+      SelectedOverLay(m);
     }
     DrawGrid();
     DrawTool();
@@ -51,6 +47,14 @@ class MapCanvas{
        tempObj.posY = cmouse.y/mult;
        tempObj.draw();
        }
+  }
+
+  void SelectedOverLay(Objeto m){
+    if(m.MouseOver()){
+      map.canvas.noFill();
+      map.canvas.stroke(255,255,255);
+      map.canvas.ellipse(m.posX*mult,m.posY*mult,m.check,m.check);
+      }
   }
 
 }

@@ -2,11 +2,15 @@ import controlP5.*;
 
 //UI
 ControlP5 ui;
+ControlP5 prop;
+ControlP5 sb;
 DropdownList objectList;
 MapCanvas map;
 int pad=15;
 float mult = 20;
 PVector sideBar;
+PVector propBar;
+
 
 //INTERACTIONS
 Objeto selectedObj = null;
@@ -14,8 +18,8 @@ Objeto selectedObj = null;
 //DATA
 Data data = new Data();
 int qObj = 0;
-String levelName;
-PVector playerPos;
+String levelName = "Sin Titulo";
+PVector playerPos = new PVector(0,0,0);
 
 void setup(){  
   size(1000,600);
@@ -68,6 +72,10 @@ void exportFile(){
   String dataString;
   String aux = "";
   levelName = ui.get(Textfield.class, "txtLevelName").getText();
+  playerPos = new PVector(
+    ui.get(Textfield.class, "txtPlayerX").getValue(),
+    ui.get(Textfield.class, "txtPlayerY").getValue(),
+    ui.get(Textfield.class, "txtPlayerZ").getValue());
   
   for(Objeto o:data.objeto){    
     aux += o.imprimir();    
@@ -89,6 +97,7 @@ void mousePressed(){
        mouseY < height-pad &&
        mouseY > pad*4){
         selectedObj = data.CheckSelection();
+        createProperties();
         println(selectedObj + " selected");
         }
 }

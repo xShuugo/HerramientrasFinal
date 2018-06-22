@@ -56,8 +56,13 @@ void onInputSelected(File path){
   levelName = data.openString[0];
   
   String[] pos = split(data.openString[1], "|");
-  playerPos = new PVector(Float.valueOf(pos[0]),Float.valueOf(pos[1]),Float.valueOf(pos[2]));
+  playerPos = new PVector(
+    Float.valueOf(pos[0]),
+    Float.valueOf(pos[1]),
+    Float.valueOf(pos[2]));
   
+  createSideBar();
+
   for(int i = 2; i < data.openString.length; i++){
     String[] objs = split(data.openString[i], "|");    
     switch(objs[0]){
@@ -71,4 +76,3 @@ void onInputSelected(File path){
     }
   }   
 }
-
