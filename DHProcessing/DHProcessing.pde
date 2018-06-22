@@ -4,9 +4,9 @@ import controlP5.*;
 ControlP5 ui;
 DropdownList objectList;
 MapCanvas map;
-PVector prevWindow = new PVector(1000,600);
 int pad=15;
 float mult = 20;
+PVector sideBar;
 
 //DATA
 Data data = new Data();
@@ -16,7 +16,6 @@ PVector playerPos;
 
 void setup(){  
   size(1000,600);
-  surface.setResizable(true);
   map = new MapCanvas();
   createButtons();
 }
@@ -24,7 +23,6 @@ void setup(){
 void draw(){
   background(50);
   map.display();
-  updateButtons();
 }
 
 void controlEvent(ControlEvent e) 
@@ -33,37 +31,15 @@ void controlEvent(ControlEvent e)
   {
     String currentItem = objectList.getItem((int)e.value()).get("name").toString();
     switch(currentItem){
-      case "Mesa":        map.tempObj = new objMesa("temp",0,0,0); break;
-      case "Lampara" :    map.tempObj = new objLampara("temp",0,0,0,0,0,true,"null");break;
-      case "Pared" :      map.tempObj = new objPared("temp",0,0,0);break;
-      case "Fosforos" :   map.tempObj = new objFosforos("temp",0,0,0,0); break;
-      case "Enchufe" :    map.tempObj = new objEnchufe("temp",0,0,0);  break;
-      case "Cajafuerte" : map.tempObj = new objCajafuerte("temp",0,0,0,"null","null",true); break;
-      case "Nota" :       map.tempObj = new objNota("temp",0,0,0,"null");  break;
+      case "Mesa":        map.tempObj = new objMesa       ("temp",0,0,0); break;
+      case "Lampara" :    map.tempObj = new objLampara    ("temp",0,0,0,0,0,true,"null");break;
+      case "Pared" :      map.tempObj = new objPared      ("temp",0,0,0);break;
+      case "Fosforos" :   map.tempObj = new objFosforos   ("temp",0,0,0,0); break;
+      case "Enchufe" :    map.tempObj = new objEnchufe    ("temp",0,0,0);  break;
+      case "Cajafuerte" : map.tempObj = new objCajafuerte ("temp",0,0,0,"null","null",true); break;
+      case "Nota" :       map.tempObj = new objNota       ("temp",0,0,0,"null");  break;
     }
   } 
-}
-
-void createButtons(){
-  ui = new ControlP5(this);
-  ui.addButton("newMap").setPosition(pad, pad).setSize(50,pad*2).setLabel("Nuevo");
-  ui.addButton("openFile").setPosition(pad+55, pad).setSize(50, pad*2).setLabel("Abrir");
-  ui.addButton("exportFile").setPosition(pad+55*2, pad).setSize(50, pad*2).setLabel("Guardar");
-
-  ui.addButton("generateObject").setPosition(width-pad-50, pad).setSize(50,pad*2).setLabel("Generar");
-  
-  
-  ui.addTextfield("levelName").setLabel("").setPosition(pad+55*3+130, pad).setSize(130, pad*2).setAutoClear(false).setFont(createFont("Arial Black",12));
-  ui.addTextlabel("label").setText("Level Name :").setPosition(pad + 55*3,pad+7.5).setColorValue(0x00000000).setFont(createFont("Arial",10));
-  objectList = ui.addDropdownList("objectList").setPosition(width-(width*1/3-pad*1.5)-pad+4, pad*4+5).setLabel("Select an object").setSize(130, 500).setBarHeight(20).setFont(createFont("Arial Black",10))
-    .setItemHeight(20).addItem("Mesa",1).addItem("Lampara",2).addItem("Pared",3).addItem("Fosforos",4).addItem("Enchufe",5).addItem("Cajafuerte",6).addItem("Nota",7);    
-}
-
-void updateButtons(){
-  if (prevWindow.x != width || prevWindow.y != height){ 
-    println("change");
-  }
-  prevWindow = new PVector(width,height);
 }
 
 void generateObject(){
@@ -87,7 +63,7 @@ void generateObject(){
 void exportFile(){
   String dataString;
   String aux = "";
-  levelName = ui.get(Textfield.class, "levelName").getText();
+  levelName = ui.get(Textfield.class, "txtLevelName").getText();
   
   for(Objeto o:data.objeto){    
     aux += o.imprimir();    

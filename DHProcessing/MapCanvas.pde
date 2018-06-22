@@ -12,7 +12,7 @@ class MapCanvas{
   }
   
   void display(){
-    csize = new PVector(width*2/3-pad*1.5,height-pad*5);
+    csize = new PVector(sideBar.x-pad*2,height-pad*5);
     cpos = new PVector(pad,pad*4);    
     canvas = createGraphics((int)csize.x,(int)csize.y);
     canvas.beginDraw();
