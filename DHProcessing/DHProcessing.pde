@@ -46,11 +46,15 @@ void controlEvent(ControlEvent e)
 
 void createButtons(){
   ui = new ControlP5(this);
-  ui.addButton("generateObject").setPosition(pad, pad).setSize(50,pad*2).setLabel("Generar");
-  ui.addButton("exportFile").setPosition(pad+55, pad).setSize(50, pad*2).setLabel("Exportar");
-  ui.addButton("openFileLocation").setPosition(width-pad-50, pad).setSize(50, pad*2).setLabel("Abrir");
-  ui.addTextfield("levelName").setLabel("").setPosition(pad + 191, pad).setSize(130, pad*2).setAutoClear(false).setFont(createFont("Arial Black",12));
-  ui.addTextlabel("label").setText("Level Name :").setPosition(pad+125,pad+7.5).setColorValue(0x00000000).setFont(createFont("Arial",10));
+  ui.addButton("newMap").setPosition(pad, pad).setSize(50,pad*2).setLabel("Nuevo");
+  ui.addButton("openFile").setPosition(pad+55, pad).setSize(50, pad*2).setLabel("Abrir");
+  ui.addButton("exportFile").setPosition(pad+55*2, pad).setSize(50, pad*2).setLabel("Guardar");
+
+  ui.addButton("generateObject").setPosition(width-pad-50, pad).setSize(50,pad*2).setLabel("Generar");
+  
+  
+  ui.addTextfield("levelName").setLabel("").setPosition(pad+55*3+130, pad).setSize(130, pad*2).setAutoClear(false).setFont(createFont("Arial Black",12));
+  ui.addTextlabel("label").setText("Level Name :").setPosition(pad + 55*3,pad+7.5).setColorValue(0x00000000).setFont(createFont("Arial",10));
   objectList = ui.addDropdownList("objectList").setPosition(width-(width*1/3-pad*1.5)-pad+4, pad*4+5).setLabel("Select an object").setSize(130, 500).setBarHeight(20).setFont(createFont("Arial Black",10))
     .setItemHeight(20).addItem("Mesa",1).addItem("Lampara",2).addItem("Pared",3).addItem("Fosforos",4).addItem("Enchufe",5).addItem("Cajafuerte",6).addItem("Nota",7);    
 }
@@ -93,7 +97,7 @@ void exportFile(){
   data.selectSave();
 }
 
-void openFileLocation(){
+void openFile(){
   data.objeto = new ArrayList<Objeto>();
   data.selectFile();
 }
