@@ -80,7 +80,7 @@ void exportFile(){
   for(Objeto o:data.objeto){    
     aux += o.imprimir();    
   }  
-  dataString = levelName + "/"+"0.1|10|0.5/" + aux; 
+  dataString = levelName + "/"+playerPos.x+ "/"+playerPos.y+ "/"+playerPos.z+ aux; 
   data.superString = dataString;
   data.selectSave();
 }
