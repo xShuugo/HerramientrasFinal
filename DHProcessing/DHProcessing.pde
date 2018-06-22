@@ -16,13 +16,18 @@ PVector playerPos;
 
 void setup(){  
   size(1000,600);
-  map = new MapCanvas();
   createButtons();
+  map = new MapCanvas();
 }
   
 void draw(){
   background(50);
   map.display();
+
+  if(mouseX < sideBar.x-pad &&
+       mouseX > pad &&
+       mouseY < height-pad &&
+       mouseY > pad*4) println("overCanvas");
 }
 
 void controlEvent(ControlEvent e) 
@@ -78,3 +83,10 @@ void openFile(){
   data.selectFile();
 }
 
+void mousePressed(){
+  if(mouseButton == LEFT)
+    if(mouseX < sideBar.x-pad &&
+       mouseX > pad &&
+       mouseY < height-pad &&
+       mouseY > pad*4) println("overCanvas");
+}

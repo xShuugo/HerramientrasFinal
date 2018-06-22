@@ -1,6 +1,6 @@
 class MapCanvas{
   PGraphics canvas;
-  PVector csize = new PVector(width*2/3-pad*1.5,height-pad*5);
+  PVector csize = new PVector(sideBar.x-pad*2,height-pad*5);
   PVector cpos = new PVector(pad,pad*4);  
   
   PVector ctrans = new PVector(csize.x/2,csize.y/2);

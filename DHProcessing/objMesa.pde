@@ -18,5 +18,13 @@ class objMesa extends Objeto{
 
   public String imprimir(){
     return "Mesa" + "|" + name + "|" + posX + "|" + posY + "|" + angle + "/";      
-  }         
+  }
+  
+  boolean MouseOver(){
+    if(map.cmouse.x/mult < posX+size/2 &&
+       map.cmouse.x/mult > posX-size/2 &&
+       map.cmouse.y/mult < posY+size/2 &&
+       map.cmouse.y/mult > posY-size/2) return true;
+    else return false;
+  }
 }

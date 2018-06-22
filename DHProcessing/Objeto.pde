@@ -16,5 +16,9 @@ public class Objeto{
   
   public String imprimir(){
     return "";    
-  }   
+  }
+
+  boolean MouseOver(){
+    return false;
+  }
 }
