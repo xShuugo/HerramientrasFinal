@@ -32,7 +32,17 @@ class Data{
   
   void selectFile(){
     selectInput("Seleccione un archivo", "onInputSelected");
-  } 
+  }
+
+  //INTERACTIONS
+
+  Objeto CheckSelection(){
+    for(int i = 0;i<objeto.size();i++){
+      if(objeto.get(i).MouseOver()){
+        return objeto.get(i);}
+    }
+    return null;
+  }
 }
 
 void onOutputSelected(File path){

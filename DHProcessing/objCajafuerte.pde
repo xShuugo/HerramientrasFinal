@@ -18,18 +18,21 @@ class objCajafuerte extends Objeto{
     map.canvas.translate(posX*mult, posY*mult);
     map.canvas.rotate(radians(angle));
     map.canvas.noStroke();
-    
+    super.check = size*mult*1.5;
     if(isOnTable){
       map.canvas.fill(99,83,52);
       map.canvas.rect(0,0, mult, mult); 
-       }  
+      super.check = mult*1.5;
+    }  
 
     map.canvas.fill(255,0,0);
     map.canvas.rect(0,0, size*mult,size*mult);    
+    
     map.canvas.popMatrix();
   }
 
   public String imprimir(){
     return "Cajafuerte" + "|" + name + "|" + posX + "|" + posY + "|" + angle + "|" + password + "|" + contenido + "|" + isOnTable + "/";      
-  }         
+  }
+
 }

@@ -14,10 +14,12 @@ class objPared extends Objeto{
     map.canvas.noStroke();
     map.canvas.fill(255);
     map.canvas.rect(0,0, paredWidth*mult, paredDepth*mult);
+    super.check = paredDepth*mult*3;
     map.canvas.popMatrix();
   }
 
   public String imprimir(){
     return "Pared" + "|" + name + "|" + posX + "|" + posY + "|" + angle + "/";      
   }         
+
 }

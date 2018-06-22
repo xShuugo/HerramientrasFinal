@@ -8,6 +8,9 @@ int pad=15;
 float mult = 20;
 PVector sideBar;
 
+//INTERACTIONS
+Objeto selectedObj = null;
+
 //DATA
 Data data = new Data();
 int qObj = 0;
@@ -23,11 +26,7 @@ void setup(){
 void draw(){
   background(50);
   map.display();
-
-  if(mouseX < sideBar.x-pad &&
-       mouseX > pad &&
-       mouseY < height-pad &&
-       mouseY > pad*4) println("overCanvas");
+  
 }
 
 void controlEvent(ControlEvent e) 
@@ -88,5 +87,8 @@ void mousePressed(){
     if(mouseX < sideBar.x-pad &&
        mouseX > pad &&
        mouseY < height-pad &&
-       mouseY > pad*4) println("overCanvas");
+       mouseY > pad*4){
+        selectedObj = data.CheckSelection();
+        println(selectedObj + " selected");
+        }
 }

@@ -1,8 +1,6 @@
 class objEnchufe extends Objeto{  
    
   float size = 0.2;
-  float enchufeWidth = 2;
-  float enchufeHeight = 2;
     
   public objEnchufe(String name, float posX, float posY, float angle){
     super(name, posX, posY, angle);    
@@ -15,10 +13,12 @@ class objEnchufe extends Objeto{
     map.canvas.noStroke();
     map.canvas.fill(66,192,255);
     map.canvas.rect(0,0, size*mult,size*mult/2);
+    super.check = size*mult*1.5;
     map.canvas.popMatrix();
   }
   
   public String imprimir(){
     return "Enchufe" + "|" + name + "|" + posX + "|" + posY + "|" + angle + "/";      
   }         
+
 }

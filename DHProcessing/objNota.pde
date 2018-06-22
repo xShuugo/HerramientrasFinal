@@ -14,10 +14,12 @@ class objNota extends Objeto{
     map.canvas.noStroke();
     map.canvas.fill(255,225,91);
     map.canvas.rect(0,0, 0.4*mult, 0.6*mult);
+    super.check = .4*mult*1.5;
     map.canvas.popMatrix();
   }
 
   public String imprimir(){
     return "Nota" + "|" + name + "|" + posX + "|" + posY + "|" + angle + "|" + contenido + "/";      
   }         
+
 }

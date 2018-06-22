@@ -13,6 +13,7 @@ class objMesa extends Objeto{
     map.canvas.noStroke();
     map.canvas.fill(99,83,52);
     map.canvas.rect(0,0, size*mult,size*mult);
+    super.check = size*mult*1.5;
     map.canvas.popMatrix();
   }
 
@@ -20,11 +21,4 @@ class objMesa extends Objeto{
     return "Mesa" + "|" + name + "|" + posX + "|" + posY + "|" + angle + "/";      
   }
   
-  boolean MouseOver(){
-    if(map.cmouse.x/mult < posX+size/2 &&
-       map.cmouse.x/mult > posX-size/2 &&
-       map.cmouse.y/mult < posY+size/2 &&
-       map.cmouse.y/mult > posY-size/2) return true;
-    else return false;
-  }
 }

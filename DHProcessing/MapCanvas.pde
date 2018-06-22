@@ -29,6 +29,11 @@ class MapCanvas{
     
     for(Objeto m : data.objeto){
       m.draw();
+      if(m.MouseOver()){
+      map.canvas.noFill();
+      map.canvas.stroke(255,255,255);
+      map.canvas.ellipse(m.posX*mult,m.posY*mult,m.check,m.check);
+      }
     }
     DrawGrid();
     DrawTool();
@@ -47,4 +52,5 @@ class MapCanvas{
        tempObj.draw();
        }
   }
+
 }

@@ -15,10 +15,12 @@ class objFosforos extends Objeto{
     map.canvas.noStroke();
     map.canvas.fill(230,130,0);
     map.canvas.rect(0,0, size*mult,size*mult);
+    super.check = size*mult*1.5;
     map.canvas.popMatrix();
   }
 
   public String imprimir(){
     return "Fosforos"+ "|" + name + "|" + posX + "|" + posY + "|" + angle + "|" + cantidadFos +"/";      
   }         
+
 }
