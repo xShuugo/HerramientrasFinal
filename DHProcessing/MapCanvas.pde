@@ -52,10 +52,10 @@ class MapCanvas{
         }
         break;
       case MOVING:
-        cursor(MOVE);
+        cursor(movCursor);
         break;
       case ROTATE:
-        
+        cursor(rotCursor);
         break;
     }
   }

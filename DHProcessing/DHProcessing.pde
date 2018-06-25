@@ -16,10 +16,11 @@ int pad=15;
 float mult = 20;
 PVector sideBar;
 PVector propBar;
-PImage rotCursor;
+PImage rotCursor,movCursor;
 
 //INTERACTIONS
 Objeto selectedObj = null;
+float prevAng, objAng;
 
 
 //DATA
@@ -30,10 +31,11 @@ String levelName = "Sin Titulo";
 PVector playerPos = new PVector(0,0,0);
 
 void setup(){  
-  size(1000,600);
+  size(1000,600,P2D);
   createButtons();
   map = new MapCanvas();
   rotCursor = loadImage("RotateCursor.png");
+  movCursor = loadImage("MoveCursor.png");
 }
   
 void draw(){
@@ -45,12 +47,27 @@ void draw(){
 
 void mousePressed(){
   if(mouseButton == LEFT){
-    if(mouseX < sideBar.x-pad && mouseX > pad && mouseY < height-pad && mouseY > pad*4){
+    if(map.mouseOverCanvas()){
       switch(state){
-        case DRAWING : newObject(); break;
-        case MOVING :  selectedObj = data.CheckSelection();
-                       createProperties();
-                       println(selectedObj + " selected"); break; 
+        case DRAWING : 
+          newObject();
+          break;
+        case MOVING :
+          selectedObj = data.CheckSelection();
+          createProperties();
+          println(selectedObj + " selected");
+          break; 
+        case ROTATE :
+          selectedObj = data.CheckSelection();
+          if(selectedObj!=null){
+            prevAng = -degrees(atan2(
+              selectedObj.posX-map.cmouse.x/mult,
+              selectedObj.posY-map.cmouse.y/mult));
+            
+          }
+          createProperties();
+          println(selectedObj + " selected");
+          break; 
       }
     }
   }
@@ -60,13 +77,20 @@ void mousePressed(){
 }
 
 void mouseDragged(){
-  if(mouseButton == LEFT && selectedObj != null){
+  if(mouseButton == LEFT && selectedObj != null && map.mouseOverCanvas()){
     switch(state){
       case MOVING:
         selectedObj.posX = map.cmouse.x/mult;
         selectedObj.posY = map.cmouse.y/mult;
         break;
       case ROTATE:
+        float currAng = -degrees(atan2(
+          selectedObj.posX-map.cmouse.x/mult,
+          selectedObj.posY-map.cmouse.y/mult));
+        
+        selectedObj.angle += currAng-prevAng;
+        selectedObj.angle = selectedObj.angle%360;
+        prevAng=currAng;
         break;
     }
     createProperties();
