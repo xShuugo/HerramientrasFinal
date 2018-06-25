@@ -46,7 +46,21 @@ class MapCanvas{
        tempObj.posX = cmouse.x/mult;
        tempObj.posY = cmouse.y/mult;
        tempObj.draw();
-       }
+    }
+    
+    switch (state){
+      case IDLE: {break;}
+      case DRAWING:{break;}
+      case MOVING:
+      { 
+        map.tempObj = null;
+        createProperties();
+      }
+      case ROTATE: {
+        map.tempObj = null;
+        break;
+      }
+    }
   }
 
   void SelectedOverLay(Objeto m){
@@ -54,7 +68,6 @@ class MapCanvas{
       map.canvas.noFill();
       map.canvas.stroke(255,255,255);
       map.canvas.ellipse(m.posX*mult,m.posY*mult,m.check,m.check);
-      }
+    }
   }
-
 }

@@ -27,10 +27,21 @@ void createButtons(){
     setPosition(width-pad-80, pad).
     setSize(80,pad*2).
     setLabel("Generar");
+    
+  ui.addButton("moveObject").
+  setPosition(width-pad-260, pad*4).
+  setSize(45, pad*2).
+  setLabel("Mover")  
+  /*setFont(createFont("Arial", 24))*/;  
+  
+  ui.addButton("rotateObject").
+  setPosition(width-pad-205, pad*4).
+  setSize(45, pad*2).
+  setLabel("Rotar");
   
   objectList = ui.addDropdownList("objectList").
     setPosition(width-pad-150, pad*4).
-    setLabel("Añadir Objeto").
+    setLabel("Agregar Objeto").
     setSize(150, 150).
     setBarHeight(pad*2).    
     setItemHeight(20).
@@ -102,23 +113,19 @@ void createSideBar(){
   createProperties();
 }
 
-
 void createProperties(){
   propBar = new PVector(sideBar.x,sideBar.y+pad*(int)2.5);  
   //prop.setFont(createFont("Calibri", 15));
 
   for(ControllerInterface c:prop.getAll())
     prop.remove(c.getName());
-  
 
   if(selectedObj == null){
     prop.addTextlabel("temp").
       setText("Seleccione un Objeto en el mapa"). 
       setPosition(propBar.x,propBar.y+7).
-      setColorValue(color(255,255,255));
-    
-  }else {
+      setColorValue(color(255,255,255));    
+  } else {
     selectedObj.createProperties();
-    }
-
+  }
 }
