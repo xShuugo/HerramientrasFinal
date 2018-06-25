@@ -59,7 +59,7 @@ class objCajafuerte extends Objeto{
       setPosition(propBar.x,propBar.y+7).
       setColorValue(color(255,255,255)); 
     
-    prop.addTextfield("txtContenido").
+    prop.addTextfield("txtContenidoCaja").
       setLabel("").
       setPosition(propBar.x+130, propBar.y).
       setSize(60, pad*2).
@@ -79,9 +79,31 @@ class objCajafuerte extends Objeto{
       setSize(pad, pad).
       setColorForeground(color(120)).
       setColorActive(color(0, 255, 0)).
-      setColorLabel(color(255)).
-      setItemsPerRow(1).      
+      setColorLabel(color(255)).            
       addItem("", 0).
       deactivateAll();
   }
+  void checkTextFields(){
+    if(prop.get(Textfield.class,"txtPassword")!=null)
+      password = prop.get(Textfield.class,"txtPassword").getText();
+      
+    if(prop.get(Textfield.class,"txtContenidoCaja")!=null)
+      contenido = prop.get(Textfield.class,"txtContenidoCaja").getText();
+      
+    /*if(prop.get(CheckBox.class,"cbIsOnTable")!=null){
+      isOnTable = prop.get(CheckBox.class,"cbIsOnTable").getState(0);     
+    }*/
+  }  
 }
+
+void txtPassword(String value){
+  selectedObj.checkTextFields();
+}
+
+void txtContenidoCaja(String value){
+  selectedObj.checkTextFields();
+}
+
+/*void cbIsOnTable(Boolean value){
+  selectedObj.checkTextFields();  
+}*/

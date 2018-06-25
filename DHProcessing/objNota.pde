@@ -37,6 +37,15 @@ class objNota extends Objeto{
       setPosition(propBar.x+130, propBar.y).
       setSize(60, pad*2).
       setText(contenido).
-      setAutoClear(false); 
+      setAutoClear(false);      
   }
+  
+  void checkTextFields(){
+    if(prop.get(Textfield.class,"txtContenido")!=null)
+      contenido = prop.get(Textfield.class,"txtContenido").getText();
+  }
+}
+
+void txtContenido(String value){
+  selectedObj.checkTextFields();
 }

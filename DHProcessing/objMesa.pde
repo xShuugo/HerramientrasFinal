@@ -19,6 +19,5 @@ class objMesa extends Objeto{
 
   public String imprimir(){
     return "Mesa" + "|" + name + "|" + posX + "|" + posY + "|" + angle + "/";      
-  }
-  
+  }  
 }

@@ -63,7 +63,7 @@ class objLampara extends Objeto{
       setLabel("").
       setPosition(propBar.x+130, propBar.y).
       setSize(60, pad*2).
-      setText(str(cableLongitud)).
+      setText(str(rangoLuz)).
       setAutoClear(false); 
  
     propBar = new PVector(propBar.x,propBar.y+pad*3);
@@ -82,6 +82,51 @@ class objLampara extends Objeto{
       setColorLabel(color(255)).
       setItemsPerRow(1).      
       addItem("", 0).
-      deactivateAll();    
+      deactivateAll();   
+
+    propBar = new PVector(propBar.x,propBar.y+pad*3);
+      
+    prop.addTextlabel("lblEnchufeInicial").
+      setText("Esta sobre una mesa ?:"). 
+      setPosition(propBar.x,propBar.y+7).
+      setColorValue(color(255,255,255)); 
+   
+    prop.addTextfield("txtEnchufeInicial").
+      setLabel("").
+      setPosition(propBar.x+130, propBar.y).
+      setSize(60, pad*2).
+      setText(enchufeInicial).
+      setAutoClear(false); 
+  }
+  
+  void checkTextFields(){
+    if(prop.get(Textfield.class,"txtCableLongitud")!=null)
+        cableLongitud = int(Float.valueOf(prop.get(Textfield.class,"txtCableLongitud").getText()));
+    
+    if(prop.get(Textfield.class,"txtRangoLuz")!=null)
+        rangoLuz = int(Float.valueOf(prop.get(Textfield.class,"txtRangoLuz").getText()));
+    
+    if(prop.get(Textfield.class,"txtEnchufeInicial")!=null)
+        enchufeInicial = prop.get(Textfield.class,"txtEnchufeInicial").getText();
+  
+  /*if(prop.get(CheckBox.class,"cbIsOnTable")!=null){
+        isOnTable = prop.get(CheckBox.class,"cbIsOnTable").getState(0);     
+    }*/
   }
 }
+
+void txtCableLongitud(String value){
+  selectedObj.checkTextFields();
+}
+
+void txtRangoLuz(String value){
+  selectedObj.checkTextFields();
+}
+
+void txtEnchufeInicial(String value){
+  selectedObj.checkTextFields();
+}
+
+/*void cbIsOnTable(Boolean value){
+  selectedObj.checkTextFields();  
+}*/
