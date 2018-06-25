@@ -55,7 +55,7 @@ void mousePressed(){
         case MOVING :
           selectedObj = data.CheckSelection();
           createProperties();
-          println(selectedObj + " selected");
+          println(selectedObj + " SELECTED");
           break; 
         case ROTATE :
           selectedObj = data.CheckSelection();
@@ -66,7 +66,7 @@ void mousePressed(){
             
           }
           createProperties();
-          println(selectedObj + " selected");
+          println(selectedObj + " SELECTED");
           break; 
       }
     }

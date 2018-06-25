@@ -1,9 +1,9 @@
 class objFosforos extends Objeto{  
    
   float size = 0.2;
-  float cantidadFos = 0;
+  int cantidadFos = 0;
     
-  public objFosforos(String name, float posX, float posY, float angle, float cantidadFos){
+  public objFosforos(String name, float posX, float posY, float angle, int cantidadFos){
     super(name, posX, posY, angle);  
     this.cantidadFos = cantidadFos;
   } 
@@ -40,4 +40,13 @@ class objFosforos extends Objeto{
       setText(str(cantidadFos)).
       setAutoClear(false);     
   }
+
+  void checkTextFields(){
+    if(prop.get(Textfield.class,"txtCantidad")!=null)
+      cantidadFos = int(Float.valueOf(prop.get(Textfield.class,"txtCantidad").getText()));
+  }
+}
+
+void txtCantidad(String value){
+  selectedObj.checkTextFields();
 }

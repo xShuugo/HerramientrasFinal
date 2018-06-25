@@ -30,7 +30,8 @@ public class Objeto{
       setText("Name:"). 
       setPosition(propBar.x,propBar.y+7).
       setColorValue(color(255,255,255));
-    prop.addTextfield("txtLevelName").
+
+    prop.addTextfield("txtName").
       setLabel("").
       setPosition(propBar.x+130, propBar.y).
       setSize(130, pad*2).
@@ -71,4 +72,22 @@ public class Objeto{
       setText(str(angle)).
       setAutoClear(false);   
   }
+
+  void checkTextFields(){}
+}
+
+void txtName(String value){
+  selectedObj.name = trim(value);
+}
+
+void txtposX(String value){
+  selectedObj.posX = Float.valueOf(value);
+}
+
+void txtposY(String value){
+  selectedObj.posY = Float.valueOf(value);
+}
+
+void txtAngle(String value){
+  selectedObj.angle = Float.valueOf(value);
 }
