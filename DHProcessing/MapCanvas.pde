@@ -32,7 +32,8 @@ class MapCanvas{
       SelectedOverLay(m);
     }
     DrawGrid();
-    DrawTool();
+    if(mouseOverCanvas())DrawTool();
+      else cursor(ARROW);
   }
 
   void DrawGrid(){
@@ -42,24 +43,20 @@ class MapCanvas{
   }
 
   void DrawTool(){
-    if(tempObj!=null){
-       tempObj.posX = cmouse.x/mult;
-       tempObj.posY = cmouse.y/mult;
-       tempObj.draw();
-    }
-    
     switch (state){
-      case IDLE: {break;}
-      case DRAWING:{break;}
-      case MOVING:
-      { 
-        map.tempObj = null;
-        createProperties();
-      }
-      case ROTATE: {
-        map.tempObj = null;
+      case DRAWING:
+        if(tempObj!=null){
+          tempObj.posX = cmouse.x/mult;
+          tempObj.posY = cmouse.y/mult;
+          tempObj.draw();
+        }
         break;
-      }
+      case MOVING:
+        cursor(MOVE);
+        break;
+      case ROTATE:
+        
+        break;
     }
   }
 
@@ -69,5 +66,10 @@ class MapCanvas{
       map.canvas.stroke(255,255,255);
       map.canvas.ellipse(m.posX*mult,m.posY*mult,m.check,m.check);
     }
+  }
+
+  boolean mouseOverCanvas(){
+    return mouseX >= cpos.x && mouseX <= cpos.x+csize.x &&
+        mouseY >= cpos.y && mouseY <= cpos.y+csize.y;
   }
 }
