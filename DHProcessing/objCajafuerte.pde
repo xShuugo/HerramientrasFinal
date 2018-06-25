@@ -34,5 +34,54 @@ class objCajafuerte extends Objeto{
   public String imprimir(){
     return "Cajafuerte" + "|" + name + "|" + posX + "|" + posY + "|" + angle + "|" + password + "|" + contenido + "|" + isOnTable + "/";      
   }
-
+  
+  void createProperties(){
+    super.createProperties();    
+       
+    propBar = new PVector(propBar.x,propBar.y+pad*3);
+    
+    prop.addTextlabel("lblPassword").
+      setText("Clave:"). 
+      setPosition(propBar.x,propBar.y+7).
+      setColorValue(color(255,255,255)); 
+    
+    prop.addTextfield("txtPassword").
+      setLabel("").
+      setPosition(propBar.x+130, propBar.y).
+      setSize(60, pad*2).
+      setText(password).
+      setAutoClear(false);
+      
+    propBar = new PVector(propBar.x,propBar.y+pad*3);
+    
+    prop.addTextlabel("lblContent").
+      setText("Contenido:"). 
+      setPosition(propBar.x,propBar.y+7).
+      setColorValue(color(255,255,255)); 
+    
+    prop.addTextfield("txtContenido").
+      setLabel("").
+      setPosition(propBar.x+130, propBar.y).
+      setSize(60, pad*2).
+      setText(contenido).
+      setAutoClear(false);
+      
+    propBar = new PVector(propBar.x,propBar.y+pad*3);
+    
+    prop.addTextlabel("lblIsOnTable").
+      setText("Esta sobre una mesa ?:"). 
+      setPosition(propBar.x,propBar.y+7).
+      setColorValue(color(255,255,255)); 
+   
+    prop.addCheckBox("cbIsOnTable").
+      setLabel("").
+      setPosition(propBar.x+130,propBar.y+(pad/3)).
+      setSize(pad, pad).
+      setColorForeground(color(120)).
+      setColorActive(color(0, 255, 0)).
+      setColorLabel(color(255)).
+      setItemsPerRow(1).      
+      addItem("", 0).
+      deactivateAll();
+  }
 }

@@ -22,5 +22,22 @@ class objFosforos extends Objeto{
   public String imprimir(){
     return "Fosforos"+ "|" + name + "|" + posX + "|" + posY + "|" + angle + "|" + cantidadFos +"/";      
   }         
-
+  
+  void createProperties(){
+    super.createProperties(); 
+    
+    propBar = new PVector(propBar.x,propBar.y+pad*3);
+    
+    prop.addTextlabel("lblCantidad").
+      setText("Cantidad de Fosforos:"). 
+      setPosition(propBar.x,propBar.y+7).
+      setColorValue(color(255,255,255)); 
+    
+    prop.addTextfield("txtCantidad").
+      setLabel("").
+      setPosition(propBar.x+130, propBar.y).
+      setSize(60, pad*2).
+      setText(str(cantidadFos)).
+      setAutoClear(false);     
+  }
 }

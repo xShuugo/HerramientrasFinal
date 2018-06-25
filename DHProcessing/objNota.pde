@@ -21,5 +21,22 @@ class objNota extends Objeto{
   public String imprimir(){
     return "Nota" + "|" + name + "|" + posX + "|" + posY + "|" + angle + "|" + contenido + "/";      
   }         
-
+  
+  void createProperties(){
+    super.createProperties();
+    
+    propBar = new PVector(propBar.x,propBar.y+pad*3);
+    
+    prop.addTextlabel("lblContenido").
+      setText("Longitud de Cable:"). 
+      setPosition(propBar.x,propBar.y+7).
+      setColorValue(color(255,255,255)); 
+    
+    prop.addTextfield("txtContenido").
+      setLabel("").
+      setPosition(propBar.x+130, propBar.y).
+      setSize(60, pad*2).
+      setText(contenido).
+      setAutoClear(false); 
+  }
 }

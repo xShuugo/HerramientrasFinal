@@ -1,6 +1,6 @@
 class objLampara extends Objeto{  
    
-  float diameter = .1;
+  float diameter = .2;
   float cableLongitud;
   float rangoLuz;
   boolean isOnTable;
@@ -35,5 +35,53 @@ class objLampara extends Objeto{
   public String imprimir(){
     return "Lampara" + "|" + name + "|" + posX + "|" + posY + "|" + angle + "|" + cableLongitud + "|" + rangoLuz + "|" + isOnTable + "|" + enchufeInicial + "/";      
   }        
-
+  void createProperties(){
+    super.createProperties();
+   
+    propBar = new PVector(propBar.x,propBar.y+pad*3);
+    
+    prop.addTextlabel("lblCableLongitud").
+      setText("Longitud de Cable:"). 
+      setPosition(propBar.x,propBar.y+7).
+      setColorValue(color(255,255,255)); 
+    
+    prop.addTextfield("txtCableLongitud").
+      setLabel("").
+      setPosition(propBar.x+130, propBar.y).
+      setSize(60, pad*2).
+      setText(str(cableLongitud)).
+      setAutoClear(false); 
+ 
+    propBar = new PVector(propBar.x,propBar.y+pad*3);
+      
+    prop.addTextlabel("lblRangoLuz").
+      setText("Rango de Luz:"). 
+      setPosition(propBar.x,propBar.y+7).
+      setColorValue(color(255,255,255)); 
+    
+    prop.addTextfield("txtRangoLuz").
+      setLabel("").
+      setPosition(propBar.x+130, propBar.y).
+      setSize(60, pad*2).
+      setText(str(cableLongitud)).
+      setAutoClear(false); 
+ 
+    propBar = new PVector(propBar.x,propBar.y+pad*3);
+      
+    prop.addTextlabel("lblIsOnTable").
+      setText("Esta sobre una mesa ?:"). 
+      setPosition(propBar.x,propBar.y+7).
+      setColorValue(color(255,255,255)); 
+   
+    prop.addCheckBox("cbIsOnTable").
+      setLabel("").
+      setPosition(propBar.x+130,propBar.y+(pad/3)).
+      setSize(pad, pad).
+      setColorForeground(color(120)).
+      setColorActive(color(0, 255, 0)).
+      setColorLabel(color(255)).
+      setItemsPerRow(1).      
+      addItem("", 0).
+      deactivateAll();    
+  }
 }

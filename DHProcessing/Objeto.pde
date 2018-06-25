@@ -27,7 +27,7 @@ public class Objeto{
 
   void createProperties(){
     prop.addTextlabel("name").
-      setText("Nombre:"). 
+      setText("Name:"). 
       setPosition(propBar.x,propBar.y+7).
       setColorValue(color(255,255,255));
     prop.addTextfield("txtLevelName").
@@ -40,7 +40,7 @@ public class Objeto{
     propBar = new PVector(propBar.x,propBar.y+pad*3);
 
     prop.addTextlabel("pos").
-      setText("Posicion:"). 
+      setText("Position:"). 
       setPosition(propBar.x,propBar.y+7).
       setColorValue(color(255,255,255));
 
@@ -56,5 +56,19 @@ public class Objeto{
       setSize(60, pad*2).
       setText(str(posY)).
       setAutoClear(false);
+      
+    propBar = new PVector(propBar.x,propBar.y+pad*3); 
+    
+    prop.addTextlabel("angle").
+      setText("Angle:"). 
+      setPosition(propBar.x,propBar.y+7).
+      setColorValue(color(255,255,255)); 
+    
+    prop.addTextfield("txtAngle").
+      setLabel("").
+      setPosition(propBar.x+130, propBar.y).
+      setSize(60, pad*2).
+      setText(str(angle)).
+      setAutoClear(false);   
   }
 }

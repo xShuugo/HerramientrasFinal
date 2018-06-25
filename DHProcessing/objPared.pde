@@ -20,6 +20,5 @@ class objPared extends Objeto{
 
   public String imprimir(){
     return "Pared" + "|" + name + "|" + posX + "|" + posY + "|" + angle + "/";      
-  }         
-
+  }       
 }

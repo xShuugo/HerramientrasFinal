@@ -19,6 +19,5 @@ class objEnchufe extends Objeto{
   
   public String imprimir(){
     return "Enchufe" + "|" + name + "|" + posX + "|" + posY + "|" + angle + "/";      
-  }         
-
+  }        
 }
