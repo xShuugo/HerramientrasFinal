@@ -84,6 +84,10 @@ void mouseDragged(){
       case MOVING:
         selectedObj.posX = map.cmouse.x/mult;
         selectedObj.posY = map.cmouse.y/mult;
+        selectedObj.posX = float(int(selectedObj.posX*10))/10;
+        selectedObj.posY = float(int(selectedObj.posY*10))/10;
+        
+        println(selectedObj.posX);
         break;
       case ROTATE:
         float currAng = -degrees(atan2(
@@ -92,6 +96,7 @@ void mouseDragged(){
         
         selectedObj.angle += currAng-prevAng;
         selectedObj.angle = selectedObj.angle%360;
+        selectedObj.angle = float(int(selectedObj.angle*10))/10;
         prevAng=currAng;
         break;
     }
@@ -101,7 +106,8 @@ void mouseDragged(){
 
 void newObject(){
   String currentObject = map.tempObj.name;
-  
+  map.tempObj.posX = float(int(map.tempObj.posX*10))/10;
+  map.tempObj.posY = float(int(map.tempObj.posY*10))/10;
   switch(currentObject){
     case "tempMesa":        data.objeto.add(new objMesa       ("Mesa"+qObj,map.tempObj.posX,map.tempObj.posY,0));break;
     case "tempLampara" :    data.objeto.add(new objLampara    ("Lampara"+qObj,map.tempObj.posX,map.tempObj.posY,0,0,0,true,"null"));break;
@@ -115,20 +121,26 @@ void newObject(){
 
 void keyPressed(){
   if(state == ToolState.MOVING && selectedObj != null){
-    if(keyCode == LEFT){
-        selectedObj.posX = selectedObj.posX - 0.1;
-    } else if (keyCode == UP){      
-        selectedObj.posY = selectedObj.posY - 0.1;
-    } else if (keyCode == DOWN){      
-        selectedObj.posY = selectedObj.posY + 0.1;
-    } else if (keyCode == RIGHT){
-        selectedObj.posX = selectedObj.posX + 0.1;
+    switch(keyCode){
+      case LEFT:  selectedObj.posX = selectedObj.posX - 0.1; break;
+      case UP:    selectedObj.posY = selectedObj.posY - 0.1; break;  
+      case DOWN:  selectedObj.posY = selectedObj.posY + 0.1; break;
+      case RIGHT: selectedObj.posX = selectedObj.posX + 0.1; break;    
     }
+    createProperties();
   }
 }
 
 void mouseWheel(MouseEvent e){
+  
   if(map.mouseOverCanvas())
-    mult -= e.getCount();
-    mult = constrain(mult,16,80);
+    if( selectedObj == null){
+      mult -= e.getCount();
+      mult = constrain(mult,16,80);
+  }
+    
+  if(state == ToolState.ROTATE && selectedObj != null){
+      selectedObj.angle = selectedObj.angle + (e.getCount()*45);
+      createProperties();
+  }
 } 

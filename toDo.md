@@ -5,6 +5,4 @@
 - Delete - *Fernando*
 - Ajustar seleccion
 - Delimitar translate
-- Rotation a 45 grados - *Fernando*
-- Posicion a 1 decimal - *Fernando*
 - Puerta final

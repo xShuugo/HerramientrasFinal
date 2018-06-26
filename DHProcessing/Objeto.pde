@@ -14,7 +14,7 @@ public class Objeto{
   
   void draw(){
   if(MouseOver() || selectedObj == this)
-    SelectedOverLay();
+    SelectedOverLay();  
   }
   
   public String imprimir(){
@@ -56,13 +56,13 @@ public class Objeto{
       setLabel("").
       setPosition(propBar.x+130, propBar.y).
       setSize(60, pad*2).
-      setText(str(posX)).
+      setText(nf(posX, 0, 1)).
       setAutoClear(false);  
     prop.addTextfield("txtposY").
       setLabel("").
       setPosition(propBar.x+130+10+60, propBar.y).
       setSize(60, pad*2).
-      setText(str(posY)).
+      setText(nf(posY, 0, 1)).
       setAutoClear(false);
       
     propBar = new PVector(propBar.x,propBar.y+pad*3); 
@@ -88,13 +88,17 @@ void txtName(String value){
 }
 
 void txtposX(String value){
-  selectedObj.posX = Float.valueOf(value);
+  selectedObj.posX = Float.valueOf(nf(Float.valueOf(value), 0, 1));
+  selectedObj.posX = float(int(selectedObj.posX*10))/10;
 }
 
 void txtposY(String value){
-  selectedObj.posY = Float.valueOf(value);
+  selectedObj.posY = Float.valueOf(nf(Float.valueOf(value), 0, 1));
+  selectedObj.posY = float(int(selectedObj.posY*10))/10;
 }
 
 void txtAngle(String value){
   selectedObj.angle = Float.valueOf(nf(Float.valueOf(value), 0, 1));
+  selectedObj.angle = float(int(selectedObj.angle*10))/10;
+  //selectedObj.angle = Float.valueOf(value);
 }
