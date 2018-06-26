@@ -64,6 +64,10 @@ class MapCanvas{
   void Pan(){
     d.sub(new PVector(mouseX,mouseY));
     if (mousePressed && mouseButton==CENTER) ctrans.sub(d);
+    // ctrans = new PVector(
+    //   constrain(ctrans.x,),
+    //   constrain());
+    println((ctrans.x-csize.x/2) +" | "+ (ctrans.y-csize.y/2) +" | ("+mult+")");
     canvas.translate(ctrans.x,ctrans.y);
     d=new PVector(mouseX,mouseY);
   }
