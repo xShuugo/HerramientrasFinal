@@ -1,5 +1,5 @@
-void createButtons(){
-  
+void createButtons() {
+
   sb = new ControlP5(this);
   prop = new ControlP5(this);
   ui = new ControlP5(this);
@@ -10,7 +10,7 @@ void createButtons(){
 
   ui.addButton("newMap").
     setPosition(pad, pad).
-    setSize(60,pad*2).
+    setSize(60, pad*2).
     setLabel("Nuevo");
 
   ui.addButton("openFile").
@@ -25,50 +25,50 @@ void createButtons(){
 
   ui.addButton("generateObject").
     setPosition(width-pad-80, pad).
-    setSize(80,pad*2).
+    setSize(80, pad*2).
     setLabel("Generar");
-    
+
   ui.addButton("moveObject").
-  setPosition(width-pad-260, pad*4).
-  setSize(45, pad*2).
-  setLabel("Mover")  
-  /*setFont(createFont("Arial", 24))*/;  
-  
+    setPosition(width-pad-260, pad*4).
+    setSize(45, pad*2).
+    setLabel("Mover")  
+  /*setFont(createFont("Arial", 24))*/    ;  
+
   ui.addButton("rotateObject").
-  setPosition(width-pad-205, pad*4).
-  setSize(45, pad*2).
-  setLabel("Rotar");
-  
+    setPosition(width-pad-205, pad*4).
+    setSize(45, pad*2).
+    setLabel("Rotar");
+
   objectList = ui.addDropdownList("objectList").
     setPosition(width-pad-150, pad*4).
     setLabel("Agregar Objeto").
     setSize(150, 150).
     setBarHeight(pad*2).    
     setItemHeight(20).
-    addItem("Mesa",1).
-    addItem("Lampara",2).
-    addItem("Pared",3).
-    addItem("Fosforos",4).
-    addItem("Enchufe",5).
-    addItem("Cajafuerte",6).
-    addItem("Nota",7).
+    addItem("Mesa", 1).
+    addItem("Lampara", 2).
+    addItem("Pared", 3).
+    addItem("Fosforos", 4).
+    addItem("Enchufe", 5).
+    addItem("Cajafuerte", 6).
+    addItem("Nota", 7).
     setOpen(false); 
 
   createSideBar();
 }
 
-void createSideBar(){
+void createSideBar() {
   //SIDEBAR
-  sideBar = new PVector(width-pad-260,pad*7);
+  sideBar = new PVector(width-pad-260, pad*7);
   //sb.setFont(createFont("Calibri", 15));
 
-  for(ControllerInterface c:sb.getAll())
+  for (ControllerInterface c : sb.getAll())
     sb.remove(c.getName());
 
   sb.addTextlabel("lblLevelName").
     setText("Nombre del Nivel:"). 
-    setPosition(sideBar.x,sideBar.y+7).
-    setColorValue(color(255,255,255));
+    setPosition(sideBar.x, sideBar.y+7).
+    setColorValue(color(255, 255, 255));
 
   sb.addTextfield("txtLevelName").
     setLabel("").
@@ -77,12 +77,12 @@ void createSideBar(){
     setAutoClear(false).
     setText(levelName);  
 
-  sideBar = new PVector(sideBar.x,sideBar.y+pad*3);
+  sideBar = new PVector(sideBar.x, sideBar.y+pad*3);
 
   sb.addTextlabel("lblPlayerPos").
     setText("Pos. del Jugador:"). 
-    setPosition(sideBar.x,sideBar.y+7).
-    setColorValue(color(255,255,255));
+    setPosition(sideBar.x, sideBar.y+7).
+    setColorValue(color(255, 255, 255));
 
   sb.addTextfield("txtPlayerX").
     setLabel("").
@@ -103,28 +103,28 @@ void createSideBar(){
     setText(str(playerPos.z)).
     setAutoClear(false);  
 
-  sideBar = new PVector(sideBar.x,sideBar.y+pad*3);
+  sideBar = new PVector(sideBar.x, sideBar.y+pad*3);
 
   sb.addTextlabel("TitleProp").
     setText("PROPIEDADES"). 
-    setPosition((int)((sideBar.x+width)/2-30),sideBar.y+7).
-    setColorValue(color(255,255,255));
+    setPosition((int)((sideBar.x+width)/2-30), sideBar.y+7).
+    setColorValue(color(255, 255, 255));
 
   createProperties();
 }
 
-void createProperties(){
-  propBar = new PVector(sideBar.x,sideBar.y+pad*(int)2.5);  
+void createProperties() {
+  propBar = new PVector(sideBar.x, sideBar.y+pad*(int)2.5);  
   //prop.setFont(createFont("Calibri", 15));
 
-  for(ControllerInterface c:prop.getAll())
+  for (ControllerInterface c : prop.getAll())
     prop.remove(c.getName());
 
-  if(selectedObj == null){
+  if (selectedObj == null) {
     prop.addTextlabel("temp").
       setText("Seleccione un Objeto en el mapa"). 
-      setPosition(propBar.x,propBar.y+7).
-      setColorValue(color(255,255,255));    
+      setPosition(propBar.x, propBar.y+7).
+      setColorValue(color(255, 255, 255));
   } else {
     selectedObj.createProperties();
   }
