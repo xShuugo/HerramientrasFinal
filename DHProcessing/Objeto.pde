@@ -96,5 +96,5 @@ void txtposY(String value){
 }
 
 void txtAngle(String value){
-  selectedObj.angle = Float.valueOf(value);
+  selectedObj.angle = Float.valueOf(nf(Float.valueOf(value), 0, 1));
 }
