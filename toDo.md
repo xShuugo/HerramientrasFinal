@@ -4,5 +4,4 @@
 - Shortcuts- *Fernando*
 - Delete - *Fernando*
 - Ajustar seleccion
-- Delimitar translate
 - Puerta final

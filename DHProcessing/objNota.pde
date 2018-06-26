@@ -1,4 +1,6 @@
 class objNota extends Objeto {  
+  float sizeX = 0.4;
+  float sizeY = 0.6;
 
   String contenido = "[Sin Contenido]";
 
@@ -8,15 +10,25 @@ class objNota extends Objeto {
   } 
 
   void draw() {
+    super.draw();
     map.canvas.pushMatrix();
     map.canvas.translate(posX*mult, posY*mult);
     map.canvas.rotate(radians(angle));
-    map.canvas.noStroke();
     map.canvas.fill(255, 225, 91);
-    map.canvas.rect(0, 0, 0.4*mult, 0.6*mult);
-    super.check = .4*mult*1.5;
+    map.canvas.rect(0, 0, sizeX*mult, sizeY*mult);
     map.canvas.popMatrix();
-    super.draw();
+  }
+
+  boolean MouseOver() {
+    if (map.cmouse.x/mult > posX-sizeX/2 &&
+        map.cmouse.x/mult < posX+sizeX/2 &&
+        map.cmouse.y/mult > posY-sizeY/2 &&
+        map.cmouse.y/mult < posY+sizeY/2){
+      super.checkOver = true;
+      return true;
+    }
+    super.checkOver = false;
+    return false;
   }
 
   public String imprimir() {

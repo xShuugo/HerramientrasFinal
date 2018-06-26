@@ -7,15 +7,26 @@ class objMesa extends Objeto {
   } 
 
   void draw() {
+    super.draw();
+    
     map.canvas.pushMatrix();
     map.canvas.translate(posX*mult, posY*mult);
     map.canvas.rotate(radians(angle));
-    map.canvas.noStroke();
     map.canvas.fill(99, 83, 52);
     map.canvas.rect(0, 0, size*mult, size*mult);
-    super.check = size*mult*1.5;
     map.canvas.popMatrix();
-    super.draw();
+  }
+
+  boolean MouseOver() {
+    if (map.cmouse.x/mult > posX-size/2 &&
+        map.cmouse.x/mult < posX+size/2 &&
+        map.cmouse.y/mult > posY-size/2 &&
+        map.cmouse.y/mult < posY+size/2){
+      super.checkOver = true;
+      return true;
+    }
+    super.checkOver = false;
+    return false;
   }
 
   public String imprimir() {

@@ -3,7 +3,7 @@ public class Objeto {
   public float posX;
   public float posY; 
   public float angle;
-  public float check;
+  public boolean checkOver = false;
 
   public Objeto(String name, float posX, float posY, float angle) {
     this.name = name;
@@ -13,23 +13,16 @@ public class Objeto {
   } 
 
   void draw() {
-    if (MouseOver() || selectedObj == this)
-      SelectedOverLay();
+    if((MouseOver() || selectedObj == this) && map.tempObj != this) map.canvas.stroke(255);
+    else map.canvas.noStroke();
   }
 
   public String imprimir() {
     return "";
   }
 
-  void SelectedOverLay() {
-    map.canvas.noFill();
-    map.canvas.stroke(255, 255, 255);
-    map.canvas.ellipse(posX*mult, posY*mult, check, check);
-  }
-
   boolean MouseOver() {
-    if (PVector.dist(new PVector(posX*mult, posY*mult), new PVector(map.cmouse.x, map.cmouse.y))<check/2) return true;
-    else return false;
+    return false;
   }
 
   void createProperties() {

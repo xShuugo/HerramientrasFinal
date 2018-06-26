@@ -42,7 +42,6 @@ void draw() {
   surface.setTitle("Room Maker - "+(int)frameRate+" fps");
   background(50);
   map.display(); 
-  //println(state);
 }
 
 void mousePressed() {
@@ -84,8 +83,6 @@ void mouseDragged() {
       selectedObj.posY = map.cmouse.y/mult;
       selectedObj.posX = float(int(selectedObj.posX*10))/10;
       selectedObj.posY = float(int(selectedObj.posY*10))/10;
-
-      println(selectedObj.posX);
       break;
     case ROTATE:
       float currAng = -degrees(atan2(
@@ -153,14 +150,13 @@ void keyPressed() {
 
 void mouseWheel(MouseEvent e) {
 
-  if (map.mouseOverCanvas())
-    if ( selectedObj == null) {
-      mult -= e.getCount();
-      mult = constrain(mult, 16, 80);
-    }
+  if (map.mouseOverCanvas()) {
+    if(state == ToolState.ROTATE && selectedObj != null && selectedObj.checkOver)
 
-  if (state == ToolState.ROTATE && selectedObj != null) {
     selectedObj.angle = selectedObj.angle + (e.getCount()*45);
     createProperties();
+    
+    mult -= e.getCount();
+    mult = constrain(mult, 16, 80);
   }
 } 

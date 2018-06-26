@@ -15,22 +15,40 @@ class objLampara extends Objeto {
   } 
 
   void draw() {    
+    super.draw();
     map.canvas.pushMatrix();
     map.canvas.translate(posX*mult, posY*mult);
     map.canvas.rotate(radians(angle));
-    map.canvas.noStroke();
-    super.check = diameter*mult*2;
     if (isOnTable) { 
       map.canvas.fill(99, 83, 52);
       map.canvas.rect(0, 0, mult, mult);
-      super.check = mult*1.5;
     }
 
     map.canvas.fill(230, 230, 0);
     map.canvas.ellipse(0, 0, diameter*mult, diameter*mult);
 
     map.canvas.popMatrix();
-    super.draw();
+  }
+
+  boolean MouseOver() {
+    if(isOnTable)
+      if (PVector.dist(
+          new PVector(posX, posY),
+          new PVector(map.cmouse.x/mult, map.cmouse.y/mult))
+          < diameter/2){
+        super.checkOver = true;
+        return true;
+      }
+    else 
+      if (map.cmouse.x/mult > posX-1/2 &&
+          map.cmouse.x/mult < posX+1/2 &&
+          map.cmouse.y/mult > posY-1/2 &&
+          map.cmouse.y/mult < posY+1/2){
+        super.checkOver = true;
+        return true;
+      }
+    super.checkOver = false;
+    return false;
   }
 
   public String imprimir() {
