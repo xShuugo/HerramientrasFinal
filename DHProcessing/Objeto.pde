@@ -76,7 +76,7 @@ public class Objeto{
       setLabel("").
       setPosition(propBar.x+130, propBar.y).
       setSize(60, pad*2).
-      setText(str(angle)).
+      setText(nf(angle, 0, 1)).
       setAutoClear(false);   
   }
 
