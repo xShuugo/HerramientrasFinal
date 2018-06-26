@@ -16,6 +16,7 @@ class objNota extends Objeto{
     map.canvas.rect(0,0, 0.4*mult, 0.6*mult);
     super.check = .4*mult*1.5;
     map.canvas.popMatrix();
+    super.draw();
   }
 
   public String imprimir(){

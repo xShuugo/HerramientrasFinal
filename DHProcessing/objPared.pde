@@ -16,6 +16,7 @@ class objPared extends Objeto{
     map.canvas.rect(0,0, paredWidth*mult, paredDepth*mult);
     super.check = paredDepth*mult*3;
     map.canvas.popMatrix();
+    super.draw();
   }
 
   public String imprimir(){

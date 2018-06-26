@@ -15,6 +15,7 @@ class objMesa extends Objeto{
     map.canvas.rect(0,0, size*mult,size*mult);
     super.check = size*mult*1.5;
     map.canvas.popMatrix();
+    super.draw();
   }
 
   public String imprimir(){

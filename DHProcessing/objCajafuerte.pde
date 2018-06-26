@@ -29,6 +29,7 @@ class objCajafuerte extends Objeto{
     map.canvas.rect(0,0, size*mult,size*mult);    
     
     map.canvas.popMatrix();
+    super.draw();
   }
 
   public String imprimir(){
@@ -80,8 +81,10 @@ class objCajafuerte extends Objeto{
       setColorForeground(color(120)).
       setColorActive(color(0, 255, 0)).
       setColorLabel(color(255)).            
-      addItem("", 0).
-      deactivateAll();
+      addItem("", 0);
+
+    if(isOnTable) prop.get(CheckBox.class,"cbIsOnTable").activate(0);
+    else prop.get(CheckBox.class,"cbIsOnTable").deactivate(0);
   }
   void checkTextFields(){
     if(prop.get(Textfield.class,"txtPassword")!=null)
@@ -90,9 +93,9 @@ class objCajafuerte extends Objeto{
     if(prop.get(Textfield.class,"txtContenidoCaja")!=null)
       contenido = prop.get(Textfield.class,"txtContenidoCaja").getText();
       
-    /*if(prop.get(CheckBox.class,"cbIsOnTable")!=null){
+    if(prop.get(CheckBox.class,"cbIsOnTable")!=null){
       isOnTable = prop.get(CheckBox.class,"cbIsOnTable").getState(0);     
-    }*/
+    }
   }  
 }
 
@@ -103,7 +106,3 @@ void txtPassword(String value){
 void txtContenidoCaja(String value){
   selectedObj.checkTextFields();
 }
-
-/*void cbIsOnTable(Boolean value){
-  selectedObj.checkTextFields();  
-}*/

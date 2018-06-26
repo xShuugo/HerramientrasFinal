@@ -13,13 +13,20 @@ public class Objeto{
   } 
   
   void draw(){
+  if(MouseOver() || selectedObj == this)
+    SelectedOverLay();
   }
   
   public String imprimir(){
     return "";    
   }
 
-  
+  void SelectedOverLay(){
+    map.canvas.noFill();
+    map.canvas.stroke(255,255,255);
+    map.canvas.ellipse(posX*mult,posY*mult,check,check);
+  }
+
   boolean MouseOver(){
     if(PVector.dist(new PVector(posX*mult,posY*mult),new PVector(map.cmouse.x,map.cmouse.y))<check/2) return true;
     else return false;

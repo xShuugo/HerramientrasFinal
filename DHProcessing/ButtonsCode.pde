@@ -22,17 +22,12 @@ void controlEvent(ControlEvent e)
       Float.valueOf(sb.get(Textfield.class,"txtPlayerX").getText()),
       Float.valueOf(sb.get(Textfield.class,"txtPlayerY").getText()),
       Float.valueOf(sb.get(Textfield.class,"txtPlayerZ").getText()));
-  println(n);
-  
-  /*if(e.isFrom(prop.get(CheckBox.class,"cbIsOnTable"))){    
-    boolean onTable = prop.get(CheckBox.class,"cbIsOnTable").getState(0);
-    println(onTable);  
-  }*/
+  //println(n);
 }
     
 void generateObject(){
-  float X = random(-map.canvas.width/(2*mult),map.canvas.width/(2*mult));
-  float Y = random(-map.canvas.height/(2*mult),map.canvas.height/(2*mult));
+  float X = random(-15,15);
+  float Y = random(-15,15);
   float angle = 0;
   boolean isOnBool = random(1) > .5;
   int randomObject = round(random(0, 6));

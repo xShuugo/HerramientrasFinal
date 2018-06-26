@@ -13,7 +13,7 @@ ControlP5 sb;
 DropdownList objectList;
 MapCanvas map;
 int pad=15;
-float mult = 20;
+int mult = 20;
 PVector sideBar;
 PVector propBar;
 PImage rotCursor,movCursor;
@@ -73,6 +73,7 @@ void mousePressed(){
     }
   }
   if(mouseButton == RIGHT){
+    state = ToolState.MOVING;
     map.tempObj = null;
   }
 }
@@ -125,3 +126,9 @@ void keyPressed(){
     }
   }
 }
+
+void mouseWheel(MouseEvent e){
+  if(map.mouseOverCanvas())
+    mult -= e.getCount();
+    mult = constrain(mult,16,80);
+} 

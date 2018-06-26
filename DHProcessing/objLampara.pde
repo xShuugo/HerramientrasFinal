@@ -30,6 +30,7 @@ class objLampara extends Objeto{
     map.canvas.ellipse(0,0, diameter*mult, diameter*mult);
     
     map.canvas.popMatrix();
+    super.draw();
   }
 
   public String imprimir(){
@@ -80,14 +81,15 @@ class objLampara extends Objeto{
       setColorForeground(color(120)).
       setColorActive(color(0, 255, 0)).
       setColorLabel(color(255)).
-      setItemsPerRow(1).      
-      addItem("", 0).
-      deactivateAll();   
+      addItem("", 0);
+
+    if(isOnTable) prop.get(CheckBox.class,"cbIsOnTable").activate(0);
+    else prop.get(CheckBox.class,"cbIsOnTable").deactivate(0);
 
     propBar = new PVector(propBar.x,propBar.y+pad*3);
       
     prop.addTextlabel("lblEnchufeInicial").
-      setText("Esta sobre una mesa ?:"). 
+      setText("Enchufe Inicial:"). 
       setPosition(propBar.x,propBar.y+7).
       setColorValue(color(255,255,255)); 
    
@@ -109,9 +111,11 @@ class objLampara extends Objeto{
     if(prop.get(Textfield.class,"txtEnchufeInicial")!=null)
         enchufeInicial = prop.get(Textfield.class,"txtEnchufeInicial").getText();
   
-  /*if(prop.get(CheckBox.class,"cbIsOnTable")!=null){
-        isOnTable = prop.get(CheckBox.class,"cbIsOnTable").getState(0);     
-    }*/
+    if(prop.get(CheckBox.class,"cbIsOnTable")!=null)
+        isOnTable = prop.get(CheckBox.class,"cbIsOnTable").getState(0);    
+        //isOnTable = !isOnTable;
+        println("?");
+    println(prop.get(CheckBox.class,"cbIsOnTable"));
   }
 }
 
@@ -127,6 +131,6 @@ void txtEnchufeInicial(String value){
   selectedObj.checkTextFields();
 }
 
-/*void cbIsOnTable(Boolean value){
-  selectedObj.checkTextFields();  
-}*/
+void cbIsOnTable(float[] a){
+  selectedObj.checkTextFields();
+}

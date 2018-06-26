@@ -5,6 +5,7 @@ class MapCanvas{
   
   PVector ctrans = new PVector(csize.x/2,csize.y/2);
   PVector cmouse;
+  PVector d = new PVector();
   Objeto tempObj;
   
   public MapCanvas(){
@@ -16,7 +17,7 @@ class MapCanvas{
     cpos = new PVector(pad,pad*4);    
     canvas = createGraphics((int)csize.x,(int)csize.y);
     canvas.beginDraw();
-    canvas.translate(ctrans.x,ctrans.y);
+    Pan();
     canvas.rectMode(CENTER);
     this.draw();
     canvas.endDraw();
@@ -25,11 +26,11 @@ class MapCanvas{
   
   void draw(){
     cmouse = new PVector(mouseX-cpos.x-ctrans.x,mouseY-cpos.y-ctrans.y);
-    canvas.background(150);
-    
+    canvas.background(0);
+    canvas.fill(150);
+    canvas.rect(0,0,30*mult,30*mult);
     for(Objeto m : data.objeto){
       m.draw();
-      SelectedOverLay(m);
     }
     DrawGrid();
     if(mouseOverCanvas())DrawTool();
@@ -38,8 +39,8 @@ class MapCanvas{
 
   void DrawGrid(){
     canvas.stroke(255,50);
-    canvas.line(1000,0,-1000,0);
-    canvas.line(0,-1000,0,1000);
+    canvas.line(15*mult,0,-15*mult,0);
+    canvas.line(0,-15*mult,0,15*mult);
   }
 
   void DrawTool(){
@@ -60,12 +61,11 @@ class MapCanvas{
     }
   }
 
-  void SelectedOverLay(Objeto m){
-    if(m.MouseOver()){
-      map.canvas.noFill();
-      map.canvas.stroke(255,255,255);
-      map.canvas.ellipse(m.posX*mult,m.posY*mult,m.check,m.check);
-    }
+  void Pan(){
+    d.sub(new PVector(mouseX,mouseY));
+    if (mousePressed && mouseButton==CENTER) ctrans.sub(d);
+    canvas.translate(ctrans.x,ctrans.y);
+    d=new PVector(mouseX,mouseY);
   }
 
   boolean mouseOverCanvas(){
