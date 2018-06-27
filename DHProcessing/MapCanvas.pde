@@ -5,16 +5,18 @@ class MapCanvas {
 
   PVector ctrans = new PVector(csize.x/2, csize.y/2);
   PVector cmouse;
+  
+
   PVector d = new PVector();
   Objeto tempObj;
 
   public MapCanvas() {
-  }
-
-  void display() {
     csize = new PVector(sideBar.x-pad*2, height-pad*5);
     cpos = new PVector(pad, pad*4);    
     canvas = createGraphics((int)csize.x, (int)csize.y);
+  }
+
+  void display() {
     canvas.beginDraw();
     Pan();
     canvas.rectMode(CENTER);
@@ -28,18 +30,25 @@ class MapCanvas {
     canvas.background(0);
     canvas.fill(150);
     canvas.rect(0, 0, 30*mult, 30*mult);
+    DrawGrid();
     for (Objeto m : data.objeto) {
       m.draw();
     }
-    DrawGrid();
     if (mouseOverCanvas())DrawTool();
     else cursor(ARROW);
   }
 
   void DrawGrid() {
+    canvas.strokeWeight(2);
     canvas.stroke(255, 50);
     canvas.line(15*mult, 0, -15*mult, 0);
     canvas.line(0, -15*mult, 0, 15*mult);
+    canvas.strokeWeight(1);
+    canvas.stroke(255, 25);
+    for (int x=-15*mult;x < 15*mult;x+=5*mult){
+      canvas.line(x,-15*mult,x,15*mult);
+      canvas.line(-15*mult,x,15*mult,x);
+    }
   }
 
   void DrawTool() {
@@ -64,17 +73,20 @@ class MapCanvas {
     d.sub(new PVector(mouseX, mouseY));
     if (mousePressed && mouseButton==CENTER) {
       ctrans.sub(d);
-      PVector constr = new PVector(
+      constrainTranslate();
+    }
+
+    canvas.translate(ctrans.x, ctrans.y);
+    d=new PVector(mouseX, mouseY);
+  }
+
+  void constrainTranslate(){
+    PVector constr = new PVector(
         constrain((30*mult-csize.x)/2, 0, 1000), 
         constrain((30*mult-csize.y)/2, 0, 1000));
       ctrans = new PVector(
         constrain(ctrans.x, csize.x/2-constr.x, csize.x/2+constr.x), 
         constrain(ctrans.y, csize.y/2-constr.y, csize.y/2+constr.y));
-    }
-
-
-    canvas.translate(ctrans.x, ctrans.y);
-    d=new PVector(mouseX, mouseY);
   }
 
   boolean mouseOverCanvas() {

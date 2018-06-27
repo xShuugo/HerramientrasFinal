@@ -18,6 +18,7 @@ PVector sideBar;
 PVector propBar;
 PImage rotCursor, movCursor;
 
+
 //INTERACTIONS
 Objeto selectedObj = null;
 float prevAng, objAng;
@@ -105,25 +106,25 @@ void newObject() {
   map.tempObj.posY = float(int(map.tempObj.posY*10))/10;
   switch(currentObject) {
   case "tempMesa":        
-    data.objeto.add(new objMesa       ("Mesa"+qObj, map.tempObj.posX, map.tempObj.posY, 0));
+    data.objeto.add(new objMesa ("Mesa"+qObj, map.tempObj.posX, map.tempObj.posY, 0));
     break;
   case "tempLampara" :    
-    data.objeto.add(new objLampara    ("Lampara"+qObj, map.tempObj.posX, map.tempObj.posY, 0, 0, 0, true, "null"));
+    data.objeto.add(new objLampara ("Lampara"+qObj, map.tempObj.posX, map.tempObj.posY, 0, 0, 0, true, "null"));
     break;
   case "tempPared" :      
-    data.objeto.add(new objPared      ("Pared"+qObj, map.tempObj.posX, map.tempObj.posY, 0));
+    data.objeto.add(new objPared ("Pared"+qObj, map.tempObj.posX, map.tempObj.posY, 0));
     break;
   case "tempFosforos" :   
-    data.objeto.add(new objFosforos   ("Fosforos"+qObj, map.tempObj.posX, map.tempObj.posY, 0, 0)); 
+    data.objeto.add(new objFosforos ("Fosforos"+qObj, map.tempObj.posX, map.tempObj.posY, 0, 0)); 
     break;
   case "tempEnchufe" :    
-    data.objeto.add(new objEnchufe    ("Enchufe"+qObj, map.tempObj.posX, map.tempObj.posY, 0));  
+    data.objeto.add(new objEnchufe ("Enchufe"+qObj, map.tempObj.posX, map.tempObj.posY, 0));  
     break;
   case "tempCajafuerte" : 
     data.objeto.add(new objCajafuerte ("Cajafuerte"+qObj, map.tempObj.posX, map.tempObj.posY, 0, "null", "null", true)); 
     break;
   case "tempNota" :       
-    data.objeto.add(new objNota       ("Nota"+qObj, map.tempObj.posX, map.tempObj.posY, 0, "null"));  
+    data.objeto.add(new objNota ("Nota"+qObj, map.tempObj.posX, map.tempObj.posY, 0, "null"));  
     break;
   }
 }
@@ -132,31 +133,38 @@ void keyPressed() {
   if (state == ToolState.MOVING && selectedObj != null) {
     switch(keyCode) {
     case LEFT:  
-      selectedObj.posX = selectedObj.posX - 0.1; 
+      selectedObj.posX = selectedObj.posX - 0.1;
+      createProperties(); 
       break;
     case UP:    
       selectedObj.posY = selectedObj.posY - 0.1; 
+      createProperties();
       break;  
     case DOWN:  
       selectedObj.posY = selectedObj.posY + 0.1; 
+      createProperties();
       break;
     case RIGHT: 
       selectedObj.posX = selectedObj.posX + 0.1; 
+      createProperties();
       break;
     }
-    createProperties();
+    
   }
 }
 
 void mouseWheel(MouseEvent e) {
 
   if (map.mouseOverCanvas()) {
-    if(state == ToolState.ROTATE && selectedObj != null && selectedObj.checkOver)
-
-    selectedObj.angle = selectedObj.angle + (e.getCount()*45);
-    createProperties();
-    
-    mult -= e.getCount();
-    mult = constrain(mult, 16, 80);
+    if(state == ToolState.ROTATE && selectedObj != null && selectedObj.checkOver){
+      selectedObj.angle = selectedObj.angle -selectedObj.angle%45 + (e.getCount()*45);
+      selectedObj.angle = selectedObj.angle%360;
+      createProperties();
+    } else {
+      if(e.getCount()==-1) mult += 8;
+      else mult -= 8;
+      mult = constrain(mult, 16, 80);
+      map.constrainTranslate();
+    }
   }
 } 

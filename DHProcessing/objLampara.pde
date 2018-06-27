@@ -31,22 +31,23 @@ class objLampara extends Objeto {
   }
 
   boolean MouseOver() {
-    if(isOnTable)
+    if(!isOnTable){
       if (PVector.dist(
           new PVector(posX, posY),
-          new PVector(map.cmouse.x/mult, map.cmouse.y/mult))
-          < diameter/2){
+          new PVector(
+            map.cmouse.x/mult, map.cmouse.y/mult)) < diameter/2){
         super.checkOver = true;
         return true;
-      }
-    else 
-      if (map.cmouse.x/mult > posX-1/2 &&
-          map.cmouse.x/mult < posX+1/2 &&
-          map.cmouse.y/mult > posY-1/2 &&
-          map.cmouse.y/mult < posY+1/2){
+        }
+    } else {
+      if (offset().x/mult > posX-.5 &&
+          offset().x/mult < posX+.5 &&
+          offset().y/mult > posY-.5 &&
+          offset().y/mult < posY+.5){
         super.checkOver = true;
         return true;
-      }
+        }
+    }
     super.checkOver = false;
     return false;
   }

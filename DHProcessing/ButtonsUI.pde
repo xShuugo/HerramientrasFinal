@@ -4,8 +4,6 @@ void createButtons() {
   prop = new ControlP5(this);
   ui = new ControlP5(this);
 
-  //ui.setFont(createFont("Calibri", 15));
-
   //TOOLBAR  
 
   ui.addButton("newMap").
@@ -31,8 +29,7 @@ void createButtons() {
   ui.addButton("moveObject").
     setPosition(width-pad-260, pad*4).
     setSize(45, pad*2).
-    setLabel("Mover")  
-  /*setFont(createFont("Arial", 24))*/    ;  
+    setLabel("Mover");  
 
   ui.addButton("rotateObject").
     setPosition(width-pad-205, pad*4).
@@ -60,8 +57,7 @@ void createButtons() {
 void createSideBar() {
   //SIDEBAR
   sideBar = new PVector(width-pad-260, pad*7);
-  //sb.setFont(createFont("Calibri", 15));
-
+  
   for (ControllerInterface c : sb.getAll())
     sb.remove(c.getName());
 
@@ -114,9 +110,9 @@ void createSideBar() {
 }
 
 void createProperties() {
+  //print("recreated");
   propBar = new PVector(sideBar.x, sideBar.y+pad*(int)2.5);  
-  //prop.setFont(createFont("Calibri", 15));
-
+  
   for (ControllerInterface c : prop.getAll())
     prop.remove(c.getName());
 

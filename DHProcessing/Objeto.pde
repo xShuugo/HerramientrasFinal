@@ -21,6 +21,16 @@ public class Objeto {
     return "";
   }
 
+  PVector offset(){
+    float d = PVector.dist(new PVector(posX*mult,posY*mult),map.cmouse);
+    float a = degrees(atan2(
+        posX-map.cmouse.x/mult, 
+        posY-map.cmouse.y/mult));
+    return new PVector(
+      posX*mult+ d*sin(radians(-angle-a)),
+      posY*mult+ d*cos(radians(-angle-a)));
+  }
+
   boolean MouseOver() {
     return false;
   }

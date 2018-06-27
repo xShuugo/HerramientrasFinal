@@ -20,10 +20,10 @@ class objFosforos extends Objeto {
   }
 
   boolean MouseOver() {
-    if (map.cmouse.x/mult > posX-size/2 &&
-        map.cmouse.x/mult < posX+size/2 &&
-        map.cmouse.y/mult > posY-size/2 &&
-        map.cmouse.y/mult < posY+size/2){
+    if (offset().x/mult > posX-size/2 &&
+        offset().x/mult < posX+size/2 &&
+        offset().y/mult > posY-size/2 &&
+        offset().y/mult < posY+size/2){
       super.checkOver = true;
       return true;
     }

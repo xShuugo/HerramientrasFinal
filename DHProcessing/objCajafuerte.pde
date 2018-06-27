@@ -14,6 +14,7 @@ class objCajafuerte extends Objeto {
   } 
 
   void draw() {
+    super.draw();
     map.canvas.pushMatrix();
     map.canvas.translate(posX*mult, posY*mult);
     map.canvas.rotate(radians(angle));
@@ -29,22 +30,24 @@ class objCajafuerte extends Objeto {
   }
 
   boolean MouseOver() {
-    if(isOnTable)
-      if (map.cmouse.x/mult > posX-size/2 &&
-          map.cmouse.x/mult < posX+size/2 &&
-          map.cmouse.y/mult > posY-size/2 &&
-          map.cmouse.y/mult < posY+size/2){
+    if(!isOnTable){
+      if (offset().x/mult > posX-size/2 &&
+          offset().x/mult < posX+size/2 &&
+          offset().y/mult > posY-size/2 &&
+          offset().y/mult < posY+size/2){
         super.checkOver = true;
         return true;
       }
-    else 
-      if (map.cmouse.x/mult > posX-1/2 &&
-          map.cmouse.x/mult < posX+1/2 &&
-          map.cmouse.y/mult > posY-1/2 &&
-          map.cmouse.y/mult < posY+1/2){
+    }
+    else{ 
+      if (offset().x/mult > posX-.5 &&
+          offset().x/mult < posX+.5 &&
+          offset().y/mult > posY-.5 &&
+          offset().y/mult < posY+.5){
         super.checkOver = true;
         return true;
       }
+    }
     super.checkOver = false;
     return false;
   }

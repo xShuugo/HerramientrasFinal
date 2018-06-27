@@ -20,10 +20,10 @@ class objNota extends Objeto {
   }
 
   boolean MouseOver() {
-    if (map.cmouse.x/mult > posX-sizeX/2 &&
-        map.cmouse.x/mult < posX+sizeX/2 &&
-        map.cmouse.y/mult > posY-sizeY/2 &&
-        map.cmouse.y/mult < posY+sizeY/2){
+    if (offset().x/mult > posX-sizeX/2 &&
+        offset().x/mult < posX+sizeX/2 &&
+        offset().y/mult > posY-sizeY/2 &&
+        offset().y/mult < posY+sizeY/2){
       super.checkOver = true;
       return true;
     }
