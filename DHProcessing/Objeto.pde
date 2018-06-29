@@ -59,13 +59,13 @@ public class Objeto {
       setLabel("").
       setPosition(propBar.x+130, propBar.y).
       setSize(60, pad*2).
-      setText(nf(posX, 0, 1)).
+      setText(nf(posX, 0, 2)).
       setAutoClear(false);  
     prop.addTextfield("txtposY").
       setLabel("").
       setPosition(propBar.x+130+10+60, propBar.y).
       setSize(60, pad*2).
-      setText(nf(posY, 0, 1)).
+      setText(nf(posY, 0, 2)).
       setAutoClear(false);
 
     propBar = new PVector(propBar.x, propBar.y+pad*3); 
@@ -79,7 +79,7 @@ public class Objeto {
       setLabel("").
       setPosition(propBar.x+130, propBar.y).
       setSize(60, pad*2).
-      setText(nf(angle, 0, 1)).
+      setText(nf(angle, 0, 2)).
       setAutoClear(false);
   }
 
@@ -92,17 +92,17 @@ void txtName(String value) {
 }
 
 void txtposX(String value) {
-  selectedObj.posX = float(nf(float(value), 0, 1));
-  selectedObj.posX = float(int(selectedObj.posX*10))/10;
+  selectedObj.posX = float(nf(float(value), 0, 2));
+  selectedObj.posX = float(int(selectedObj.posX*100))/100;
 }
 
 void txtposY(String value) {
-  selectedObj.posY = float(nf(float(value), 0, 1));
-  selectedObj.posY = float(int(selectedObj.posY*10))/10;
+  selectedObj.posY = float(nf(float(value), 0, 2));
+  selectedObj.posY = float(int(selectedObj.posY*100))/100;
 }
 
 void txtAngle(String value) {
-  selectedObj.angle = float(nf(float(value), 0, 1));
-  selectedObj.angle = float(int(selectedObj.angle*10))/10;
+  selectedObj.angle = float(nf(float(value), 0, 2));
+  selectedObj.angle = float(int(selectedObj.angle*100))/100;
   //selectedObj.angle = float(value);
 }

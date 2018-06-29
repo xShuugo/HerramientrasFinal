@@ -129,8 +129,8 @@ void moveSelected(){
 }
 
 void snapPos(){
-  selectedObj.posX = float(int(selectedObj.posX*10))/10;
-  selectedObj.posY = float(int(selectedObj.posY*10))/10;
+  selectedObj.posX = float(int(selectedObj.posX*100))/100;
+  selectedObj.posY = float(int(selectedObj.posY*100))/100;
 }
 
 
@@ -149,8 +149,8 @@ void rotateSelected(){
 
 void newObject() {
   String currentObject = map.tempObj.name;
-  map.tempObj.posX = float(int(map.tempObj.posX*10))/10;
-  map.tempObj.posY = float(int(map.tempObj.posY*10))/10;
+  map.tempObj.posX = float(int(map.tempObj.posX*100))/100;
+  map.tempObj.posY = float(int(map.tempObj.posY*100))/100;
   switch(currentObject) {
   case "tempMesa":        
     data.objeto.add(new objMesa ("Mesa"+qObj, map.tempObj.posX, map.tempObj.posY, map.tempObj.angle));
