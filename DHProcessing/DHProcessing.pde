@@ -16,7 +16,7 @@ int pad=15;
 int mult = 20;
 PVector sideBar;
 PVector propBar;
-PImage rotCursor, movCursor;
+PImage rotCursor, movCursor, movGizmo;
 
 
 //INTERACTIONS
@@ -32,11 +32,12 @@ String levelName = "Sin Titulo";
 PVector playerPos = new PVector(0, 0, 0);
 
 void setup() {  
-  size(1000, 600, P2D);
+  size(1000, 600);
   createButtons();
   map = new MapCanvas();
   rotCursor = loadImage("RotateCursor.png");
   movCursor = loadImage("MoveCursor.png");
+  movGizmo = loadImage("MoveGizmo.png");
 }
 
 void draw() {
@@ -156,15 +157,10 @@ void keyPressed() {
 void mouseWheel(MouseEvent e) {
 
   if (map.mouseOverCanvas()) {
-    if(state == ToolState.ROTATE && selectedObj != null && selectedObj.checkOver){
-      selectedObj.angle = selectedObj.angle -selectedObj.angle%45 + (e.getCount()*45);
-      selectedObj.angle = selectedObj.angle%360;
-      createProperties();
-    } else {
-      if(e.getCount()==-1) mult += 8;
-      else mult -= 8;
-      mult = constrain(mult, 16, 80);
-      map.constrainTranslate();
-    }
+    if(e.getCount()==-1) mult += 8;
+    else mult -= 8;
+    mult = constrain(mult, 16, 80);
+    map.constrainTranslate();
+    
   }
 } 

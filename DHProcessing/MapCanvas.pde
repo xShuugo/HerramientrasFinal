@@ -22,20 +22,30 @@ class MapCanvas {
     canvas.rectMode(CENTER);
     this.draw();
     canvas.endDraw();
+    imageMode(CORNER);
     image(canvas, cpos.x, cpos.y);
   }
 
   void draw() {
     cmouse = new PVector(mouseX-cpos.x-ctrans.x, mouseY-cpos.y-ctrans.y);
     canvas.background(0);
+    canvas.noStroke();
     canvas.fill(150);
     canvas.rect(0, 0, 30*mult, 30*mult);
     DrawGrid();
     for (Objeto m : data.objeto) {
       m.draw();
     }
-    if (mouseOverCanvas())DrawTool();
+    if(selectedObj != null) DrawGizmo();
+    if (mouseOverCanvas()) DrawTool();
     else cursor(ARROW);
+  }
+
+  void DrawGizmo(){
+    canvas.imageMode(CENTER);
+    switch(state){
+      case MOVING: canvas.image(movGizmo, selectedObj.posX*mult+30, selectedObj.posY*mult-30);
+    }
   }
 
   void DrawGrid() {
@@ -82,8 +92,8 @@ class MapCanvas {
 
   void constrainTranslate(){
     PVector constr = new PVector(
-        constrain((30*mult-csize.x)/2, 0, 1000), 
-        constrain((30*mult-csize.y)/2, 0, 1000));
+        constrain((30*mult+10-csize.x)/2, 0, 1000), 
+        constrain((30*mult+10-csize.y)/2, 0, 1000));
       ctrans = new PVector(
         constrain(ctrans.x, csize.x/2-constr.x, csize.x/2+constr.x), 
         constrain(ctrans.y, csize.y/2-constr.y, csize.y/2+constr.y));

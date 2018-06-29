@@ -13,7 +13,7 @@ public class Objeto {
   } 
 
   void draw() {
-    if((MouseOver() || selectedObj == this) && map.tempObj != this) map.canvas.stroke(255);
+    if((MouseOver() || selectedObj == this) && state != ToolState.DRAWING) map.canvas.stroke(255);
     else map.canvas.noStroke();
   }
 
