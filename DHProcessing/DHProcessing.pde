@@ -83,8 +83,8 @@ void mouseDragged() {
     case MOVING:
       selectedObj.posX = map.cmouse.x/mult;
       selectedObj.posY = map.cmouse.y/mult;
-      selectedObj.posX = float(int(selectedObj.posX*10))/10;
-      selectedObj.posY = float(int(selectedObj.posY*10))/10;
+      selectedObj.posX = float(int(selectedObj.posX*100))/100;
+      selectedObj.posY = float(int(selectedObj.posY*100))/100;
       break;
     case ROTATE:
       float currAng = -degrees(atan2(
@@ -93,7 +93,7 @@ void mouseDragged() {
 
       selectedObj.angle += currAng-prevAng;
       selectedObj.angle = selectedObj.angle%360;
-      selectedObj.angle = float(int(selectedObj.angle*10))/10;
+      selectedObj.angle = float(int(selectedObj.angle*100))/100;
       prevAng=currAng;
       break;
     }
@@ -103,8 +103,8 @@ void mouseDragged() {
 
 void newObject() {
   String currentObject = map.tempObj.name;
-  map.tempObj.posX = float(int(map.tempObj.posX*10))/10;
-  map.tempObj.posY = float(int(map.tempObj.posY*10))/10;
+  map.tempObj.posX = float(int(map.tempObj.posX*100))/100;
+  map.tempObj.posY = float(int(map.tempObj.posY*100))/100;
   switch(currentObject) {
   case "tempMesa":        
     data.objeto.add(new objMesa ("Mesa"+qObj, map.tempObj.posX, map.tempObj.posY, 0));
