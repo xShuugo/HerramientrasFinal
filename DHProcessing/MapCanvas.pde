@@ -44,8 +44,30 @@ class MapCanvas {
   void DrawGizmo(){
     canvas.imageMode(CENTER);
     switch(state){
-      case MOVING: canvas.image(movGizmo, selectedObj.posX*mult+30, selectedObj.posY*mult-30);
+      case MOVING:
+        if(axis == 0) canvas.image(movGizmo[movAxis()], selectedObj.posX*mult+30, selectedObj.posY*mult-30);
+        else canvas.image(movGizmo[axis], selectedObj.posX*mult+30, selectedObj.posY*mult-30);
     }
+  }
+
+  int movAxis(){
+    if(selectedObj == null) return 0;
+    if(cmouse.x > selectedObj.posX*mult &&
+       cmouse.x < selectedObj.posX*mult + 22 &&
+       cmouse.y > selectedObj.posY*mult - 22 &&
+       cmouse.y < selectedObj.posY*mult) return 3;
+    else{
+      float ang =  -degrees(atan2(
+        selectedObj.posX-cmouse.x/mult, 
+        selectedObj.posY-cmouse.y/mult));
+      if(ang > 80 && ang < 100 &&
+        cmouse.x > selectedObj.posX*mult + 22 &&
+        cmouse.x < selectedObj.posX*mult + 64) return 1;
+      if(ang > -10 && ang < 10 &&
+        cmouse.y < selectedObj.posY*mult - 22 &&
+        cmouse.y > selectedObj.posY*mult - 64) return 2;
+    }
+    return 0;
   }
 
   void DrawGrid() {

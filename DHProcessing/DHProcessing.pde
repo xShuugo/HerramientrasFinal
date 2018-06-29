@@ -16,12 +16,15 @@ int pad=15;
 int mult = 20;
 PVector sideBar;
 PVector propBar;
-PImage rotCursor, movCursor, movGizmo;
+PImage rotCursor, movCursor;
+PImage[] movGizmo;
 
 
 //INTERACTIONS
 Objeto selectedObj = null;
-float prevAng, objAng;
+float iniAng, objAng;
+PVector iniPos, objPos;
+int axis;
 
 
 //DATA
@@ -37,7 +40,11 @@ void setup() {
   map = new MapCanvas();
   rotCursor = loadImage("RotateCursor.png");
   movCursor = loadImage("MoveCursor.png");
-  movGizmo = loadImage("MoveGizmo.png");
+  movGizmo = new PImage[4];
+  movGizmo[0] = loadImage("MoveGizmo.png");
+  movGizmo[1] = loadImage("MoveGizmoX.png");
+  movGizmo[2] = loadImage("MoveGizmoY.png");
+  movGizmo[3] = loadImage("MoveGizmoXY.png");
 }
 
 void draw() {
@@ -47,6 +54,8 @@ void draw() {
 }
 
 void mousePressed() {
+  Objeto sel = data.CheckSelection();
+  axis = map.movAxis();
   if (mouseButton == LEFT) {
     if (map.mouseOverCanvas()) {
       switch(state) {
@@ -54,14 +63,20 @@ void mousePressed() {
         newObject();
         break;
       case MOVING :
-        selectedObj = data.CheckSelection();
+        if(axis == 0)
+          selectedObj = sel;
+        if (selectedObj!=null) {
+          iniPos = new PVector(map.cmouse.x,map.cmouse.y);
+          objPos = new PVector(selectedObj.posX*mult,selectedObj.posY*mult);
+        }
         createProperties();
         println(selectedObj + " SELECTED");
         break; 
       case ROTATE :
         selectedObj = data.CheckSelection();
         if (selectedObj!=null) {
-          prevAng = -degrees(atan2(
+          objAng = selectedObj.angle;
+          iniAng = -degrees(atan2(
             selectedObj.posX-map.cmouse.x/mult, 
             selectedObj.posY-map.cmouse.y/mult));
         }
@@ -81,24 +96,55 @@ void mouseDragged() {
   if (mouseButton == LEFT && selectedObj != null && map.mouseOverCanvas()) {
     switch(state) {
     case MOVING:
-      selectedObj.posX = map.cmouse.x/mult;
-      selectedObj.posY = map.cmouse.y/mult;
-      selectedObj.posX = float(int(selectedObj.posX*10))/10;
-      selectedObj.posY = float(int(selectedObj.posY*10))/10;
+      moveSelected();
       break;
     case ROTATE:
-      float currAng = -degrees(atan2(
-        selectedObj.posX-map.cmouse.x/mult, 
-        selectedObj.posY-map.cmouse.y/mult));
-
-      selectedObj.angle += currAng-prevAng;
-      selectedObj.angle = selectedObj.angle%360;
-      selectedObj.angle = float(int(selectedObj.angle*10))/10;
-      prevAng=currAng;
+      rotateSelected();
       break;
     }
     createProperties();
   }
+}
+
+void mouseReleased(){
+  axis=0;
+}
+
+void moveSelected(){
+  switch(axis){
+    case 1:
+      selectedObj.posX = (objPos.x + map.cmouse.x-iniPos.x)/mult;
+      snapPos();
+      break;
+    case 2:
+      selectedObj.posY = (objPos.y + map.cmouse.y-iniPos.y)/mult;
+      snapPos();
+      break;
+    case 3:
+      selectedObj.posX = (objPos.x + map.cmouse.x-iniPos.x)/mult;
+      selectedObj.posY = (objPos.y + map.cmouse.y-iniPos.y)/mult;
+      snapPos();
+      break;
+  }
+}
+
+void snapPos(){
+  selectedObj.posX = float(int(selectedObj.posX*10))/10;
+  selectedObj.posY = float(int(selectedObj.posY*10))/10;
+}
+
+
+
+void rotateSelected(){
+  float currAng = -degrees(atan2(
+  selectedObj.posX-map.cmouse.x/mult, 
+  selectedObj.posY-map.cmouse.y/mult));
+
+  selectedObj.angle = objAng+currAng-iniAng;
+  selectedObj.angle = selectedObj.angle%360;
+  if(keyPressed == true && keyCode == SHIFT)
+   selectedObj.angle = selectedObj.angle - selectedObj.angle%45;
+  selectedObj.angle = float(int(selectedObj.angle*10))/10;
 }
 
 void newObject() {
@@ -107,22 +153,22 @@ void newObject() {
   map.tempObj.posY = float(int(map.tempObj.posY*10))/10;
   switch(currentObject) {
   case "tempMesa":        
-    data.objeto.add(new objMesa ("Mesa"+qObj, map.tempObj.posX, map.tempObj.posY, 0));
+    data.objeto.add(new objMesa ("Mesa"+qObj, map.tempObj.posX, map.tempObj.posY, map.tempObj.angle));
     break;
   case "tempLampara" :    
-    data.objeto.add(new objLampara ("Lampara"+qObj, map.tempObj.posX, map.tempObj.posY, 0, 0, 0, true, "null"));
+    data.objeto.add(new objLampara ("Lampara"+qObj, map.tempObj.posX, map.tempObj.posY, map.tempObj.angle, 0, 0, true, "null"));
     break;
   case "tempPared" :      
-    data.objeto.add(new objPared ("Pared"+qObj, map.tempObj.posX, map.tempObj.posY, 0));
+    data.objeto.add(new objPared ("Pared"+qObj, map.tempObj.posX, map.tempObj.posY, map.tempObj.angle));
     break;
   case "tempFosforos" :   
-    data.objeto.add(new objFosforos ("Fosforos"+qObj, map.tempObj.posX, map.tempObj.posY, 0, 0)); 
+    data.objeto.add(new objFosforos ("Fosforos"+qObj, map.tempObj.posX, map.tempObj.posY, map.tempObj.angle, 0)); 
     break;
   case "tempEnchufe" :    
-    data.objeto.add(new objEnchufe ("Enchufe"+qObj, map.tempObj.posX, map.tempObj.posY, 0));  
+    data.objeto.add(new objEnchufe ("Enchufe"+qObj, map.tempObj.posX, map.tempObj.posY, map.tempObj.angle));  
     break;
   case "tempCajafuerte" : 
-    data.objeto.add(new objCajafuerte ("Cajafuerte"+qObj, map.tempObj.posX, map.tempObj.posY, 0, "null", "null", true)); 
+    data.objeto.add(new objCajafuerte ("Cajafuerte"+qObj, map.tempObj.posX, map.tempObj.posY, map.tempObj.angle, "null", "null", true)); 
     break;
   case "tempNota" :       
     data.objeto.add(new objNota ("Nota"+qObj, map.tempObj.posX, map.tempObj.posY, 0, "null"));  
@@ -155,8 +201,9 @@ void keyPressed() {
 }
 
 void mouseWheel(MouseEvent e) {
-
-  if (map.mouseOverCanvas()) {
+  if(state == ToolState.DRAWING && map.tempObj != null)
+    map.tempObj.angle += e.getCount()*45;
+  else  if (map.mouseOverCanvas()) {
     if(e.getCount()==-1) mult += 8;
     else mult -= 8;
     mult = constrain(mult, 16, 80);
