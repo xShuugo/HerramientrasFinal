@@ -197,18 +197,18 @@ void keyPressed() {
         break;     
     }    
   }
-  /*if (selectedObj != null){
-    if(keyCode == BACKSPACE || keyCode == DELETE)
-      for(Objeto o : data.objeto)
-        if(o == selectedObj)
-          data.objeto.remove(indexOf(o));      
+  if (selectedObj != null){
+    if(keyCode == BACKSPACE || keyCode == DELETE){
+      data.objeto.remove(data.objeto.indexOf(selectedObj));
+      selectedObj=null;
+    }
   }
+  
   switch(keyCode){
     case 'Q' : state = ToolState.DRAWING; break;
     case 'W' : state = ToolState.MOVING; break;
     case 'E' : state = ToolState.ROTATE; break;
   }
-  */
 }
 
 void mouseWheel(MouseEvent e) {
@@ -219,6 +219,5 @@ void mouseWheel(MouseEvent e) {
     else mult -= 8;
     mult = constrain(mult, 16, 80);
     map.constrainTranslate();
-    
   }
 } 
