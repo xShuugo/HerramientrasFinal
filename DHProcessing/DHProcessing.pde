@@ -25,6 +25,7 @@ Objeto selectedObj = null;
 float iniAng, objAng;
 PVector iniPos, objPos;
 int axis;
+String tempObjName = "MESA";
 
 
 //DATA
@@ -205,7 +206,8 @@ void keyPressed() {
   }
   
   switch(keyCode){
-    case 'Q' : state = ToolState.DRAWING; break;
+    case 'Q' : state = ToolState.DRAWING;
+               currentTempObj(tempObjName);break;
     case 'W' : state = ToolState.MOVING; break;
     case 'E' : state = ToolState.ROTATE; break;
   }
