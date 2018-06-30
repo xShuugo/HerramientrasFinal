@@ -3,8 +3,23 @@ void controlEvent(ControlEvent e)
   String n = e.getName();
   if (n.equals("objectList"))
   {
-    String currentItem = objectList.getItem((int)e.value()).get("name").toString();
-    switch(currentItem) {
+    
+    tempObjName = objectList.getItem((int)e.value()).get("name").toString();
+    currentTempObj(tempObjName);
+    state = ToolState.DRAWING;
+  }
+  if (n.equals("txtLevelName"))
+    levelName = sb.get(Textfield.class, "txtLevelName").getText();
+  if (n.equals("txtPlayerX") || n.equals("txtPlayerY") || n.equals("txtPlayerZ"))
+    playerPos = new PVector(
+      float(sb.get(Textfield.class, "txtPlayerX").getText()), 
+      float(sb.get(Textfield.class, "txtPlayerY").getText()), 
+      float(sb.get(Textfield.class, "txtPlayerZ").getText()));
+  //println(n);
+}
+
+void currentTempObj(String currentItem){
+  switch(currentItem) {
     case "Mesa":        
       map.tempObj = new objMesa       ("tempMesa", 0, 0, 0);
       break;
@@ -27,16 +42,6 @@ void controlEvent(ControlEvent e)
       map.tempObj = new objNota       ("tempNota", 0, 0, 0, "null");  
       break;
     }
-    state = ToolState.DRAWING;
-  }
-  if (n.equals("txtLevelName"))
-    levelName = sb.get(Textfield.class, "txtLevelName").getText();
-  if (n.equals("txtPlayerX") || n.equals("txtPlayerY") || n.equals("txtPlayerZ"))
-    playerPos = new PVector(
-      float(sb.get(Textfield.class, "txtPlayerX").getText()), 
-      float(sb.get(Textfield.class, "txtPlayerY").getText()), 
-      float(sb.get(Textfield.class, "txtPlayerZ").getText()));
-  //println(n);
 }
 
 void generateObject() {
