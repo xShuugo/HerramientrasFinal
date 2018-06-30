@@ -194,10 +194,15 @@ void keyPressed() {
     case RIGHT: 
       selectedObj.posX = selectedObj.posX + 0.1; 
       createProperties();
-      break;
-    }
-    
+      break;     
+    }    
   }
+  /*if (selectedObj != null){
+    if(keyCode == BACKSPACE || keyCode == DELETE)
+      for(Objeto o : data.objeto)
+        if(o == selectedObj)
+          data.objeto.remove(indexOf(o));      
+  }*/
 }
 
 void mouseWheel(MouseEvent e) {
