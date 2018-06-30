@@ -179,22 +179,22 @@ void newObject() {
 void keyPressed() {
   if (state == ToolState.MOVING && selectedObj != null) {
     switch(keyCode) {
-    case LEFT:  
-      selectedObj.posX = selectedObj.posX - 0.1;
-      createProperties(); 
-      break;
-    case UP:    
-      selectedObj.posY = selectedObj.posY - 0.1; 
-      createProperties();
-      break;  
-    case DOWN:  
-      selectedObj.posY = selectedObj.posY + 0.1; 
-      createProperties();
-      break;
-    case RIGHT: 
-      selectedObj.posX = selectedObj.posX + 0.1; 
-      createProperties();
-      break;     
+      case LEFT:  
+        selectedObj.posX = selectedObj.posX - 0.1;
+        createProperties(); 
+        break;
+      case UP:    
+        selectedObj.posY = selectedObj.posY - 0.1; 
+        createProperties();
+        break;  
+      case DOWN:  
+        selectedObj.posY = selectedObj.posY + 0.1; 
+        createProperties();
+        break;
+      case RIGHT: 
+        selectedObj.posX = selectedObj.posX + 0.1; 
+        createProperties();
+        break;     
     }    
   }
   /*if (selectedObj != null){
@@ -202,7 +202,13 @@ void keyPressed() {
       for(Objeto o : data.objeto)
         if(o == selectedObj)
           data.objeto.remove(indexOf(o));      
-  }*/
+  }
+  switch(keyCode){
+    case 'Q' : state = ToolState.DRAWING; break;
+    case 'W' : state = ToolState.MOVING; break;
+    case 'E' : state = ToolState.ROTATE; break;
+  }
+  */
 }
 
 void mouseWheel(MouseEvent e) {
