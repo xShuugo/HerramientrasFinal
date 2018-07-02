@@ -171,7 +171,7 @@ void newObject() {
     data.objeto.add(new objMesa ("Mesa"+qObj, map.tempObj.posX, map.tempObj.posY, map.tempObj.angle));
     break;
   case "tempLampara" :    
-    data.objeto.add(new objLampara ("Lampara"+qObj, map.tempObj.posX, map.tempObj.posY, map.tempObj.angle, 10, 0, true, "null"));
+    data.objeto.add(new objLampara ("Lampara"+qObj, map.tempObj.posX, map.tempObj.posY, map.tempObj.angle, 10, 3, true, "null"));
     break;
   case "tempPared" :      
     data.objeto.add(new objPared ("Pared"+qObj, map.tempObj.posX, map.tempObj.posY, map.tempObj.angle));

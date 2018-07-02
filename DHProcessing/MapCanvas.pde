@@ -170,12 +170,12 @@ class MapCanvas {
   }
 
   void DrawPreview(){
-    
-    canvas.fill(0);
+    canvas.blendMode(MULTIPLY);
+    canvas.fill(0,128);
     canvas.rect(0, 0, 30*mult, 30*mult);
     
-    canvas.blendMode(BLEND);
-    canvas.fill(255);
+    canvas.blendMode(ADD);
+    canvas.fill(255,128);
     canvas.noStroke();
     for(Objeto o:data.objeto){
       if(o instanceof objLampara){
@@ -183,7 +183,7 @@ class MapCanvas {
         canvas.ellipse(l.posX*mult,l.posY*mult,l.rangoLuz*mult*2,l.rangoLuz*mult*2);
       }
     }
-
+    
 
     canvas.blendMode(BLEND);
   }
