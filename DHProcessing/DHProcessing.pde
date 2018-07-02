@@ -207,7 +207,8 @@ void keyPressed() {
   
   switch(keyCode){
     case 'Q' : state = ToolState.DRAWING;
-               currentTempObj(tempObjName);break;
+               currentTempObj(tempObjName);
+               cursor(ARROW); break;
     case 'W' : state = ToolState.MOVING; break;
     case 'E' : state = ToolState.ROTATE; break;
   }
