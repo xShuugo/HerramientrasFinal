@@ -2,13 +2,13 @@ class MapCanvas {
   PGraphics canvas;
   PVector csize = new PVector(sideBar.x-pad*2, height-pad*5);
   PVector cpos = new PVector(pad, pad*4);  
-
   PVector ctrans = new PVector(csize.x/2, csize.y/2);
   PVector cmouse;
-  
-
   PVector d = new PVector();
+
   Objeto tempObj;
+  Objeto overObj;
+  int rotRad = 30;
 
   public MapCanvas() {
     csize = new PVector(sideBar.x-pad*2, height-pad*5);
@@ -33,8 +33,10 @@ class MapCanvas {
     canvas.fill(150);
     canvas.rect(0, 0, 30*mult, 30*mult);
     DrawGrid();
+    overObj = null;
     for (Objeto m : data.objeto) {
       m.draw();
+      if(m.checkOver) overObj = m;
     }
     if(selectedObj != null) DrawGizmo();
     if (mouseOverCanvas()) DrawTool();
@@ -47,6 +49,34 @@ class MapCanvas {
       case MOVING:
         if(axis == 0) canvas.image(movGizmo[movAxis()], selectedObj.posX*mult+30, selectedObj.posY*mult-30);
         else canvas.image(movGizmo[axis], selectedObj.posX*mult+30, selectedObj.posY*mult-30);
+        if(mousePressed){
+          canvas.fill(0);
+          canvas.text("x: "+selectedObj.posX +"\n"+"y: "+ selectedObj.posY,
+            selectedObj.posX*mult,selectedObj.posY*mult+15);
+        }
+        break;
+      case ROTATE:
+        if(axis == 0){
+          if(rotAxis() == 0) canvas.stroke(25,25,229);
+          else canvas.stroke(228,228,25);
+        } else canvas.stroke(228,228,25);
+        canvas.noFill();
+        
+        canvas.ellipse(selectedObj.posX*mult,selectedObj.posY*mult,rotRad*2,rotRad*2);
+        if(mousePressed){
+          canvas.fill(0);
+          canvas.text("z: "+selectedObj.angle,
+            selectedObj.posX*mult,selectedObj.posY*mult+rotRad+15);
+        }
+        break;
+      case eCHOOSE:
+        if(overObj == null) canvas.stroke(66, 192, 255);
+        else {
+          if(overObj instanceof objEnchufe) canvas.stroke(0, 255, 0);
+          else canvas.stroke(255, 0, 0);
+        }
+        canvas.line(selectedObj.posX*mult,selectedObj.posY*mult,cmouse.x,cmouse.y);
+        break;
     }
   }
 
@@ -70,6 +100,13 @@ class MapCanvas {
     return 0;
   }
 
+  int rotAxis(){
+    if(selectedObj == null) return 0;
+    float dis = PVector.dist(cmouse,new PVector(selectedObj.posX*mult,selectedObj.posY*mult));
+    if(dis > rotRad-10 && dis < rotRad+10) return 1;
+    return 0;
+  }
+
   void DrawGrid() {
     canvas.strokeWeight(2);
     canvas.stroke(255, 50);
@@ -89,6 +126,7 @@ class MapCanvas {
       if (tempObj!=null) {
         tempObj.posX = cmouse.x/mult;
         tempObj.posY = cmouse.y/mult;
+        snapPos(tempObj);
         tempObj.draw();
       }
       break;
@@ -97,6 +135,9 @@ class MapCanvas {
       break;
     case ROTATE:
       cursor(rotCursor);
+      break;
+    case eCHOOSE:
+      cursor(CROSS);
       break;
     }
   }

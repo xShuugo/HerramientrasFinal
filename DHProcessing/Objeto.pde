@@ -38,7 +38,7 @@ public class Objeto {
   void createProperties() {
     prop.addTextlabel("name").
       setText("Name:"). 
-      setPosition(propBar.x, propBar.y+7).
+      setPosition(propBar.x, propBar.y+lblPad).
       setColorValue(color(255, 255, 255));
 
     prop.addTextfield("txtName").
@@ -52,7 +52,7 @@ public class Objeto {
 
     prop.addTextlabel("pos").
       setText("Position:"). 
-      setPosition(propBar.x, propBar.y+7).
+      setPosition(propBar.x, propBar.y+lblPad).
       setColorValue(color(255, 255, 255));
 
     prop.addTextfield("txtposX").
@@ -72,7 +72,7 @@ public class Objeto {
 
     prop.addTextlabel("angle").
       setText("Angle:"). 
-      setPosition(propBar.x, propBar.y+7).
+      setPosition(propBar.x, propBar.y+lblPad).
       setColorValue(color(255, 255, 255)); 
 
     prop.addTextfield("txtAngle").

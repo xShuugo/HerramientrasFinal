@@ -4,17 +4,20 @@ class objLampara extends Objeto {
   float cableLongitud;
   float rangoLuz;
   boolean isOnTable;
-  String enchufeInicial;
+  objEnchufe enchufeInicial;
 
-  public objLampara(String name, float posX, float posY, float angle, float cableLongitud, float rangoLuz, boolean isOnTable, String enchufeInicial) {
+  String phEnchName;
+
+  public objLampara(String name, float posX, float posY, float angle, float cableLongitud, float rangoLuz, boolean isOnTable, String enchufeInicialName) {
     super(name, posX, posY, angle);    
     this.cableLongitud = cableLongitud;
     this.rangoLuz = rangoLuz;
     this.isOnTable = isOnTable;  
-    this.enchufeInicial = enchufeInicial;
+    this.phEnchName = enchufeInicialName;
+    this.enchufeInicial = searchEnch(phEnchName);
   } 
 
-  void draw() {    
+  void draw() {
     super.draw();
     map.canvas.pushMatrix();
     map.canvas.translate(posX*mult, posY*mult);
@@ -28,6 +31,23 @@ class objLampara extends Objeto {
     map.canvas.ellipse(0, 0, diameter*mult, diameter*mult);
 
     map.canvas.popMatrix();
+
+    if(enchufeInicial != null){
+      float dis = dist(posX,posY,enchufeInicial.posX,enchufeInicial.posY);
+      if(dis > cableLongitud) map.canvas.stroke(255,0,0);
+      else map.canvas.stroke(66, 192, 255);
+      map.canvas.line(posX*mult,posY*mult,enchufeInicial.posX*mult,enchufeInicial.posY*mult);
+    }
+  }
+
+  objEnchufe searchEnch(String enchName){
+    for(Objeto o:data.objeto){
+      if(o instanceof objEnchufe){
+        objEnchufe e = (objEnchufe) o;
+        if(e.name.equals(enchName)) return e;
+      }
+    }
+    return null;
   }
 
   boolean MouseOver() {
@@ -53,16 +73,24 @@ class objLampara extends Objeto {
   }
 
   public String imprimir() {
-    return "Lampara" + "|" + name + "|" + posX + "|" + posY + "|" + angle + "|" + cableLongitud + "|" + rangoLuz + "|" + isOnTable + "|" + enchufeInicial + "/";
+    String showEnch;
+    if(enchufeInicial != null) showEnch = enchufeInicial.name;
+    else showEnch = "null";
+
+    return "Lampara" + "|" + name + "|" + posX + "|" + posY + "|" + angle + "|" + cableLongitud + "|" + rangoLuz + "|" + isOnTable + "|" + showEnch + "/";
   }        
   void createProperties() {
     super.createProperties();
+
+    String showEnch;
+    if(enchufeInicial != null) showEnch = enchufeInicial.name;
+    else showEnch = "Nada escogido";
 
     propBar = new PVector(propBar.x, propBar.y+pad*3);
 
     prop.addTextlabel("lblCableLongitud").
       setText("Longitud de Cable:"). 
-      setPosition(propBar.x, propBar.y+7).
+      setPosition(propBar.x, propBar.y+lblPad).
       setColorValue(color(255, 255, 255)); 
 
     prop.addTextfield("txtCableLongitud").
@@ -76,7 +104,7 @@ class objLampara extends Objeto {
 
     prop.addTextlabel("lblRangoLuz").
       setText("Rango de Luz:"). 
-      setPosition(propBar.x, propBar.y+7).
+      setPosition(propBar.x, propBar.y+lblPad).
       setColorValue(color(255, 255, 255)); 
 
     prop.addTextfield("txtRangoLuz").
@@ -90,7 +118,7 @@ class objLampara extends Objeto {
 
     prop.addTextlabel("lblIsOnTable").
       setText("Esta sobre una mesa ?:"). 
-      setPosition(propBar.x, propBar.y+7).
+      setPosition(propBar.x, propBar.y+lblPad).
       setColorValue(color(255, 255, 255)); 
 
     prop.addCheckBox("cbIsOnTable").
@@ -109,15 +137,18 @@ class objLampara extends Objeto {
 
     prop.addTextlabel("lblEnchufeInicial").
       setText("Enchufe Inicial:"). 
-      setPosition(propBar.x, propBar.y+7).
+      setPosition(propBar.x, propBar.y+lblPad).
       setColorValue(color(255, 255, 255)); 
 
-    prop.addTextfield("txtEnchufeInicial").
-      setLabel("").
-      setPosition(propBar.x+130, propBar.y).
-      setSize(60, pad*2).
-      setText(enchufeInicial).
-      setAutoClear(false);
+    prop.addTextlabel("lblEnchufeInicialName").
+      setPosition(propBar.x+130, propBar.y+lblPad).
+      setText(showEnch).
+      setColorValue(color(66, 192, 255)); 
+
+    prop.addButton("btnChooseEnch").
+      setLabel("Choose").
+      setPosition(propBar.x+130+10+60, propBar.y).
+      setSize(60, pad*2);
   }
 
   void checkTextFields() {
@@ -128,7 +159,7 @@ class objLampara extends Objeto {
       rangoLuz = int(float(prop.get(Textfield.class, "txtRangoLuz").getText()));
 
     if (prop.get(Textfield.class, "txtEnchufeInicial")!=null)
-      enchufeInicial = prop.get(Textfield.class, "txtEnchufeInicial").getText();
+      enchufeInicial = searchEnch(prop.get(Textfield.class, "txtEnchufeInicial").getText());
 
     if (prop.get(CheckBox.class, "cbIsOnTable")!=null)
       isOnTable = prop.get(CheckBox.class, "cbIsOnTable").getState(0);    
@@ -136,6 +167,10 @@ class objLampara extends Objeto {
     println("?");
     println(prop.get(CheckBox.class, "cbIsOnTable"));
   }
+}
+
+void btnChooseEnch(){
+  state = ToolState.eCHOOSE;
 }
 
 void txtCableLongitud(String value) {

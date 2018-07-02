@@ -33,16 +33,6 @@ class Data {
     selectInput("Seleccione un archivo", "onInputSelected");
   }
 
-  //INTERACTIONS
-
-  Objeto CheckSelection() {
-    for (int i = 0; i<objeto.size(); i++) {
-      if (objeto.get(i).MouseOver()) {
-        return objeto.get(i);
-      }
-    }
-    return null;
-  }
 }
 
 void onOutputSelected(File path) {
@@ -90,6 +80,13 @@ void onInputSelected(File path) {
       case "Enchufe": 
         data.objeto.add(new objEnchufe(objs[1], float(objs[2]), float(objs[3]), float(objs[4]))); 
         break;
+      }
+    }
+    
+    for(Objeto o:data.objeto){
+      if(o instanceof objLampara){
+        objLampara l = (objLampara) o;
+        l.enchufeInicial = l.searchEnch(l.phEnchName);
       }
     }
   }

@@ -2,8 +2,9 @@ import controlP5.*;
 
 public enum ToolState {
   DRAWING, 
-    MOVING, 
-    ROTATE;
+  MOVING, 
+  ROTATE,
+  eCHOOSE;
 }
 
 //UI
@@ -13,6 +14,7 @@ ControlP5 sb;
 DropdownList objectList;
 MapCanvas map;
 int pad=15;
+int lblPad=10;
 int mult = 20;
 PVector sideBar;
 PVector propBar;
@@ -25,7 +27,8 @@ Objeto selectedObj = null;
 float iniAng, objAng;
 PVector iniPos, objPos;
 int axis;
-String tempObjName = "MESA";
+boolean step = false;
+String tempObjName = "Mesa";
 
 
 //DATA
@@ -55,8 +58,7 @@ void draw() {
 }
 
 void mousePressed() {
-  Objeto sel = data.CheckSelection();
-  axis = map.movAxis();
+  Objeto sel = map.overObj;
   if (mouseButton == LEFT) {
     if (map.mouseOverCanvas()) {
       switch(state) {
@@ -64,6 +66,7 @@ void mousePressed() {
         newObject();
         break;
       case MOVING :
+        axis = map.movAxis();
         if(axis == 0)
           selectedObj = sel;
         if (selectedObj!=null) {
@@ -74,7 +77,9 @@ void mousePressed() {
         println(selectedObj + " SELECTED");
         break; 
       case ROTATE :
-        selectedObj = data.CheckSelection();
+        axis = map.rotAxis();
+        if(axis == 0)
+          selectedObj = sel;
         if (selectedObj!=null) {
           objAng = selectedObj.angle;
           iniAng = -degrees(atan2(
@@ -83,6 +88,13 @@ void mousePressed() {
         }
         createProperties();
         println(selectedObj + " SELECTED");
+        break;
+      case eCHOOSE:
+        if(sel instanceof objEnchufe){
+          objLampara l = (objLampara) selectedObj;
+          l.enchufeInicial = (objEnchufe) sel;
+        }
+        state = ToolState.MOVING;
         break;
       }
     }
@@ -103,52 +115,53 @@ void mouseDragged() {
       rotateSelected();
       break;
     }
-    createProperties();
   }
 }
 
 void mouseReleased(){
   axis=0;
+  if(map.mouseOverCanvas())createProperties();
 }
 
 void moveSelected(){
   switch(axis){
     case 1:
       selectedObj.posX = (objPos.x + map.cmouse.x-iniPos.x)/mult;
-      snapPos();
+      snapPos(selectedObj);
       break;
     case 2:
       selectedObj.posY = (objPos.y + map.cmouse.y-iniPos.y)/mult;
-      snapPos();
+      snapPos(selectedObj);
       break;
     case 3:
       selectedObj.posX = (objPos.x + map.cmouse.x-iniPos.x)/mult;
       selectedObj.posY = (objPos.y + map.cmouse.y-iniPos.y)/mult;
-      snapPos();
+      snapPos(selectedObj);
       break;
   }
 }
 
-void snapPos(){
-  selectedObj.posX = float(int(selectedObj.posX*100))/100;
-  selectedObj.posY = float(int(selectedObj.posY*100))/100;
+void snapPos(Objeto obj){
+  obj.posX = float(int(obj.posX*100))/100;
+  obj.posY = float(int(obj.posY*100))/100;
 }
 
-
-
 void rotateSelected(){
-  float currAng = -degrees(atan2(
-  selectedObj.posX-map.cmouse.x/mult, 
-  selectedObj.posY-map.cmouse.y/mult));
+  if(axis != 0){
+    float currAng = -degrees(atan2(
+    selectedObj.posX-map.cmouse.x/mult, 
+    selectedObj.posY-map.cmouse.y/mult));
 
-  selectedObj.angle = objAng+currAng-iniAng;
-  selectedObj.angle = selectedObj.angle%360;
-  if(keyPressed == true && keyCode == SHIFT)
-   selectedObj.angle = selectedObj.angle - selectedObj.angle%45;
-  selectedObj.angle = float(int(selectedObj.angle*10))/10;
+    selectedObj.angle = objAng+currAng-iniAng;
+    selectedObj.angle = selectedObj.angle%360;
+    if(keyPressed == true && keyCode == SHIFT)
+    selectedObj.angle = selectedObj.angle - selectedObj.angle%45;
+    selectedObj.angle = float(int(selectedObj.angle*10))/10;
+  }
 }
 
 void newObject() {
+  selectedObj = null;
   String currentObject = map.tempObj.name;
   map.tempObj.posX = float(int(map.tempObj.posX*100))/100;
   map.tempObj.posY = float(int(map.tempObj.posY*100))/100;
@@ -157,7 +170,7 @@ void newObject() {
     data.objeto.add(new objMesa ("Mesa"+qObj, map.tempObj.posX, map.tempObj.posY, map.tempObj.angle));
     break;
   case "tempLampara" :    
-    data.objeto.add(new objLampara ("Lampara"+qObj, map.tempObj.posX, map.tempObj.posY, map.tempObj.angle, 0, 0, true, "null"));
+    data.objeto.add(new objLampara ("Lampara"+qObj, map.tempObj.posX, map.tempObj.posY, map.tempObj.angle, 10, 0, true, "null"));
     break;
   case "tempPared" :      
     data.objeto.add(new objPared ("Pared"+qObj, map.tempObj.posX, map.tempObj.posY, map.tempObj.angle));
@@ -179,38 +192,61 @@ void newObject() {
 
 void keyPressed() {
   if (state == ToolState.MOVING && selectedObj != null) {
+    float nudge;
+    if(step) nudge = 0.1;
+    else nudge = 0.01;
     switch(keyCode) {
       case LEFT:  
-        selectedObj.posX = selectedObj.posX - 0.1;
+        selectedObj.posX = selectedObj.posX - nudge;
         createProperties(); 
         break;
       case UP:    
-        selectedObj.posY = selectedObj.posY - 0.1; 
+        selectedObj.posY = selectedObj.posY - nudge; 
         createProperties();
         break;  
       case DOWN:  
-        selectedObj.posY = selectedObj.posY + 0.1; 
+        selectedObj.posY = selectedObj.posY + nudge; 
         createProperties();
         break;
       case RIGHT: 
-        selectedObj.posX = selectedObj.posX + 0.1; 
+        selectedObj.posX = selectedObj.posX + nudge; 
         createProperties();
         break;     
     }    
   }
-  if (selectedObj != null){
-    if(keyCode == BACKSPACE || keyCode == DELETE){
-      data.objeto.remove(data.objeto.indexOf(selectedObj));
-      selectedObj=null;
+  if( map.mouseOverCanvas()){
+    if (selectedObj != null){
+      if(key == BACKSPACE || key == DELETE){
+        removeDependence();
+        data.objeto.remove(data.objeto.indexOf(selectedObj));
+        selectedObj=null;
+      }
+    }
+    
+    switch(keyCode){
+      case 'Q' : state = ToolState.DRAWING;
+                currentTempObj(tempObjName);
+                cursor(ARROW); break;
+      case 'W' : state = ToolState.MOVING; break;
+      case 'E' : state = ToolState.ROTATE; break;
     }
   }
-  
-  switch(keyCode){
-    case 'Q' : state = ToolState.DRAWING;
-               currentTempObj(tempObjName);
-               cursor(ARROW); break;
-    case 'W' : state = ToolState.MOVING; break;
-    case 'E' : state = ToolState.ROTATE; break;
+
+  if(keyCode == SHIFT) step = true;
+}
+
+void keyReleased(){
+  if(keyCode == SHIFT) step = false;
+}
+
+void removeDependence(){
+  if(selectedObj instanceof objEnchufe){
+    for(Objeto o:data.objeto){
+      if(o instanceof objLampara){
+        objLampara l = (objLampara) o;
+        if(l.enchufeInicial == selectedObj) l.enchufeInicial = null;
+      }
+    }
   }
 }
 

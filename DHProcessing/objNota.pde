@@ -42,7 +42,7 @@ class objNota extends Objeto {
 
     prop.addTextlabel("lblContenido").
       setText("Longitud de Cable:"). 
-      setPosition(propBar.x, propBar.y+7).
+      setPosition(propBar.x, propBar.y+lblPad).
       setColorValue(color(255, 255, 255)); 
 
     prop.addTextfield("txtContenido").

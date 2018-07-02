@@ -68,7 +68,7 @@ void createSideBar() {
 
   sb.addTextlabel("lblLevelName").
     setText("Nombre del Nivel:"). 
-    setPosition(sideBar.x, sideBar.y+7).
+    setPosition(sideBar.x, sideBar.y+lblPad).
     setColorValue(color(255, 255, 255));
 
   sb.addTextfield("txtLevelName").
@@ -82,7 +82,7 @@ void createSideBar() {
 
   sb.addTextlabel("lblPlayerPos").
     setText("Pos. del Jugador:"). 
-    setPosition(sideBar.x, sideBar.y+7).
+    setPosition(sideBar.x, sideBar.y+lblPad).
     setColorValue(color(255, 255, 255));
 
   sb.addTextfield("txtPlayerX").
@@ -108,7 +108,7 @@ void createSideBar() {
 
   sb.addTextlabel("TitleProp").
     setText("PROPIEDADES"). 
-    setPosition((int)((sideBar.x+width)/2-30), sideBar.y+7).
+    setPosition((int)((sideBar.x+width)/2-30), sideBar.y).
     setColorValue(color(255, 255, 255));
 
   createProperties();
@@ -124,7 +124,7 @@ void createProperties() {
   if (selectedObj == null) {
     prop.addTextlabel("temp").
       setText("Seleccione un Objeto en el mapa"). 
-      setPosition(propBar.x, propBar.y+7).
+      setPosition(propBar.x, propBar.y+lblPad).
       setColorValue(color(255, 255, 255));
   } else {
     selectedObj.createProperties();

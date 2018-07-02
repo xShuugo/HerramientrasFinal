@@ -42,7 +42,7 @@ class objFosforos extends Objeto {
 
     prop.addTextlabel("lblCantidad").
       setText("Cantidad de Fosforos:"). 
-      setPosition(propBar.x, propBar.y+7).
+      setPosition(propBar.x, propBar.y+lblPad).
       setColorValue(color(255, 255, 255)); 
 
     prop.addTextfield("txtCantidad").

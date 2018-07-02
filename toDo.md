@@ -1,9 +1,5 @@
 **toDo things:**
-- Gizmos (move: Done , rotate: TBA)
-- Lampara / Enchufe relation - *Planear como se va hacer*
+- Lampara/Enchufe & CajaFuerte/Contenido relation - (Lampara done, CajaF TBA)
 - Puerta final
-- Guardar Como- *Martin*
 - Paredes Exteriores (Unity & Processing)
 
-
-Delete - Testeando

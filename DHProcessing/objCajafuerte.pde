@@ -63,7 +63,7 @@ class objCajafuerte extends Objeto {
 
     prop.addTextlabel("lblPassword").
       setText("Clave:"). 
-      setPosition(propBar.x, propBar.y+7).
+      setPosition(propBar.x, propBar.y+lblPad).
       setColorValue(color(255, 255, 255)); 
 
     prop.addTextfield("txtPassword").
@@ -77,7 +77,7 @@ class objCajafuerte extends Objeto {
 
     prop.addTextlabel("lblContent").
       setText("Contenido:"). 
-      setPosition(propBar.x, propBar.y+7).
+      setPosition(propBar.x, propBar.y+lblPad).
       setColorValue(color(255, 255, 255)); 
 
     prop.addTextfield("txtContenidoCaja").
@@ -91,7 +91,7 @@ class objCajafuerte extends Objeto {
 
     prop.addTextlabel("lblIsOnTable").
       setText("Esta sobre una mesa ?:"). 
-      setPosition(propBar.x, propBar.y+7).
+      setPosition(propBar.x, propBar.y+lblPad).
       setColorValue(color(255, 255, 255)); 
 
     prop.addCheckBox("cbIsOnTable").
