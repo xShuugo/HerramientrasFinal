@@ -73,7 +73,7 @@ void generateObject() {
     data.objeto.add(new objNota("Nota"+qObj, X, Y, angle, "")); 
     break;
   }
-  qObj++;
+  qObj = qObj + 1;
 }
 
 void exportFile() {
@@ -102,6 +102,7 @@ void exportComo(){
 void openFile() {
   data.objeto = new ArrayList<Objeto>();
   data.selectFile();
+  createBorder();
 }
 
 void newMap() {

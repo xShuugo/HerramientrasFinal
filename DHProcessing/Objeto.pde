@@ -110,14 +110,14 @@ void txtAngle(String value) {
 void createBorder(){
   float j = 0;
   for(int i = 1; i <= 7; i++){    
-    data.objeto.add(new objPared ("Pared"+qObj, -13+j, -14.75, 0));
-    data.objeto.add(new objPared ("Pared"+qObj, -14.75, -12.50+j, 90));
-    data.objeto.add(new objPared ("Pared"+qObj, -13+j, 14.75, 0));
-    data.objeto.add(new objPared ("Pared"+qObj, 14.75, -12.50+j, 90));
+    data.objeto.add(new objPared ("Pared"+i, -13+j, -14.75, 0));
+    data.objeto.add(new objPared ("Pared"+(i+7), -14.75, -12.50+j, 90));
+    data.objeto.add(new objPared ("Pared"+(i+(7*2)), -13+j, 14.75, 0));
+    data.objeto.add(new objPared ("Pared"+(i+(7*3)), 14.75, -12.50+j, 90));
     j += 3.99;
   }
-    data.objeto.add(new objPared ("Pared"+qObj, 13, -14.75, 0));
-    data.objeto.add(new objPared ("Pared"+qObj, 13, 14.75, 0));
-    data.objeto.add(new objPared ("Pared"+qObj, -14.75, 13, 90));
-    data.objeto.add(new objPared ("Pared"+qObj, 14.75, 13, 90));
+    data.objeto.add(new objPared ("Pared"+(1+(7*4)), 13, -14.75, 0));
+    data.objeto.add(new objPared ("Pared"+(2+(7*4)), 13, 14.75, 0));
+    data.objeto.add(new objPared ("Pared"+(3+(7*4)), -14.75, 13, 90));
+    data.objeto.add(new objPared ("Pared"+(4+(7*4)), 14.75, 13, 90));
 }

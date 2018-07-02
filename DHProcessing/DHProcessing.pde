@@ -34,7 +34,7 @@ String tempObjName = "Mesa";
 //DATA
 ToolState state = ToolState.MOVING;
 Data data = new Data();
-int qObj = 0;
+int qObj = 33;
 String levelName = "Sin Titulo";
 PVector playerPos = new PVector(0, 0, 0);
 
