@@ -106,3 +106,18 @@ void txtAngle(String value) {
   selectedObj.angle = float(int(selectedObj.angle*100))/100;
   //selectedObj.angle = float(value);
 }
+
+void createBorder(){
+  float j = 0;
+  for(int i = 1; i <= 7; i++){    
+    data.objeto.add(new objPared ("Pared"+qObj, -13+j, -14.75, 0));
+    data.objeto.add(new objPared ("Pared"+qObj, -14.75, -12.50+j, 90));
+    data.objeto.add(new objPared ("Pared"+qObj, -13+j, 14.75, 0));
+    data.objeto.add(new objPared ("Pared"+qObj, 14.75, -12.50+j, 90));
+    j += 3.99;
+  }
+    data.objeto.add(new objPared ("Pared"+qObj, 13, -14.75, 0));
+    data.objeto.add(new objPared ("Pared"+qObj, 13, 14.75, 0));
+    data.objeto.add(new objPared ("Pared"+qObj, -14.75, 13, 90));
+    data.objeto.add(new objPared ("Pared"+qObj, 14.75, 13, 90));
+}
