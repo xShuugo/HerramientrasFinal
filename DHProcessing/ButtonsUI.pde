@@ -26,6 +26,11 @@ void createButtons() {
     setSize(75, pad*2).
     setLabel("Guardar Como");
 
+  ui.addButton("lightPreview").
+    setPosition(width-pad*2-160, pad).
+    setSize(80, pad*2).
+    setLabel("Visualizar");
+
   ui.addButton("generateObject").
     setPosition(width-pad-80, pad).
     setSize(80, pad*2).

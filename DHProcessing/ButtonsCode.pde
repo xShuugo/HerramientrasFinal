@@ -118,3 +118,7 @@ void rotateObject() {
   state = ToolState.ROTATE;
   map.tempObj = null;
 }
+
+void lightPreview(){
+  map.preview = !map.preview;
+}
