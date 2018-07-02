@@ -9,6 +9,7 @@ class MapCanvas {
   Objeto tempObj;
   Objeto overObj;
   int rotRad = 30;
+  boolean preview = false;
 
   public MapCanvas() {
     csize = new PVector(sideBar.x-pad*2, height-pad*5);
@@ -38,6 +39,7 @@ class MapCanvas {
       m.draw();
       if(m.checkOver) overObj = m;
     }
+    if (preview) DrawPreview();
     if(selectedObj != null) DrawGizmo();
     if (mouseOverCanvas()) DrawTool();
     else cursor(ARROW);
@@ -165,5 +167,24 @@ class MapCanvas {
   boolean mouseOverCanvas() {
     return mouseX >= cpos.x && mouseX <= cpos.x+csize.x &&
       mouseY >= cpos.y && mouseY <= cpos.y+csize.y;
+  }
+
+  void DrawPreview(){
+    canvas.blendMode(MULTIPLY);
+    canvas.fill(0,128);
+    canvas.rect(0, 0, 30*mult, 30*mult);
+    
+    canvas.blendMode(ADD);
+    canvas.fill(255,128);
+    canvas.noStroke();
+    for(Objeto o:data.objeto){
+      if(o instanceof objLampara){
+        objLampara l = (objLampara) o;
+        canvas.ellipse(l.posX*mult,l.posY*mult,l.rangoLuz*mult*2,l.rangoLuz*mult*2);
+      }
+    }
+    
+
+    canvas.blendMode(BLEND);
   }
 }
