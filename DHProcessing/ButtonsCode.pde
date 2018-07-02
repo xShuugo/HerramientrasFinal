@@ -73,7 +73,7 @@ void generateObject() {
     data.objeto.add(new objNota("Nota"+qObj, X, Y, angle, "")); 
     break;
   }
-  qObj = qObj + 1;
+  qObj++;
 }
 
 void exportFile() {

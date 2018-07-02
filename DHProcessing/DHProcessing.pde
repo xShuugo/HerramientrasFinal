@@ -188,7 +188,8 @@ void newObject() {
   case "tempNota" :       
     data.objeto.add(new objNota ("Nota"+qObj, map.tempObj.posX, map.tempObj.posY, 0, "null"));  
     break;
-  }  
+  }
+  qObj++;
 }
 
 void keyPressed() {
