@@ -107,6 +107,10 @@ void openFile() {
 void newMap() {
   data.filePath = "";
   data.objeto = new ArrayList<Objeto>();
+  createBorder();
+  state = ToolState.DRAWING;
+  currentTempObj(tempObjName);
+  cursor(ARROW);
 }
 
 void moveObject() {

@@ -41,6 +41,7 @@ PVector playerPos = new PVector(0, 0, 0);
 void setup() {  
   size(1000, 600);
   createButtons();
+  createBorder();
   map = new MapCanvas();
   rotCursor = loadImage("RotateCursor.png");
   movCursor = loadImage("MoveCursor.png");
@@ -187,7 +188,7 @@ void newObject() {
   case "tempNota" :       
     data.objeto.add(new objNota ("Nota"+qObj, map.tempObj.posX, map.tempObj.posY, 0, "null"));  
     break;
-  }
+  }  
 }
 
 void keyPressed() {
@@ -259,4 +260,4 @@ void mouseWheel(MouseEvent e) {
     mult = constrain(mult, 16, 80);
     map.constrainTranslate();
   }
-} 
+}
