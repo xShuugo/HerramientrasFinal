@@ -87,12 +87,25 @@ void exportFile() {
   data.selectSave();
 }
 
+void exportComo(){
+  data.filePath = "";
+  String aux = "";
+
+  println("?");
+  for (Objeto o : data.objeto) {    
+    aux += o.imprimir();
+  }  
+  data.superString = levelName +"/"+ playerPos.x +"|"+ playerPos.y +"|"+ playerPos.z +"/"+ aux;
+  data.selectSave();
+}
+
 void openFile() {
   data.objeto = new ArrayList<Objeto>();
   data.selectFile();
 }
 
 void newMap() {
+  data.filePath = "";
   data.objeto = new ArrayList<Objeto>();
 }
 

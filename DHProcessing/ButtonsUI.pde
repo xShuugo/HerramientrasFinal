@@ -20,6 +20,11 @@ void createButtons() {
     setPosition(pad+ui.get("newMap").getWidth()+ui.get("openFile").getWidth()+5*2, pad).
     setSize(75, pad*2).
     setLabel("Guardar");
+    
+  ui.addButton("exportComo").
+    setPosition(pad+ui.get("newMap").getWidth()+ui.get("exportFile").getWidth()+5*15, pad).
+    setSize(75, pad*2).
+    setLabel("Guardar Como");
 
   ui.addButton("generateObject").
     setPosition(width-pad-80, pad).
