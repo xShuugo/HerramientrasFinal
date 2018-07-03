@@ -115,7 +115,7 @@ void onInputSelected(File path) {
     println("data 7");
     data.listReady = true;
     println("data 8");
-  }
+  } else data.listReady = true;
 }
 
 
