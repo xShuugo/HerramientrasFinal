@@ -59,6 +59,7 @@ void createButtons() {
     addItem("Enchufe", 5).
     addItem("Cajafuerte", 6).
     addItem("Nota", 7).
+    addItem("PuertaF", 8).
     setOpen(false); 
 
   createSideBar();

@@ -15,7 +15,7 @@ DropdownList objectList;
 MapCanvas map;
 int pad=15;
 int lblPad=10;
-int mult = 20;
+int mult = 16;
 PVector sideBar;
 PVector propBar;
 PImage rotCursor, movCursor;
@@ -186,7 +186,10 @@ void newObject() {
     data.objeto.add(new objCajafuerte ("Cajafuerte"+qObj, map.tempObj.posX, map.tempObj.posY, map.tempObj.angle, "null", "null", true)); 
     break;
   case "tempNota" :       
-    data.objeto.add(new objNota ("Nota"+qObj, map.tempObj.posX, map.tempObj.posY, 0, "null"));  
+    data.objeto.add(new objNota ("Nota"+qObj, map.tempObj.posX, map.tempObj.posY,  map.tempObj.angle, "null"));  
+    break;
+  case "tempPuertaF" :       
+    data.objeto.add(new objPuertaF ("PuertaF"+qObj, map.tempObj.posX, map.tempObj.posY, map.tempObj.angle));  
     break;
   }
   qObj++;

@@ -40,6 +40,9 @@ void currentTempObj(String currentItem){
     case "Nota" :       
       map.tempObj = new objNota       ("tempNota", 0, 0, 0, "null");  
       break;
+    case "PuertaF" :       
+      map.tempObj = new objPuertaF       ("tempPuertaF", 0, 0, 0);  
+      break;
     }
 }
 
@@ -78,7 +81,6 @@ void generateObject() {
 void exportFile() {
   String aux = "";
 
-  println("?");
   for (Objeto o : data.objeto) {    
     aux += o.imprimir();
   }  
@@ -109,8 +111,8 @@ void newMap() {
   data.objeto = new ArrayList<Objeto>();
   createBorder();
   state = ToolState.MOVING;
-
   selectedObj = null;
+  mult = 16;
 }
 
 void moveObject() {
