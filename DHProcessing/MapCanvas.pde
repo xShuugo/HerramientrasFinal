@@ -10,8 +10,6 @@ class MapCanvas {
   Objeto overObj;
   int rotRad = 30;
   boolean preview = false;
-  boolean doNew = false;
-  boolean doOpen = false;
 
   public MapCanvas() {
     csize = new PVector(sideBar.x-pad*2, height-pad*5);
@@ -27,6 +25,7 @@ class MapCanvas {
     canvas.endDraw();
     imageMode(CORNER);
     image(canvas, cpos.x, cpos.y);
+
   }
 
   void draw() {
@@ -47,9 +46,6 @@ class MapCanvas {
     if(selectedObj != null) DrawGizmo();
     if (mouseOverCanvas()) DrawTool();
     else cursor(ARROW);
-
-    if(doNew) newList();
-    if(doOpen) openList();
   }
 
   void DrawGizmo(){
@@ -177,47 +173,29 @@ class MapCanvas {
   }
 
   void DrawPreview(){
-    
-    canvas.loadPixels();
+    colorMode(HSB);
     for (int x = 0; x < canvas.width; x++) {
       for (int y = 0; y < canvas.height; y++) {
         int index = x + y * canvas.width;
+        
         float sum = 0;
         for (Objeto o:data.objeto) {
           if(o instanceof objLampara){
             objLampara l = (objLampara) o;
             float d = dist(x, y, l.posX*mult+ctrans.x, l.posY*mult+ctrans.y);
-            sum += (l.rangoLuz*mult)/(d*6);
+            sum += (l.rangoLuz*mult)/(d*10);
           }
         }
-        canvas.pixels[index] = color(
-          (255-red(canvas.pixels[index]))*sum,
-          (255-green(canvas.pixels[index]))*sum,
-          (255-blue(canvas.pixels[index]))*sum);
+
+        color col = color(
+          hue(canvas.get(x,y)),
+          saturation(canvas.get(x,y)),
+          brightness(canvas.get(x,y))*sum);
+
+        canvas.set(x,y,col);
       }
     }
-
-    canvas.updatePixels();
+    colorMode(RGB);
   }
 
-  void newList(){
-    doNew = false;
-    data.filePath = "";
-    data.objeto = new ArrayList<Objeto>();
-    createBorder();
-    createSideBar();
-    state = ToolState.MOVING;
-    selectedObj = null;
-    mult = 16;
-    
-  }
-
-  void openList(){
-    doOpen = false;
-    data.objeto = new ArrayList<Objeto>();
-    data.selectFile();
-    createBorder();
-    createSideBar();
-  }
-  
 }

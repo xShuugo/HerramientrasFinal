@@ -56,7 +56,11 @@ void setup() {
 void draw() {
   surface.setTitle("Room Maker - "+(int)frameRate+" fps");
   background(50);
-  map.display(); 
+  if(data.listReady) map.display(); 
+
+  
+  if(data.doNew) data.newList();
+  if(data.doOpen) data.openList();
 }
 
 void mousePressed() {

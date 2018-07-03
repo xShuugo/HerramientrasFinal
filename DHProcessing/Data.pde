@@ -4,6 +4,10 @@ class Data {
 
   String superString;
   String[] openString;
+  
+  boolean doNew = false;
+  boolean doOpen = false;
+  boolean listReady = true;
 
   // archivo
   PrintWriter file = null;
@@ -21,8 +25,7 @@ class Data {
     }
   }
 
-  void saveData()
-  {      
+  void saveData() {      
     file = createWriter(filePath);
     file.print(superString); 
     file.flush();
@@ -31,6 +34,24 @@ class Data {
 
   void selectFile() {
     selectInput("Seleccione un archivo", "onInputSelected");
+  }
+
+  void newList(){
+    doNew = false;
+    data.filePath = "";
+    data.objeto = new ArrayList<Objeto>();
+    createBorder();
+    createSideBar();
+    state = ToolState.MOVING;
+    selectedObj = null;
+    mult = 16;
+    println("new");
+    listReady = true;
+  }
+
+  void openList(){
+    doOpen = false;
+    selectFile();
   }
 
 }
@@ -55,6 +76,9 @@ void onInputSelected(File path) {
       float(pos[2]));
 
     createSideBar();
+    
+    data.objeto = new ArrayList<Objeto>();
+    
 
     for (int i = 2; i < data.openString.length; i++) {
       String[] objs = split(data.openString[i], "|");    
@@ -87,8 +111,12 @@ void onInputSelected(File path) {
     }
     
     recheckDependendies();
+
+    data.listReady = true;
   }
 }
+
+
 
 void recheckDependendies(){
   for(Objeto o:data.objeto){

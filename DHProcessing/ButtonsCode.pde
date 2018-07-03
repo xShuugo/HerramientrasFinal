@@ -101,11 +101,13 @@ void exportComo(){
 }
 
 void openFile() {
-  map.doOpen = true;
+  data.listReady = false;
+  data.doOpen = true;
 }
 
 void newMap() {
-  map.doNew = true;
+  data.listReady = false;
+  data.doNew = true;
 }
 
 void moveObject() {
