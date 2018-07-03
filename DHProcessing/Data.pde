@@ -83,11 +83,16 @@ void onInputSelected(File path) {
       }
     }
     
-    for(Objeto o:data.objeto){
+    recheckDependendies();
+  }
+}
+
+void recheckDependendies(){
+  for(Objeto o:data.objeto){
       if(o instanceof objLampara){
         objLampara l = (objLampara) o;
-        l.enchufeInicial = l.searchEnch(l.phEnchName);
+        if(l.enchufeInicial == null)
+          l.enchufeInicial = l.searchEnch(l.phEnchName);
       }
     }
-  }
 }

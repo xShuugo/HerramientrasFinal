@@ -15,7 +15,6 @@ void controlEvent(ControlEvent e)
       float(sb.get(Textfield.class, "txtPlayerX").getText()), 
       float(sb.get(Textfield.class, "txtPlayerY").getText()), 
       float(sb.get(Textfield.class, "txtPlayerZ").getText()));
-  //println(n);
 }
 
 void currentTempObj(String currentItem){
@@ -109,9 +108,9 @@ void newMap() {
   data.filePath = "";
   data.objeto = new ArrayList<Objeto>();
   createBorder();
-  state = ToolState.DRAWING;
-  currentTempObj(tempObjName);
-  cursor(ARROW);
+  state = ToolState.MOVING;
+
+  selectedObj = null;
 }
 
 void moveObject() {
