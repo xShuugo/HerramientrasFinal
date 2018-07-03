@@ -16,7 +16,7 @@ public class MapSpawner : MonoBehaviour
     public GameObject Nota;
     public GameObject Enchufe;
     public GameObject Fosforos;
-    public GameObject Puerta;
+    public GameObject PuertaF;
     void Start()
     {
         ReadFile();
@@ -46,6 +46,7 @@ public class MapSpawner : MonoBehaviour
                 case "Fosforos": SpawnFosforos(prop); break;
                 case "Cajafuerte": SpawnCajaF(prop); break;
                 case "Nota": SpawnNota(prop); break;
+                case "PuertaF": SpawnPuertaF(prop); break;
                 default: Debug.Log("Tipo no declarado"); break;
             }
         }
@@ -135,5 +136,13 @@ public class MapSpawner : MonoBehaviour
 		 new Vector3(float.Parse(p[2]), 0, -float.Parse(p[3])),
 		 Quaternion.Euler(0, float.Parse(p[4]), 0));
 		e.name = p[1];
+    }
+
+    void SpawnPuertaF(string[] p)
+    {
+        GameObject pf = Instantiate(PuertaF,
+		 new Vector3(float.Parse(p[2]), 0, -float.Parse(p[3])),
+		 Quaternion.Euler(0, float.Parse(p[4]), 0));
+		pf.name = p[1];
     }
 }

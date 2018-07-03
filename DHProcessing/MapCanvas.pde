@@ -176,14 +176,13 @@ class MapCanvas {
     colorMode(HSB);
     for (int x = 0; x < canvas.width; x++) {
       for (int y = 0; y < canvas.height; y++) {
-        int index = x + y * canvas.width;
         
         float sum = 0;
         for (Objeto o:data.objeto) {
           if(o instanceof objLampara){
             objLampara l = (objLampara) o;
             float d = dist(x, y, l.posX*mult+ctrans.x, l.posY*mult+ctrans.y);
-            sum += (l.rangoLuz*mult)/(d*10);
+            sum += (l.rangoLuz*mult)/(d*15);
           }
         }
 

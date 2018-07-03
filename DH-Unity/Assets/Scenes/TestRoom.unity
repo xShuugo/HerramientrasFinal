@@ -424,7 +424,36 @@ MonoBehaviour:
   Nota: {fileID: 1449729540606138, guid: afe5b14aa5f7bee4c8ecbf26fa7e4685, type: 2}
   Enchufe: {fileID: 1490287122356708, guid: 5e43be76c3573934ca640724f1d3bc98, type: 2}
   Fosforos: {fileID: 1407917452996612, guid: c9b9edb07b3ca9f4c98f9d8221985ad1, type: 2}
-  Puerta: {fileID: 0}
+  PuertaF: {fileID: 1950392951525598, guid: 5c06e9b344c94624bb15dd5f8990f889, type: 2}
+--- !u!1 &1502781461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1502781462}
+  m_Layer: 0
+  m_Name: Piso
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1502781462
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1502781461}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 30, y: 1, z: 30}
+  m_Children:
+  - {fileID: 1507674193}
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1507674189
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,7 +466,7 @@ GameObject:
   - component: {fileID: 1507674191}
   - component: {fileID: 1507674190}
   m_Layer: 0
-  m_Name: Piso
+  m_Name: PisoMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -504,12 +533,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1507674189}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 20, y: 1, z: 20}
+  m_LocalScale: {x: 0.1, y: 1, z: 0.1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_Father: {fileID: 1502781462}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1699824054
 GameObject:
