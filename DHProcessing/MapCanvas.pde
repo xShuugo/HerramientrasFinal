@@ -10,6 +10,8 @@ class MapCanvas {
   Objeto overObj;
   int rotRad = 30;
   boolean preview = false;
+  boolean doNew = false;
+  boolean doOpen = false;
 
   public MapCanvas() {
     csize = new PVector(sideBar.x-pad*2, height-pad*5);
@@ -34,15 +36,20 @@ class MapCanvas {
     canvas.fill(150);
     canvas.rect(0, 0, 30*mult, 30*mult);
     DrawGrid();
+
     overObj = null;
     for (Objeto m : data.objeto) {
       m.draw();
       if(m.checkOver) overObj = m;
     }
+
     if (preview) DrawPreview();
     if(selectedObj != null) DrawGizmo();
     if (mouseOverCanvas()) DrawTool();
     else cursor(ARROW);
+
+    if(doNew) newList();
+    if(doOpen) openList();
   }
 
   void DrawGizmo(){
@@ -170,21 +177,47 @@ class MapCanvas {
   }
 
   void DrawPreview(){
-    canvas.blendMode(MULTIPLY);
-    canvas.fill(0,128);
-    canvas.rect(0, 0, 30*mult, 30*mult);
     
-    canvas.blendMode(ADD);
-    canvas.fill(255,128);
-    canvas.noStroke();
-    for(Objeto o:data.objeto){
-      if(o instanceof objLampara){
-        objLampara l = (objLampara) o;
-        canvas.ellipse(l.posX*mult,l.posY*mult,l.rangoLuz*mult*2,l.rangoLuz*mult*2);
+    canvas.loadPixels();
+    for (int x = 0; x < canvas.width; x++) {
+      for (int y = 0; y < canvas.height; y++) {
+        int index = x + y * canvas.width;
+        float sum = 0;
+        for (Objeto o:data.objeto) {
+          if(o instanceof objLampara){
+            objLampara l = (objLampara) o;
+            float d = dist(x, y, l.posX*mult+ctrans.x, l.posY*mult+ctrans.y);
+            sum += (l.rangoLuz*mult)/(d*6);
+          }
+        }
+        canvas.pixels[index] = color(
+          (255-red(canvas.pixels[index]))*sum,
+          (255-green(canvas.pixels[index]))*sum,
+          (255-blue(canvas.pixels[index]))*sum);
       }
     }
-    
 
-    canvas.blendMode(BLEND);
+    canvas.updatePixels();
   }
+
+  void newList(){
+    doNew = false;
+    data.filePath = "";
+    data.objeto = new ArrayList<Objeto>();
+    createBorder();
+    createSideBar();
+    state = ToolState.MOVING;
+    selectedObj = null;
+    mult = 16;
+    
+  }
+
+  void openList(){
+    doOpen = false;
+    data.objeto = new ArrayList<Objeto>();
+    data.selectFile();
+    createBorder();
+    createSideBar();
+  }
+  
 }

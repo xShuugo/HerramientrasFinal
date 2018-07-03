@@ -101,18 +101,11 @@ void exportComo(){
 }
 
 void openFile() {
-  data.objeto = new ArrayList<Objeto>();
-  data.selectFile();
-  createBorder();
+  map.doOpen = true;
 }
 
 void newMap() {
-  data.filePath = "";
-  data.objeto = new ArrayList<Objeto>();
-  createBorder();
-  state = ToolState.MOVING;
-  selectedObj = null;
-  mult = 16;
+  map.doNew = true;
 }
 
 void moveObject() {

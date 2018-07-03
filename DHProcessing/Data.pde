@@ -114,4 +114,3 @@ void createBorder(){
     data.objeto.add(new objPared ("Pared"+(3+(7*4)), -14.75, 13, 90));
     data.objeto.add(new objPared ("Pared"+(4+(7*4)), 14.75, 13, 90));
 }
-

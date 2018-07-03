@@ -92,18 +92,16 @@ void txtName(String value) {
 }
 
 void txtposX(String value) {
-  selectedObj.posX = float(nf(float(value), 0, 2));
+  selectedObj.posX = float(value);
   selectedObj.posX = float(int(selectedObj.posX*100))/100;
 }
 
 void txtposY(String value) {
-  selectedObj.posY = float(nf(float(value), 0, 2));
+  selectedObj.posY = float(value);
   selectedObj.posY = float(int(selectedObj.posY*100))/100;
 }
 
 void txtAngle(String value) {
-  selectedObj.angle = float(nf(float(value), 0, 2));
-  selectedObj.angle = float(int(selectedObj.angle*100))/100;
-  //selectedObj.angle = float(value);
+  selectedObj.angle = float(value);
+  selectedObj.angle = float(int(selectedObj.angle*10))/10;
 }
-
