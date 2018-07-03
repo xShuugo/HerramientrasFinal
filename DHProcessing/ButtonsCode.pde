@@ -101,6 +101,7 @@ void exportComo(){
 }
 
 void openFile() {
+  println("open");
   data.listReady = false;
   data.doOpen = true;
 }

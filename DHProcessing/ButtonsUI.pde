@@ -66,12 +66,15 @@ void createButtons() {
 }
 
 void createSideBar() {
+  sb.setAutoDraw(false); 
+  prop.setAutoDraw(false);
+  println("ui 1");
   //SIDEBAR
   sideBar = new PVector(width-pad-260, pad*7);
   
   for (ControllerInterface c : sb.getAll())
     sb.remove(c.getName());
-
+  println("ui 2");
   sb.addTextlabel("lblLevelName").
     setText("Nombre del Nivel:"). 
     setPosition(sideBar.x, sideBar.y+lblPad).
@@ -117,6 +120,7 @@ void createSideBar() {
     setPosition((int)((sideBar.x+width)/2-30), sideBar.y).
     setColorValue(color(255, 255, 255));
 
+  println("ui 3");
   createProperties();
 }
 
@@ -126,13 +130,19 @@ void createProperties() {
   
   for (ControllerInterface c : prop.getAll())
     prop.remove(c.getName());
-
+  println("ui 4");
   if (selectedObj == null) {
+    println("ui 5");
     prop.addTextlabel("temp").
       setText("Seleccione un Objeto en el mapa"). 
       setPosition(propBar.x, propBar.y+lblPad).
       setColorValue(color(255, 255, 255));
   } else {
+    println("ui 6");
     selectedObj.createProperties();
   }
+
+  sb.setAutoDraw(true); 
+  prop.setAutoDraw(true);
+  println("ui 7");
 }

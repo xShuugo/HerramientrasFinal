@@ -45,11 +45,11 @@ class Data {
     state = ToolState.MOVING;
     selectedObj = null;
     mult = 16;
-    println("new");
     listReady = true;
   }
 
   void openList(){
+    println("data 1");
     doOpen = false;
     selectFile();
   }
@@ -65,6 +65,7 @@ void onOutputSelected(File path) {
 
 void onInputSelected(File path) {
   if (path != null) {
+    println("data 2");
     data.filePath = path.getAbsolutePath();    
     data.openString = split(loadStrings(path)[0], "/");
     levelName = data.openString[0];
@@ -74,12 +75,12 @@ void onInputSelected(File path) {
       float(pos[0]), 
       float(pos[1]), 
       float(pos[2]));
-
+    println("data 3");
     createSideBar();
-    
+    println("data 4");
     data.objeto = new ArrayList<Objeto>();
     
-
+    println("data 5");
     for (int i = 2; i < data.openString.length; i++) {
       String[] objs = split(data.openString[i], "|");    
       switch(objs[0]) {
@@ -109,10 +110,11 @@ void onInputSelected(File path) {
         break;
       }
     }
-    
+    println("data 6");
     recheckDependendies();
-
+    println("data 7");
     data.listReady = true;
+    println("data 8");
   }
 }
 

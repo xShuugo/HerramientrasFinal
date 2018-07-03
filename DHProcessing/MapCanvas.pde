@@ -20,22 +20,21 @@ class MapCanvas {
   void display() {
     canvas.beginDraw();
     Pan();
-    canvas.rectMode(CENTER);
+    cmouse = new PVector(mouseX-cpos.x-ctrans.x, mouseY-cpos.y-ctrans.y);
     this.draw();
     canvas.endDraw();
     imageMode(CORNER);
     image(canvas, cpos.x, cpos.y);
-
   }
 
   void draw() {
-    cmouse = new PVector(mouseX-cpos.x-ctrans.x, mouseY-cpos.y-ctrans.y);
+    canvas.rectMode(CENTER);
     canvas.background(0);
     canvas.noStroke();
     canvas.fill(150);
     canvas.rect(0, 0, 30*mult, 30*mult);
     DrawGrid();
-
+    
     overObj = null;
     for (Objeto m : data.objeto) {
       m.draw();
