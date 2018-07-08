@@ -23,6 +23,8 @@ class MapCanvas {
     cmouse = new PVector(mouseX-cpos.x-ctrans.x, mouseY-cpos.y-ctrans.y);
     this.draw();
     canvas.endDraw();
+    sb.draw();
+    prop.draw();
     imageMode(CORNER);
     image(canvas, cpos.x, cpos.y);
   }

@@ -3,6 +3,10 @@ void createButtons() {
   sb = new ControlP5(this);
   prop = new ControlP5(this);
   ui = new ControlP5(this);
+  
+  sb.setAutoDraw(false); 
+  prop.setAutoDraw(false);
+  ui.setAutoDraw(false); 
 
   //TOOLBAR  
 
@@ -66,8 +70,7 @@ void createButtons() {
 }
 
 void createSideBar() {
-  sb.setAutoDraw(false); 
-  prop.setAutoDraw(false);
+  
   println("ui 1");
   //SIDEBAR
   sideBar = new PVector(width-pad-260, pad*7);
@@ -142,7 +145,5 @@ void createProperties() {
     selectedObj.createProperties();
   }
 
-  sb.setAutoDraw(true); 
-  prop.setAutoDraw(true);
   println("ui 7");
 }
