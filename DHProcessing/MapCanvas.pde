@@ -183,7 +183,7 @@ class MapCanvas {
           if(o instanceof objLampara){
             objLampara l = (objLampara) o;
             float d = dist(x, y, l.posX*mult+ctrans.x, l.posY*mult+ctrans.y);
-            sum += (l.rangoLuz*mult)/(d*15);
+            sum += (l.rangoLuz*mult)/(d*4);
           }
         }
 
