@@ -30,7 +30,7 @@ public class MapSpawner : MonoBehaviour
 
         string[] PPos = arg[1].Split('|');
         GameObject.Find("Player").transform.position = new Vector3(
-            float.Parse(PPos[0]),float.Parse(PPos[1]),float.Parse(PPos[2]));
+            float.Parse(PPos[0]),float.Parse(PPos[1]),-float.Parse(PPos[2]));
 
         for (int a = 2; a < arg.Length - 1; a++)
         {
@@ -125,7 +125,7 @@ public class MapSpawner : MonoBehaviour
 
     void SpawnNota(string[] p){
         GameObject n = Instantiate(Nota,
-		 new Vector3(float.Parse(p[2]), 0, -float.Parse(p[3])),
+		 new Vector3(float.Parse(p[2]), 1, -float.Parse(p[3])),
 		 Quaternion.Euler(0, float.Parse(p[4]), 0));
 		n.name = p[1];
         n.GetComponent<NotaScript>().Contenido = p[5];
